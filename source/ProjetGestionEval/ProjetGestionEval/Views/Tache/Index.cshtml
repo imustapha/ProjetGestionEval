@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ProjetGestionEval.tache>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMTACHE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATEDEBUTTACHE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATEFINTACHE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.collaborateur.NOM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.projet.NOMPROJET)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMTACHE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATEDEBUTTACHE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATEFINTACHE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.collaborateur.NOM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.projet.NOMPROJET)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDTACHE }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDTACHE }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDTACHE })
+        </td>
+    </tr>
+}
+
+</table>

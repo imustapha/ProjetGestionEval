@@ -1,0 +1,67 @@
+﻿@model ProjetGestionEval.projet
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>projet</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMPROJET)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMPROJET)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DATEDEBUT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATEDEBUT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DATEFIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATEFIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TYPE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FLAGTYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FLAGTYPE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.client.ABREVIATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.client.ABREVIATION)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPROJET }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

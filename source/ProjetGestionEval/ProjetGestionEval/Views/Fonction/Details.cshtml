@@ -1,0 +1,27 @@
+﻿@model ProjetGestionEval.fonction
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>fonction</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMFONCTION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMFONCTION)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDFONCTION }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

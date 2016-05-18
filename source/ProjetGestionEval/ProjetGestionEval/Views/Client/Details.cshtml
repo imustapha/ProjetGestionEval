@@ -1,0 +1,27 @@
+﻿@model ProjetGestionEval.client
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>client</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ABREVIATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ABREVIATION)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDCLIENT }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ProjetGestionEval.projet>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMPROJET)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATEDEBUT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATEFIN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TYPE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FLAGTYPE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.client.ABREVIATION)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMPROJET)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATEDEBUT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATEFIN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TYPE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FLAGTYPE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.client.ABREVIATION)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDPROJET }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDPROJET }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDPROJET })
+        </td>
+    </tr>
+}
+
+</table>

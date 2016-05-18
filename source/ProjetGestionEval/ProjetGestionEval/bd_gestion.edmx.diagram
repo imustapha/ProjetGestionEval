@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ce4d77808c394a348449c15c4611d4e3" Name="Diagram1" ZoomLevel="71">
+        <EntityTypeShape EntityType="bd_gestionModel.aspnetroles" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_gestionModel.aspnetuserclaims" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_gestionModel.aspnetuserlogins" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_gestionModel.aspnetusers" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_gestionModel.client" Width="1.5" PointX="6" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_gestionModel.collaborateur" Width="1.75" PointX="6" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_gestionModel.critere" Width="1.5" PointX="10.5" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_gestionModel.evaluation" Width="1.5" PointX="8.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_gestionModel.famillecritere" Width="1.5" PointX="8.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_gestionModel.fonction" Width="1.5" PointX="3.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_gestionModel.projet" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_gestionModel.tache" Width="1.5" PointX="10.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_gestionModel.variable" Width="1.5" PointX="10.5" PointY="13.25" IsExpanded="true" />
+        <AssociationConnector Association="bd_gestionModel.ApplicationUser_Claims" ManuallyRouted="false" />
+        <AssociationConnector Association="bd_gestionModel.ApplicationUser_Logins" ManuallyRouted="false" />
+        <AssociationConnector Association="bd_gestionModel.fk_IdUser" ManuallyRouted="false" />
+        <AssociationConnector Association="bd_gestionModel.FK_APPARTENIR" ManuallyRouted="false" />
+        <AssociationConnector Association="bd_gestionModel.FK_AVOIR" ManuallyRouted="false" />
+        <AssociationConnector Association="bd_gestionModel.FK_EXAMINER" ManuallyRouted="false" />
+        <AssociationConnector Association="bd_gestionModel.FK_MANIER" ManuallyRouted="false" />
+        <AssociationConnector Association="bd_gestionModel.FK_QUIEVALUE" ManuallyRouted="false" />
+        <AssociationConnector Association="bd_gestionModel.FK_SELECTIONNER" ManuallyRouted="false" />
+        <AssociationConnector Association="bd_gestionModel.FK_POSSEDER" ManuallyRouted="false" />
+        <AssociationConnector Association="bd_gestionModel.FK_CONTIENT" ManuallyRouted="false" />
+        <AssociationConnector Association="bd_gestionModel.administrer" ManuallyRouted="false" />
+        <AssociationConnector Association="bd_gestionModel.aspnetuserroles" ManuallyRouted="false" />
+        <AssociationConnector Association="bd_gestionModel.caracteriser" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

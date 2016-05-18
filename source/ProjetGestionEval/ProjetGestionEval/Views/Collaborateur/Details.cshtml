@@ -1,0 +1,91 @@
+﻿@model ProjetGestionEval.collaborateur
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>collaborateur</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRENOM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRENOM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IMAGE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IMAGE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FLAGEVAL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FLAGEVAL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TYPECOLLABORATEUR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TYPECOLLABORATEUR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DATEEMBAUCHE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATEEMBAUCHE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DATESORTIE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATESORTIE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aspnetusers.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aspnetusers.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fonction.NOMFONCTION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fonction.NOMFONCTION)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDCOLLABORATEUR }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
