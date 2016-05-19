@@ -156,18 +156,41 @@ namespace ProjetGestionEval.Controllers
         // GET: Collaborateur/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            collaborateur CollT = bd.collaborateur.Find(id);
+            if (CollT == null)
+            {
+                return HttpNotFound();
+            }
+            return View(CollT);
         }
 
         // POST: Collaborateur/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int? id, collaborateur Coll)
         {
             try
             {
+                collaborateur CollT = new collaborateur();
+                aspnetusers asps = new aspnetusers();
                 // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    if (id == null)
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    CollT = bd.collaborateur.Find(id);
+                    asps = bd.aspnetusers.Find(Coll.IdUser);
+                    if (CollT == null && asps == null)
+                        return HttpNotFound();
+                    bd.collaborateur.Remove(CollT);
+                    bd.aspnetusers.Remove(asps);
+                    bd.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(CollT);
             }
             catch
             {

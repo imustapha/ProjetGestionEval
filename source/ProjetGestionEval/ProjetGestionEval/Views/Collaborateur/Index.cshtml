@@ -63,19 +63,19 @@
                                 Evaluateur
                             </th>
                             <th>
-                                Collaborateur Type
+                                Type
                             </th>
                             <th>
                                 Date d'embauche
                             </th>
                             <th>
-                                Date de Sortie
+                                Date Sortie
                             </th>
                             <th>
                                 Email
                             </th>
                             <th>
-                                Nom de fonction
+                                Fonction
                             </th>
                             <th></th>
                         </tr>
@@ -95,13 +95,23 @@
                                     @Html.DisplayFor(modelItem => item.PRENOM)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.FLAGEVAL)
+                                    @{
+                                        string xy="";
+                            if (item.FLAGEVAL == true){
+                                 xy = "Oui";
+                            }
+                            else if (item.FLAGEVAL == false)
+                            {
+                                xy = "Nom";
+                            }
+                            }
+                                   <center>@xy</center>
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.TYPECOLLABORATEUR)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.DATEEMBAUCHE)
+                                    @Html.DisplayFor(modelItem => item.DATEEMBAUCHE.Day)/@Html.DisplayFor(modelItem => item.DATEEMBAUCHE.Month)/@Html.DisplayFor(modelItem => item.DATEEMBAUCHE.Year)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.DATESORTIE)
