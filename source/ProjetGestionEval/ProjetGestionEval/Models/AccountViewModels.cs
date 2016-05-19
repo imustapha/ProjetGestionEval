@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace ProjetGestionEval.Models
 {
@@ -68,6 +70,20 @@ namespace ProjetGestionEval.Models
         [Display(Name = "Confirmer le mot de passe ")]
         [Compare("Password", ErrorMessage = "Le mot de passe et le mot de passe de confirmation ne correspondent pas.")]
         public string ConfirmPassword { get; set; }
+
+        public int IDCOLLABORATEUR { get; set; }
+        public int IDFONCTION { get; set; }
+        public string NOM { get; set; }
+        public string PRENOM { get; set; }
+        public byte[] IMAGE { get; set; }
+        public bool FLAGEVAL { get; set; }
+        public string TYPECOLLABORATEUR { get; set; }
+        public System.DateTime DATEEMBAUCHE { get; set; }
+        public Nullable<System.DateTime> DATESORTIE { get; set; }
+        public string IdUser { get; set; }
+        public HttpPostedFileBase File { get; set; }
+
+
     }
 
     public class ResetPasswordViewModel

@@ -1,13 +1,47 @@
-﻿using System;
+﻿using ProjetGestionEval;
+using ProjetGestionEval.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
+using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using MySql.AspNet.Identity;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity.Owin;
+using Owin;
 
 namespace ProjetGestionEval.Controllers
 {
     public class CollaborateurController : Controller
     {
+        private ApplicationUserManager _userManager;
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
+        }
+        private async Task SignInAsync(ApplicationUser user, bool isPersistent)
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, await user.GenerateUserIdentityAsync(UserManager));
+        }
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
         bd_gestionEntities bd = new bd_gestionEntities();
         // GET: Collaborateur
         public ActionResult Index()
@@ -24,23 +58,77 @@ namespace ProjetGestionEval.Controllers
         // GET: Collaborateur/Create
         public ActionResult Create()
         {
+            ViewBag.IDFONCTION = new SelectList(bd.fonction, "IDFONCTION", "NOMFONCTION");
             return View();
         }
 
         // POST: Collaborateur/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public async Task<ActionResult> Create([Bind(Exclude = "DATESORTIE,IdUser")]RegisterViewModel model)
         {
+            ViewBag.IDFONCTION = new SelectList(bd.fonction, "IDFONCTION", "NOMFONCTION");
+            if (model.TYPECOLLABORATEUR == "Periode d'esseai" || model.TYPECOLLABORATEUR == "Freelance")
+                model.FLAGEVAL = false;
             try
             {
-                // TODO: Add insert logic here
+                // Convertir l'image
+                if (model.File.ContentLength > (2 * 1024 * 1024))
+                {
+                    ModelState.AddModelError("CustomError", "File est plus 2mb");
+                    return View();
+                }
+                if (!(model.File.ContentType == "image/jpeg" || model.File.ContentType == "image/gif"))
+                {
+                    ModelState.AddModelError("CustomError", "File alloued for jpeg and gif");
+                    return View();
 
-                return RedirectToAction("Index");
+                }
+                byte[] data = new byte[model.File.ContentLength];
+                model.File.InputStream.Read(data, 0, model.File.ContentLength);
+                model.IMAGE = data;
+                //formulaire methode poste
+                if (ModelState.IsValid)
+                {
+                    var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+                    var resulte = await UserManager.CreateAsync(user,model.Password);
+                        //await UserManager.CreateAsync(user, model.Password);
+
+                    var userToInsert = bd.aspnetusers.Where(i => i.UserName == user.UserName).FirstOrDefault();
+                    if (userToInsert != null)
+                    {
+
+                        var CollT = new collaborateur() { IdUser = userToInsert.Id, NOM = model.NOM, PRENOM = model.PRENOM, IDFONCTION = model.IDFONCTION, IMAGE = model.IMAGE, FLAGEVAL = model.FLAGEVAL,DATEEMBAUCHE=model.DATEEMBAUCHE,DATESORTIE=model.DATESORTIE,TYPECOLLABORATEUR=model.TYPECOLLABORATEUR };
+                        if (resulte.Succeeded)
+                        {
+                            //var currentUser = UserManager.FindByName(user.UserName);
+                            //if (model.FLAGEVAL == true)
+                            //{ 
+                            //    var roleresult = UserManager.AddToRole(currentUser.Id, "superuser"); }
+                            //else { var roleresult = UserManager.AddToRole(currentUser.Id, "viewt"); }
+                            //await SignInAsync(user, isPersistent: false);
+                            bd.collaborateur.Add(CollT);
+                            bd.SaveChanges();
+                            return RedirectToAction("Index");
+
+                        }
+                    }
+
+                }
+                else if (!ModelState.IsValid)
+                {
+
+                    return View();
+                }
+
             }
-            catch
+            catch (Exception ex)
             {
+                ViewBag.IDFONCTION = new SelectList(bd.fonction, "IDFONCTION", "NOMFONCTION");
+                string tst = ex.Message;
                 return View();
             }
+
+            return View();
         }
 
         // GET: Collaborateur/Edit/5

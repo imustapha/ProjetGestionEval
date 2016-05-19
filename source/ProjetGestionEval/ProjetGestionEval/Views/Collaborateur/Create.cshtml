@@ -1,107 +1,232 @@
-﻿@model ProjetGestionEval.collaborateur
+﻿@model ProjetGestionEval.Models.RegisterViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
+<ul class="page-breadcrumb breadcrumb">
+    <li>
 
-<h2>Create</h2>
+
+        <a href="~/Home/Accueil">Acceuil</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Collaborateur/Index">Liste des Collaborateur</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Collaborateur/Create">Create</a>
+        <i class="fa fa-circle"></i>
+    </li>
 
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>collaborateur</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.IDFONCTION, "IDFONCTION", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("IDFONCTION", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IDFONCTION, "", new { @class = "text-danger" })
-            </div>
-        </div>
+</ul>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.NOM, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NOM, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NOM, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PRENOM, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PRENOM, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PRENOM, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IMAGE, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IMAGE, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IMAGE, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.FLAGEVAL, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.FLAGEVAL)
-                    @Html.ValidationMessageFor(model => model.FLAGEVAL, "", new { @class = "text-danger" })
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN VALIDATION STATES-->
+        <div class="portlet box green">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-gift"></i>Advance Validation
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+                    <a href="#portlet-config" data-toggle="modal" class="config">
+                    </a>
+                    <a href="javascript:;" class="reload">
+                    </a>
+                    <a href="javascript:;" class="remove">
+                    </a>
                 </div>
             </div>
-        </div>
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                <form action="Create" method="Post" id="form_sample_3" class="form-horizontal" enctype="multipart/form-data">
+                    <div class="form-body">
+                        <div class="alert alert-danger display-hide">
+                            <button class="close" data-close="alert"></button>
+                            You have some form errors. Please check below.
+                        </div>
+                        <div class="alert alert-success display-hide">
+                            <button class="close" data-close="alert"></button>
+                            Le Collaborateur a ete ajouter avec succes
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">
+                                Email
+                            </label>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-envelope"></i>
+                                    </span>
+                                    @Html.TextBoxFor(M => M.Email, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Mots de Passe<span class="required">
+                                    *
+                                </span>
+                            </label>
+                            <div class="col-md-4">
+                                <div class="input-icon right">
+                                    <i class="fa"></i>
+                                    @Html.TextBoxFor(m => m.Password, new { type = "password", @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Confirme Mots de Passe<span class="required">
+                                    *
+                                </span>
+                            </label>
+                            <div class="col-md-4">
+                                <div class="input-icon right">
+                                    <i class="fa"></i>
+                                    @Html.TextBoxFor(m => m.ConfirmPassword, new { type = "password", @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TYPECOLLABORATEUR, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TYPECOLLABORATEUR, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TYPECOLLABORATEUR, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Nom <span class="required">
+                                    *
+                                </span>
+                            </label>
+                            <div class="col-md-4">
+                                <div class="input-icon right">
+                                    <i class="fa"></i>
+                                    @Html.TextBoxFor(M => M.NOM, new { @class = "form-control", required = "required" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DATEEMBAUCHE, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DATEEMBAUCHE, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DATEEMBAUCHE, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DATESORTIE, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DATESORTIE, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DATESORTIE, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Prenom <span class="required">
+                                    *
+                                </span>
+                            </label>
+                            <div class="col-md-4">
+                                <div class="input-icon right">
+                                    <i class="fa"></i>
+                                    @Html.TextBoxFor(M => M.PRENOM, new { @class = "form-control", required = "required" })
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdUser, "IdUser", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("IdUser", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IdUser, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">
+                                Photo <span class="required">
+                                    *
+                                </span>
+                            </label>
+                            <div class="col-md-4">
+                                <div class="input-icon right">
+                                    <i class="fa"></i>
+                                    @Html.TextBoxFor(Model => Model.File, new { type = "file" })
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Date d'embauche</label>
+                            <div class="col-md-3">
+                                <input class="form-control form-control-inline input-medium date-picker" name="DATEEMBAUCHE" size="16" type="text" value="" />
+                                <span class="help-block">
+                                    Select date
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Date sortie</label>
+                            <div class="col-md-3">
+                                <input class="form-control form-control-inline input-medium date-picker" name="DATESORTIE" size="16" type="text" value="" />
+                                <span class="help-block">
+                                    Select date
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Fonction <span class="required">
+                                    *
+                                </span>
+                            </label>
+                            <div class="col-md-4">
+                                @Html.DropDownListFor(M => M.IDFONCTION, ViewBag.IDFONCTION as SelectList, "Selectionner la fonction", htmlAttributes: new { @Class = "form-control", required = "required" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Collaborateur
+                            </label>
+                            <div class="col-md-4">
+                                <div class="radio-list" data-error-container="#form_2_membership_error">
+                                    <label>
+                                        @Html.RadioButtonFor(M => M.TYPECOLLABORATEUR, "Freelance", new { @class = "enable_tb", Checked = "checked" })
+                                        Freelance
+                                    </label>
+                                    <label>
+                                        @Html.RadioButtonFor(M => M.TYPECOLLABORATEUR, "Titulaire")
+                                        Titulaire
+                                    </label>
+                                    <label>
+                                        @Html.RadioButtonFor(M => M.TYPECOLLABORATEUR, "Periode d'esseai", new { @class = "enable_tb" })
+                                        Periode d'esseai
+                                    </label>
+                                </div>
+                                <div id="form_2_membership_error">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Evaluateur
+                            </label>
+                            <div class="col-md-4">
+                                <div class="radio-list"  data-error-container="#form_2_membership_error">
+                                    <label>
+                                        @Html.RadioButtonFor(M => M.FLAGEVAL, true, htmlAttributes: new { id="otherDevText", @disabled = "disabled" })
+                                        Oui
+                                    </label>
+                                    <label>
+                                        @Html.RadioButtonFor(M => M.FLAGEVAL, false, htmlAttributes: new { id="otherDevText2", @disabled = "disabled" })
+                                        Non
+                                    </label>
+                                </div>
+                                <div id="form_2_membership_error">
+                                </div>
+                            </div>
+                        </div>
+                       
+                            
+
+                        
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn green">Submit</button>
+                                <button type="reset" class="btn red">Cancel</button>
+                                <a href="@Url.Action("Index")" class="btn default">Retour</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- END FORM-->
             </div>
+            <!-- END VALIDATION STATES-->
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
