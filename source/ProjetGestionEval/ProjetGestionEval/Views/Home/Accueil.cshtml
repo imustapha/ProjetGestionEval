@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Accueil";
+    Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
+}
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+
+        <a href="~/Home/Accueil">Accueil</a>
+        <i class="fa fa-circle"></i>
+    </li>
+
+</ul>
+
+
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="tiles">
+    @*@{if (User.IsInRole("superuser"))
+    {*@
+        <a href="/Collaborateur/Index">
+            <div class="tile double-down bg-blue-hoki">
+                <div class="tile-body">
+                    <i class="fa fa-user"></i>
+                </div>
+
+                <div class="tile-object">
+                    <div class="name">
+                        Collaborateur Titulaire
+                    </div>
+                    <div class="number">
+                        2
+                        @*@ViewBag.cc*@
+                    </div>
+                </div>
+            </div>
+        </a>
+
+
+        <a href="/Collaborateur/Index">
+            <div class="tile selected bg-yellow-saffron">
+                <div class="corner">
+                </div>
+                <div class="tile-body">
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="tile-object">
+                    <div class="name">
+                        Collaborateur P.E
+                    </div>
+                    <div class="number">
+                        1
+                        @*@ViewBag.bb*@
+                    </div>
+                </div>
+            </div>
+        </a>}
+    @*else
+    {
+        <label>Bonjour @User.Identity.Name</label>
+
+    }
+    }*@
+

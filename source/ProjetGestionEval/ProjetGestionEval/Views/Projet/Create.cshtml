@@ -5,79 +5,201 @@
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 
-<h2>Create</h2>
+<ul class="page-breadcrumb breadcrumb">
+    <li>
 
+        <a href="~/Home/Accueil">Accueil</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Projet/Index">Liste des projets</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Projet/Create">Ajouter</a>
+        <i class="fa fa-circle"></i>
+    </li>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>projet</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.IDCLIENT, "IDCLIENT", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("IDCLIENT", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IDCLIENT, "", new { @class = "text-danger" })
+</ul>
+<div class="col-md-12">
+    <!-- BEGIN VALIDATION STATES-->
+    <div class="portlet box green">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-plus-square"></i>Projet
+            </div>
+            <div class="tools">
+                <a href="javascript:;" class="collapse">
+                </a>
+                <a href="#portlet-config" data-toggle="modal" class="config">
+                </a>
+                <a href="javascript:;" class="reload">
+                </a>
+                <a href="javascript:;" class="remove">
+                </a>
             </div>
         </div>
+        <div class="portlet-body form">
+            <!-- BEGIN FORM-->
+            <form action="Create" method="Post" id="form_sample_3" class="form-horizontal" enctype="multipart/form-data">
+                <div class="form-body">
+                    <div class="alert alert-danger display-hide">
+                        <button class="close" data-close="alert"></button>
+                        You have some form errors. Please check below.
+                    </div>
+                    <div class="alert alert-success display-hide">
+                        <button class="close" data-close="alert"></button>
+                        Le projet a ete ajouter avec succes
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.NOMPROJET, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NOMPROJET, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NOMPROJET, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DATEDEBUT, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DATEDEBUT, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DATEDEBUT, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DATEFIN, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DATEFIN, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DATEFIN, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TYPE, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TYPE, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TYPE, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.FLAGTYPE, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.FLAGTYPE)
-                    @Html.ValidationMessageFor(model => model.FLAGTYPE, "", new { @class = "text-danger" })
+
+                    <div class="form-horizontal">
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @*<div class="form-group">
+                                @Html.LabelFor(model => model.IDCLIENT, "IDCLIENT", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("IDCLIENT", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.IDCLIENT, "", new { @class = "text-danger" })
+                                </div>
+                            </div>*@
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NOMPROJET, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.NOMPROJET, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.NOMPROJET, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="control-label col-md-3">Collaorateur</label>
+                            <div class="col-md-4">
+
+                                @Html.ListBoxFor(m => m.collaborateur, ViewBag.collaborateur as MultiSelectList, htmlAttributes: new { @Class = "bs-select form-control", @multiple = "multiple", required = "required" })
+
+                            </div>
+
+                        </div>
+
+                        @*<div class="form-group">
+                            <label class="control-label col-md-3">Collaborateur en Esseai</label>
+                            <div class="col-md-4">
+                                @Html.ListBoxFor(m => m.collaborateurpe, ViewBag.collaborateurpe as MultiSelectList, htmlAttributes: new { @Class = "bs-select form-control", @multiple = "multiple", required = "required" })
+                            </div>
+                        </div*@>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Client Du Projet</label>
+                            <div class="col-md-4">
+                                @Html.DropDownListFor(m => m.IDCLIENT, ViewBag.Client as SelectList, "Selectionner le Client", htmlAttributes: new { @Class = "form-control", required = "required" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Date Debut Projet</label>
+                            <div class="col-md-3">
+                                <input class="form-control form-control-inline input-medium date-picker" size="16" type="text" name="DATEDEBUT" />
+                                <span class="help-block">
+                                    Select date MM/DD/YYYY
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Date Fin Projet</label>
+                            <div class="col-md-3">
+                                <input class="form-control form-control-inline input-medium date-picker" size="16" type="text" name="DATEFIN" />
+                                <span class="help-block">
+                                    Select date MM/DD/YYYY
+                                </span>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group ">
+                            @Html.LabelFor(model => model.TYPE, "Type de Projet", htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-5">
+                                <div class="md-radio-inline">
+                                    <div class="md-radio">
+                                        <input type="radio" id="radio53" name="TYPE" value="2" class="md-radiobtn">
+                                        <label for="radio53">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span>
+                                            Régie
+                                        </label>
+                                    </div>
+
+                                    <div class="md-radio">
+                                        <input type="radio" id="radio54" name="TYPE" value="1" class="md-radiobtn" checked>
+                                        <label for="radio54">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span>
+                                            TMA
+                                        </label>
+                                    </div>
+                                    <div class="md-radio">
+                                        <div class="md-radio">
+                                            <input type="radio" id="radio55" name="TYPE" value="0" class="md-radiobtn">
+                                            <label for="radio55">
+                                                <span></span>
+                                                <span class="check"></span>
+                                                <span class="box"></span>
+                                                Forfait
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Projet</label>
+                            <div class="col-md-5">
+                                <div class="md-radio-inline">
+                                    <div class="md-radio">
+                                        <input type="radio" id="radio56" name="FLAGTYPE" value=true class="md-radiobtn">
+                                        <label for="radio56">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span>
+                                            Interne
+                                        </label>
+                                    </div>
+
+                                    <div class="md-radio">
+                                        <div class="md-radio">
+                                            <input type="radio" id="radio57" name="FLAGTYPE" value=false class="md-radiobtn" checked>
+                                            <label for="radio57">
+                                                <span></span>
+                                                <span class="check"></span>
+                                                <span class="box"></span>
+                                                Externe
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button type="submit" class="btn green">Ajouter</button>
+                            
+                            <a href="@Url.Action("Index")" class="btn default">Retour</a>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+            </form>
+            <!-- END FORM-->
         </div>
+        <!-- END VALIDATION STATES-->
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

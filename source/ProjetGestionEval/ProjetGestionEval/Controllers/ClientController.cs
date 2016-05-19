@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,10 +9,12 @@ namespace ProjetGestionEval.Controllers
 {
     public class ClientController : Controller
     {
+
+        bd_gestionEntities bd = new bd_gestionEntities();
         // GET: Client
         public ActionResult Index()
         {
-            return View();
+            return View(bd.client.ToList());
         }
 
         // GET: Client/Details/5
@@ -28,13 +31,17 @@ namespace ProjetGestionEval.Controllers
 
         // POST: Client/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(client cl)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    bd.client.Add(cl);
+                    bd.SaveChanges();
+                    return RedirectToAction("Index");
 
-                return RedirectToAction("Index");
+                } return View(cl);
             }
             catch
             {
@@ -43,20 +50,31 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: Client/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            client cl = bd.client.Find(id);
+            if (cl == null)
+                return HttpNotFound();
+            return View(cl);
         }
 
         // POST: Client/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(client cl)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    bd.Entry(cl).State = System.Data.Entity.EntityState.Modified;
+                    bd.SaveChanges();
+                    return RedirectToAction("Index");
 
-                return RedirectToAction("Index");
+
+                }
+                return View(cl);
             }
             catch
             {
@@ -65,20 +83,44 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: Client/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            client cl = bd.client.Find(id);
+            if (cl == null)
+            {
+                return HttpNotFound();
+            }
+            return View(cl);
         }
 
         // POST: Client/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int? id, client clt)
         {
             try
             {
-                // TODO: Add delete logic here
+                client cl = new client();
+                if (ModelState.IsValid)
+                {
+                    if (id == null)
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-                return RedirectToAction("Index");
+                    cl = bd.client.Find(id);
+                    if (cl == null)
+                        return HttpNotFound();
+
+
+                    bd.client.Remove(cl);
+                    bd.SaveChanges();
+                    return RedirectToAction("Index");
+
+                } return View(cl);
+
+
             }
             catch
             {

@@ -1,34 +1,99 @@
 ﻿@model IEnumerable<ProjetGestionEval.fonction>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Liste des fonctions";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
+<ul class="page-breadcrumb breadcrumb">
+    <li>
 
-<h2>Index</h2>
+        <a href="~/Home/Accueil">Accueil</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Fonction/Index">Liste des fonctions</a>
+        <i class="fa fa-circle"></i>
+    </li>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMFONCTION)
-        </th>
-        <th></th>
-    </tr>
+</ul>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMFONCTION)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDFONCTION }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDFONCTION }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDFONCTION })
-        </td>
-    </tr>
-}
 
-</table>
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet box blue-madison">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-globe"></i>List des fonctions
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+
+                    <a href="javascript:;" class="reload">
+                    </a>
+                    <a href="javascript:;" class="remove">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-toolbar">
+                    <div class="row">
+                        <div class="col-md-6">
+
+
+                            <div class="clearfix">
+                                <a href="@Url.Action("Create")" id="sample_editable_1_new" class="btn green">Creer <i class="fa fa-plus"></i></a>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+                <table class="table table-striped table-bordered table-hover" id="sample_2">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>
+                                Nom de la fonction
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td></td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NOMFONCTION)
+                                </td>
+                                
+                                <td>
+                                    <div class="clearfix">
+
+                                        <center>
+                                            <a href="@Url.Action("Edit", new { id = item.IDFONCTION })" id="sample_editable_1_new" class="btn green"> <i class="glyphicon glyphicon-pencil"></i></a>
+                                            
+                                            <a href="@Url.Action("Delete", new { id = item.IDFONCTION })" id="sample_editable_1_new" class="btn red"> <i class="glyphicon glyphicon-trash"></i></a>
+                                        </center>
+
+                                    </div>
+
+                                </td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+
+
+
+

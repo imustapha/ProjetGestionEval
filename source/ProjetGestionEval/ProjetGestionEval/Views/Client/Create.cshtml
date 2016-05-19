@@ -4,38 +4,82 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
+<ul class="page-breadcrumb breadcrumb">
+    <li>
 
-<h2>Create</h2>
+        <a href="~/Home/Accueil">Accueil</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Fonction/Index">Liste des clients</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Fonction/Create">Ajouter un nouveau client</a>
+        <i class="fa fa-circle"></i>
+    </li>
+
+</ul>
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN VALIDATION STATES-->
+        <div class="portlet box green">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-gift"></i>Client
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
 
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>client</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.ABREVIATION, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ABREVIATION, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ABREVIATION, "", new { @class = "text-danger" })
+                    <a href="javascript:;" class="reload">
+                    </a>
+                    <a href="javascript:;" class="remove">
+                    </a>
+                </div>
             </div>
-        </div>
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                <form action="Create" method="Post" id="form_sample_3" class="form-horizontal" enctype="multipart/form-data">
+                    <div class="form-body">
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                        <div class="alert alert-danger display-hide">
+                            <button class="close" data-close="alert"></button>
+                            Vous avez des champs qu'ils sont vide.
+                        </div>
+                        <div class="alert alert-success display-hide">
+                            <button class="close" data-close="alert"></button>
+                            Ajout du client réussi!
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Abréviation du client <span class="required">
+                                    *
+                                </span>
+                            </label>
+                            <div class="col-md-4">
+                                <div class="input-icon right">
+                                    <i class="fa"></i>
+                                    @Html.TextBoxFor(M => M.ABREVIATION, new { @class = "form-control", required = "required" })
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn green">Ajouter</button>
+                                <a href="@Url.Action("Index")" class="btn default">Retour</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- END FORM-->
             </div>
+            <!-- END VALIDATION STATES-->
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+

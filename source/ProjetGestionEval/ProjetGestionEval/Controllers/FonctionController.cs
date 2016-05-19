@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,16 +9,27 @@ namespace ProjetGestionEval.Controllers
 {
     public class FonctionController : Controller
     {
+        bd_gestionEntities bd = new bd_gestionEntities();
         // GET: Fonction
         public ActionResult Index()
         {
-            return View();
+            return View(bd.fonction.ToList());
         }
 
         // GET: Fonction/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            }
+            fonction fonc = bd.fonction.Find(id);
+            if (fonc == null)
+                return HttpNotFound();
+
+
+            return View(fonc);
         }
 
         // GET: Fonction/Create
@@ -28,13 +40,17 @@ namespace ProjetGestionEval.Controllers
 
         // POST: Fonction/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(fonction fonct)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    bd.fonction.Add(fonct);
+                    bd.SaveChanges();
+                    return RedirectToAction("Index");
 
-                return RedirectToAction("Index");
+                } return View(fonct);
             }
             catch
             {
@@ -43,20 +59,31 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: Fonction/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+           fonction fon = bd.fonction.Find(id);
+            if (fon == null)
+                return HttpNotFound();
+            return View(fon);
         }
 
         // POST: Fonction/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(fonction fon)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    bd.Entry(fon).State = System.Data.Entity.EntityState.Modified;
+                    bd.SaveChanges();
+                    return RedirectToAction("Index");
 
-                return RedirectToAction("Index");
+
+                }
+                return View(fon);
             }
             catch
             {
@@ -65,20 +92,44 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: Fonction/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            fonction fon = bd.fonction.Find(id);
+            if (fon == null)
+            {
+                return HttpNotFound();
+            }
+            return View(fon);
         }
 
         // POST: Fonction/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int? id, fonction fonct)
         {
             try
             {
-                // TODO: Add delete logic here
+                fonction fon = new fonction();
+                if (ModelState.IsValid)
+                {
+                    if (id == null)
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-                return RedirectToAction("Index");
+                    fon = bd.fonction.Find(id);
+                    if (fon == null)
+                        return HttpNotFound();
+
+
+                    bd.fonction.Remove(fon);
+                    bd.SaveChanges();
+                    return RedirectToAction("Index");
+
+                } return View(fon);
+
+
             }
             catch
             {

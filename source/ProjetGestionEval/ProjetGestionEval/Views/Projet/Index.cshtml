@@ -5,60 +5,146 @@
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 
-<h2>Index</h2>
+<ul class="page-breadcrumb breadcrumb">
+    <li>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMPROJET)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DATEDEBUT)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DATEFIN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TYPE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FLAGTYPE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.client.ABREVIATION)
-        </th>
-        <th></th>
-    </tr>
+        <a href="~/Home/Accueil">Accueil</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Projet/Index">Liste des projets</a>
+        <i class="fa fa-circle"></i>
+    </li>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMPROJET)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DATEDEBUT)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DATEFIN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TYPE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FLAGTYPE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.client.ABREVIATION)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDPROJET }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDPROJET }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDPROJET })
-        </td>
-    </tr>
-}
+</ul>
 
-</table>
+<div class="col-md-12">
+    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+    <div class="portlet box blue">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cubes"></i>Projet
+            </div>
+
+        </div>
+        <div class="portlet-body">
+            <div class="table-toolbar">
+                <div class="row">
+                    <div class="col-md-6">
+
+
+                        <div class="clearfix">
+                            <a href="@Url.Action("Create")" id="sample_editable_1_new" class="btn green">Creer <i class="fa fa-plus"></i></a>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <table class="table table-striped table-bordered table-hover" id="sample_2">
+                <thead>
+                    <tr>
+                        <th>
+
+                            Nom du projet
+                        </th>
+                        <th>
+                            Date debut
+                        </th>
+                        <th>
+
+                            Date fin
+                        </th>
+                        <th>
+
+                            Type projet
+                        </th>
+                        <th>
+
+                            Interne/Externe
+                        </th>
+                        <th>
+
+                            Client
+                        </th>
+                        <th>
+
+                            Collaborateur titulaire
+                        </th>
+                        
+                        <th class="col-md-6">######Action######</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NOMPROJET)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DATEDEBUT.Value.Day)/@Html.DisplayFor(modelItem => item.DATEDEBUT.Value.Month)/@Html.DisplayFor(modelItem => item.DATEDEBUT.Value.Year)
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DATEFIN.Value.Day)/@Html.DisplayFor(modelItem => item.DATEFIN.Value.Month)/@Html.DisplayFor(modelItem => item.DATEFIN.Value.Year)
+                            </td>
+                            <td>
+                                @{var x = "";
+                                if (item.TYPE == 2) { x = "Régie"; }
+                                else if (item.TYPE == 1) { x = "TMA"; }
+                                else { x = "Forfait"; }
+                                }
+                                @x
+                            </td>
+                            <td>
+                                @{var h = "";
+                                if (item.FLAGTYPE == true)
+                                {
+                                    h = "Interne";
+                                }
+                                else
+                                {
+                                    h = "Externe";
+                                }
+                                }
+                                @h
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.client.ABREVIATION)
+                            </td>
+
+                            <td>
+                                <!--!!!! ul et il ici pour l'affichage des collaborateur!!!!-->
+                                @{var y = "";
+                                foreach (var colab in item.collaborateur)
+                                {
+                                    y = y + colab.NOM + ",";
+                                }
+                                }
+                                @y
+                            </td>
+                            
+
+                            <td class="col-md-6">
+
+                                <div class="clearfix">
+                                    <center>
+                                        <a href="@Url.Action("Edit", new { id = item.IDPROJET })" id="sample_editable_1_new" class="btn green" title="Modifier"> <i class="glyphicon glyphicon-pencil"></i></a>
+                                        <a href="@Url.Action("Details", new { id = item.IDPROJET })" id="sample_editable_1_new" class="btn yellow" title="Details"> <i class="glyphicon glyphicon-list-alt"></i></a>
+                                        <a href="@Url.Action("Delete", new { id = item.IDPROJET })" id="sample_editable_1_new" class="btn red" title="Supprimer"> <i class="glyphicon glyphicon-trash"></i></a>
+                                    </center>
+                                </div>
+
+                            </td>
+                        </tr>
+
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- END EXAMPLE TABLE PORTLET-->
+</div>

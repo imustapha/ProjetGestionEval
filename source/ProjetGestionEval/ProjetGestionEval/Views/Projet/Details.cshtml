@@ -5,63 +5,197 @@
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 
-<h2>Details</h2>
+<ul class="page-breadcrumb breadcrumb">
+    <li>
 
-<div>
-    <h4>projet</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NOMPROJET)
-        </dt>
+        <a href="~/Home/Accueil">Accueil</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Projet/Index">Liste des projets</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Projet/Details/@Model.IDPROJET">Details</a>
+        <i class="fa fa-circle"></i>
+    </li>
 
-        <dd>
-            @Html.DisplayFor(model => model.NOMPROJET)
-        </dd>
+</ul>
+<div class="row">
+    <div class="col-md-12">
+        <div class="tab-pane" id="tab_3">
+            <div class="portlet box blue">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-gift"></i>Projet
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse">
+                        </a>
+                        <a href="#portlet-config" data-toggle="modal" class="config">
+                        </a>
+                        <a href="javascript:;" class="reload">
+                        </a>
+                        <a href="javascript:;" class="remove">
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    <form class="form-horizontal" role="form">
+                        <div class="form-body">
+                            <h2 class="margin-bottom-20">Projet de - @Model.client.ABREVIATION </h2>
+                            <h3 class="form-section">Info de projet</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Nom du projet :</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static">
+                                                @Html.DisplayFor(model => model.NOMPROJET)
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Client :</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static">
+                                                @Html.DisplayFor(model => model.client.ABREVIATION)
+                                            </p>
+                                        </div>
+                                    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DATEDEBUT)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DATEDEBUT)
-        </dd>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Date debut :</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static">
+                                                @Html.DisplayFor(model => model.DATEDEBUT.Value.Day)/@Html.DisplayFor(model => model.DATEDEBUT.Value.Month)/@Html.DisplayFor(model => model.DATEDEBUT.Value.Year)
+                                            </p>
+                                        </div>
+                                    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DATEFIN)
-        </dt>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Date fin :</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static">
+                                                @Html.DisplayFor(model => model.DATEFIN.Value.Day)/@Html.DisplayFor(model => model.DATEFIN.Value.Month)/@Html.DisplayFor(model => model.DATEFIN.Value.Year)
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Collaborateur:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static">
+                                                @*<ul><li>coll</li></ul>*@
+                                                @{var y = "";
+                                                foreach (var colab in Model.collaborateur)
+                                                {
+                                                    y = y + colab.NOM + ",";
+                                                }
+                                                }
+                                                @y
+                                            </p>
+                                        </div>
+                                    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.DATEFIN)
-        </dd>
+                                </div>
+                                <!--/span-->
+                                @*<div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Collaborateur P.E :</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static">
+                                                @{var d = "";
+                                                foreach (var colab in Model.collaborateurpe)
+                                                {
+                                                    d = d + colab.NOMPE + ",";
+                                                }
+                                                }
+                                                @d
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>*@
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Type projet :</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static">
+                                                @{var x = "";
+                                                if (Model.TYPE == 2) { x = "Régie"; }
+                                                else if (Model.TYPE == 1) { x = "TMA"; }
+                                                else { x = "Forfait"; }
+                                                }
+                                                @x
+                                            </p>
+                                        </div>
+                                    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TYPE)
-        </dt>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Interne/Externe :</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static">
+                                                @{var h = "";
+                                                if (Model.FLAGTYPE == true)
+                                                {
+                                                    h = "Interne";
+                                                }
+                                                else
+                                                {
+                                                    h = "Externe";
+                                                }
+                                                }
+                                                @h
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <!--/row-->
 
-        <dd>
-            @Html.DisplayFor(model => model.TYPE)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FLAGTYPE)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FLAGTYPE)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.client.ABREVIATION)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.client.ABREVIATION)
-        </dd>
-
-    </dl>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            @Html.ActionLink("Modifier", "Edit", new { id = Model.IDPROJET }, new { @class = "btn green" })
+                                            @Html.ActionLink("Retour à la liste", "Index", null, new { @class = "btn default" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- END FORM-->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPROJET }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
