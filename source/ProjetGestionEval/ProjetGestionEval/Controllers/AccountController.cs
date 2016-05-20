@@ -437,8 +437,12 @@ namespace ProjetGestionEval.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
+        // POST: /Account/LogOff
+
+
+       
 
         //
         // GET: /Account/ExternalLoginFailure
@@ -523,7 +527,7 @@ namespace ProjetGestionEval.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Accueil", "Home");
             }
         }
 

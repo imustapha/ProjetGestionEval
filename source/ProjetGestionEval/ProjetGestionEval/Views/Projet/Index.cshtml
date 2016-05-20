@@ -70,6 +70,10 @@
 
                             Collaborateur titulaire
                         </th>
+                        <th>
+
+                            Collaborateur P.E
+                        </th>
                         
                         <th class="col-md-6">######Action######</th>
                     </tr>
@@ -114,17 +118,35 @@
                                 @Html.DisplayFor(modelItem => item.client.ABREVIATION)
                             </td>
 
-                            <td>
+                            <td><ul>
                                 <!--!!!! ul et il ici pour l'affichage des collaborateur!!!!-->
                                 @{var y = "";
                                 foreach (var colab in item.collaborateur)
                                 {
-                                    y = y + colab.NOM + ",";
+                                    if (colab.TYPECOLLABORATEUR == "Titulaire")
+                                    {
+                                        y = colab.NOM + " " + colab.PRENOM;
+                                    }
+                                    <li>@y</li>
                                 }
                                 }
-                                @y
+                                </ul>
                             </td>
-                            
+                            <td>
+                                <ul>
+                                <!--!!!! ul et li ici pour l'affichage des collaborateur!!!!-->
+                                @{var d = "";
+                                foreach (var colab in item.collaborateur)
+                                {
+                                    if (colab.TYPECOLLABORATEUR == "Periode d'esseai")
+                                    {
+                                        d = colab.NOM + " " + colab.PRENOM;
+                                    <li>@d</li>
+                                    }
+                                }
+                                }
+                                </ul>
+                            </td>
 
                             <td class="col-md-6">
 

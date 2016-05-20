@@ -9,7 +9,7 @@ namespace ProjetGestionEval.Controllers
 {
     public class HomeController : Controller
     {
-        static string ConnectionString = "database=bd_evaluation;server=localhost;uid=root";
+        static string ConnectionString = "database=bd_gestion;server=localhost;uid=root";
         MySqlConnection Connection = new MySqlConnection(ConnectionString);
         public ActionResult Accueil()
         {
