@@ -50,9 +50,19 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: Collaborateur/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            ViewBag.Evaluateur = bd.collaborateur.Where(m => m.IDCOLLABORATEUR == id).FirstOrDefault().FLAGEVAL;
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            collaborateur CollT = bd.collaborateur.Find(id);
+            if (CollT == null)
+            {
+                return HttpNotFound();
+            }
+            return View(CollT);
         }
 
         // GET: Collaborateur/Create
@@ -98,6 +108,10 @@ namespace ProjetGestionEval.Controllers
                     {
 
                         var CollT = new collaborateur() { IdUser = userToInsert.Id, NOM = model.NOM, PRENOM = model.PRENOM, IDFONCTION = model.IDFONCTION, IMAGE = model.IMAGE, FLAGEVAL = model.FLAGEVAL,DATEEMBAUCHE=model.DATEEMBAUCHE,DATESORTIE=model.DATESORTIE,TYPECOLLABORATEUR=model.TYPECOLLABORATEUR };
+                        var aspuser = bd.aspnetusers.Find(CollT.IdUser);
+                        CollT.aspnetusers = aspuser;
+                        var fonc = bd.fonction.Find(model.IDFONCTION);
+                        CollT.fonction = fonc;
                         if (resulte.Succeeded)
                         {
                             //var currentUser = UserManager.FindByName(user.UserName);
@@ -132,20 +146,60 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: Collaborateur/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            ViewBag.IDFONCTION = new SelectList(bd.fonction, "IDFONCTION", "NOMFONCTION", bd.collaborateur.Find(id).fonction.IDFONCTION);
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            collaborateur CollT = bd.collaborateur.Find(id);
+            aspnetusers asp = bd.aspnetusers.Find(CollT.IdUser);
+            if (CollT == null)
+                return HttpNotFound();
+            return View(CollT);
         }
 
         // POST: Collaborateur/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int? id, collaborateur CollT)
         {
+            ViewBag.IDFONCTION = new SelectList(bd.fonction, "IDFONCTION", "NOMFONCTION");
+            collaborateur col = bd.collaborateur.Find(id);
+            aspnetusers ass = bd.aspnetusers.Find(col.IdUser);
+
+            col.NOM = CollT.NOM;
+            col.PRENOM = CollT.PRENOM;
+            col.DATEEMBAUCHE = CollT.DATEEMBAUCHE;
+            col.DATESORTIE = CollT.DATESORTIE;
+            col.TYPECOLLABORATEUR = CollT.TYPECOLLABORATEUR;
+            col.IDFONCTION = CollT.IDFONCTION;
+            col.fonction = CollT.fonction;
+            col.aspnetusers = CollT.aspnetusers;
+
+            if (CollT.fonction != null)
+            {
+                col.fonction = CollT.fonction;
+            }
+            if (CollT.IMAGE != null)
+            {
+                col.IMAGE = CollT.IMAGE;
+            }
+
+
+
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    bd.Entry(col).State = System.Data.Entity.EntityState.Modified;
 
-                return RedirectToAction("Index");
+                    bd.Entry(ass).State = System.Data.Entity.EntityState.Modified;
+
+                    bd.SaveChanges();
+                    return RedirectToAction("Index");
+
+
+                }
+                return View(col);
             }
             catch
             {
@@ -154,7 +208,7 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: Collaborateur/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -182,7 +236,7 @@ namespace ProjetGestionEval.Controllers
                     if (id == null)
                         return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                     CollT = bd.collaborateur.Find(id);
-                    asps = bd.aspnetusers.Find(Coll.IdUser);
+                    asps = bd.aspnetusers.Find(CollT.IdUser);
                     if (CollT == null && asps == null)
                         return HttpNotFound();
                     bd.collaborateur.Remove(CollT);

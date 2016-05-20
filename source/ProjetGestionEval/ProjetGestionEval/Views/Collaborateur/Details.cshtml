@@ -1,91 +1,98 @@
 ﻿@model ProjetGestionEval.collaborateur
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 
-<h2>Details</h2>
+<ul class="page-breadcrumb breadcrumb">
+    <li>
 
-<div>
-    <h4>collaborateur</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NOM)
-        </dt>
+        <a href="~/Home/Accueil">Acceuil</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Collaborateur/Index">Liste des Collaborateurs</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/CollaborateurTitulaire/Details/@Model.IDCOLLABORATEUR">Details</a>
+        <i class="fa fa-circle"></i>
+    </li>
 
-        <dd>
-            @Html.DisplayFor(model => model.NOM)
-        </dd>
+</ul>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PRENOM)
-        </dt>
+<div class="row">
+    <div class="col-md-12">
 
-        <dd>
-            @Html.DisplayFor(model => model.PRENOM)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IMAGE)
-        </dt>
+        <!-- BEGIN PROFILE SIDEBAR -->
+        <!-- PORTLET MAIN -->
+        <center>
+            <div class="col-md-12">
+                <div class="portlet light col-md-offset-2 col-md-6">
+                    <!-- SIDEBAR USERPIC -->
+                    <div class="profile-userpic">
+                        <img src="data:image/png;base64,@Convert.ToBase64String(Model.IMAGE, 0,Model.IMAGE.Length)" class="img-responsive" />
+                    </div>
+                    <!-- END SIDEBAR USERPIC -->
+                    <!-- SIDEBAR USER TITLE -->
+                    <div class="profile-usertitle">
 
-        <dd>
-            @Html.DisplayFor(model => model.IMAGE)
-        </dd>
+                        <div class="profile-usertitle-name">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FLAGEVAL)
-        </dt>
+                            @Html.DisplayFor(model => model.NOM)
+                            @Html.DisplayFor(model => model.PRENOM)
 
-        <dd>
-            @Html.DisplayFor(model => model.FLAGEVAL)
-        </dd>
+                        </div>
+                        <div class="profile-usertitle-job">
+                            @Html.DisplayFor(model => model.aspnetusers.Email)
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TYPECOLLABORATEUR)
-        </dt>
+                        <div class="profile-usertitle-job">
+                            @Html.DisplayFor(model => model.fonction.NOMFONCTION)
+                        </div>
+                        <div class="profile-usertitle-job">
+                            @Html.DisplayFor(model => model.TYPECOLLABORATEUR)
+                        </div>
+                        <div class="profile-usertitle-job">
+                            Embaucher le @Html.DisplayFor(modelItem => Model.DATEEMBAUCHE.Day)/@Html.DisplayFor(modelItem => Model.DATEEMBAUCHE.Month)/@Html.DisplayFor(modelItem => Model.DATEEMBAUCHE.Year)
+                        </div>
+                        <div class="profile-usertitle-job">
+                            @{if(Model.DATESORTIE==null){
+                             <div>   </div>
+                              }else{
+                                <div>Sortie le </div> @Html.DisplayFor(model => model.DATESORTIE)
+                              }}
 
-        <dd>
-            @Html.DisplayFor(model => model.TYPECOLLABORATEUR)
-        </dd>
+                        </div>
+                        <div class="profile-usertitle-job">
+                            @{ ;
+                             if (ViewBag.Evaluateur == true)
+                             {
+                                <label>Collaborateur Evaluateur</label>
+                             }
+                             else
+                             {<label>Collaborateur Non Evaluateur</label> }
+                            }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DATEEMBAUCHE)
-        </dt>
+                        </div>
+                    </div>
+                    <!-- END SIDEBAR USER TITLE -->
+                    <!-- SIDEBAR BUTTONS -->
+                    <div class="profile-userbuttons">
 
-        <dd>
-            @Html.DisplayFor(model => model.DATEEMBAUCHE)
-        </dd>
+                        @Html.ActionLink("Modifier", "Edit", "CollaborateurTitulaire", new { id = Model.IDCOLLABORATEUR }, new { @class = "btn btn-circle green-haze btn-sm" })
+                        @Html.ActionLink("Retour a la List", "Index", null, new { @class = "btn btn-circle btn-danger btn-sm" })
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DATESORTIE)
-        </dt>
+                    </div>
+                    <!-- END SIDEBAR BUTTONS -->
+                    <!-- SIDEBAR MENU -->
+                    <!-- END MENU -->
+                </div>
+                <!-- END PORTLET MAIN -->
+                <!-- PORTLET MAIN -->
+                <!-- END STAT -->
+            </div>
+            <!-- END PORTLET MAIN -->
 
-        <dd>
-            @Html.DisplayFor(model => model.DATESORTIE)
-        </dd>
+        </center>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.aspnetusers.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.aspnetusers.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fonction.NOMFONCTION)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fonction.NOMFONCTION)
-        </dd>
-
-    </dl>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IDCOLLABORATEUR }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
