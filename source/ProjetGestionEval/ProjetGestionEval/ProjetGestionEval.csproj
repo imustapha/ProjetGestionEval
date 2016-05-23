@@ -204,6 +204,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\CollaborateurController.cs" />
+    <Compile Include="Controllers\CollaborateurPEController.cs" />
     <Compile Include="Controllers\FonctionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjetController.cs" />
@@ -4723,6 +4724,7 @@
     <Content Include="Views\Client\Delete.cshtml" />
     <Content Include="Views\Home\Accueil.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\CollaborateurPE\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

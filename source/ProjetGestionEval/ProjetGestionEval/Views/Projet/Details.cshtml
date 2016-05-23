@@ -98,39 +98,48 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Collaborateur:</label>
+                                        <label class="control-label col-md-3">Collaborateur titulaire:</label>
                                         <div class="col-md-9">
                                             <p class="form-control-static">
-                                                @*<ul><li>coll</li></ul>*@
-                                                @{var y = "";
-                                                foreach (var colab in Model.collaborateur)
-                                                {
-                                                    y = y + colab.NOM + ",";
-                                                }
-                                                }
-                                                @y
+                                                
+                                                    @{var y = "";
+                                                    foreach (var colab in Model.collaborateur)
+                                                    {
+                                                        if (colab.TYPECOLLABORATEUR == "Titulaire")
+                                                        {
+                                                            y = colab.NOM + " " + colab.PRENOM;
+                                                        }
+                                                        @y<br />
+                                                    }
+                                                    }
+                                               
                                             </p>
                                         </div>
                                     </div>
 
                                 </div>
                                 <!--/span-->
-                                @*<div class="col-md-6">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Collaborateur P.E :</label>
                                         <div class="col-md-9">
                                             <p class="form-control-static">
-                                                @{var d = "";
-                                                foreach (var colab in Model.collaborateurpe)
-                                                {
-                                                    d = d + colab.NOMPE + ",";
-                                                }
-                                                }
-                                                @d
+                                                <ul>
+                                                    @{var d = "";
+                                                    foreach (var colab in Model.collaborateur)
+                                                    {
+                                                        if (colab.TYPECOLLABORATEUR == "P.E")
+                                                        {
+                                                            d = colab.NOM + " " + colab.PRENOM;
+                                                            <li>@d</li>
+                                                        }
+                                                    }
+                                                    }
+                                                </ul>
                                             </p>
                                         </div>
                                     </div>
-                                </div>*@
+                                </div>
                                 <!--/span-->
                             </div>
                             <!--/row-->
