@@ -96,9 +96,10 @@
                                 </td>
                                 <td>
                                     @{
-                                        string xy="";
-                            if (item.FLAGEVAL == true){
-                                 xy = "Oui";
+                            string xy = "";
+                            if (item.FLAGEVAL == true)
+                            {
+                                xy = "Oui";
                             }
                             else if (item.FLAGEVAL == false)
                             {
@@ -114,13 +115,14 @@
                                     @Html.DisplayFor(modelItem => item.DATEEMBAUCHE.Day)/@Html.DisplayFor(modelItem => item.DATEEMBAUCHE.Month)/@Html.DisplayFor(modelItem => item.DATEEMBAUCHE.Year)
                                 </td>
                                 <td>
-                                    @{var xx="";
-                            if (item.DATESORTIE != null)
-                            {
-                                 xx = @Html.DisplayFor(modelItem => item.DATESORTIE.Value.Day) + "/" + @Html.DisplayFor(modelItem => item.DATESORTIE.Value.Month) + "/" + @Html.DisplayFor(modelItem => item.DATESORTIE.Value.Year);
-                                
-                            }
-                                    @xx;
+                                    @{var xx = "";
+                                      if (item.DATESORTIE != null)
+                                      {
+                                          xx = @Html.DisplayFor(modelItem => item.DATESORTIE.Value.Day) + "/" + @Html.DisplayFor(modelItem => item.DATESORTIE.Value.Month) + "/" + @Html.DisplayFor(modelItem => item.DATESORTIE.Value.Year);
+
+                                      }
+                                    }
+                                    @xx
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.aspnetusers.Email)
