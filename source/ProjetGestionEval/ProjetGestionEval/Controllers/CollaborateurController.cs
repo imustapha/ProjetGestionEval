@@ -77,7 +77,7 @@ namespace ProjetGestionEval.Controllers
         public async Task<ActionResult> Create([Bind(Exclude = "DATESORTIE,IdUser")]RegisterViewModel model)
         {
             ViewBag.IDFONCTION = new SelectList(bd.fonction, "IDFONCTION", "NOMFONCTION");
-            if (model.TYPECOLLABORATEUR == "Periode d'esseai" || model.TYPECOLLABORATEUR == "Freelance")
+            if (model.TYPECOLLABORATEUR == "P.E" || model.TYPECOLLABORATEUR == "Freelance")
                 model.FLAGEVAL = false;
             try
             {
@@ -114,16 +114,26 @@ namespace ProjetGestionEval.Controllers
                         CollT.fonction = fonc;
                         if (resulte.Succeeded)
                         {
-                            //var currentUser = UserManager.FindByName(user.UserName);
-                            //if (model.FLAGEVAL == true)
-                            //{ 
-                            //    var roleresult = UserManager.AddToRole(currentUser.Id, "superuser"); }
-                            //else { var roleresult = UserManager.AddToRole(currentUser.Id, "viewt"); }
+                            var currentUser = UserManager.FindByName(user.UserName);
+                            if (model.TYPECOLLABORATEUR == "Titulaire" || model.TYPECOLLABORATEUR == "Freelance")
+                            {
+                            if (model.FLAGEVAL == true)
+                            { 
+                               var roleresult = UserManager.AddToRole(currentUser.Id, "superuser"); }
+                            else { var roleresult = UserManager.AddToRole(currentUser.Id, "viewt"); }
                             //await SignInAsync(user, isPersistent: false);
+                            }
+                            else if(model.TYPECOLLABORATEUR=="P.E"){
+                                var roleresult = UserManager.AddToRole(currentUser.Id, "viewpe");
+                            }
+
                             bd.collaborateur.Add(CollT);
                             bd.SaveChanges();
-                            return RedirectToAction("Index");
-
+                            if (CollT.TYPECOLLABORATEUR == "P.E") { return RedirectToAction("Index", "CollaborateurPE"); }
+                            else
+                            {
+                                return RedirectToAction("Index");
+                            }
                         }
                     }
 
@@ -197,7 +207,12 @@ namespace ProjetGestionEval.Controllers
                     bd.Entry(ass).State = System.Data.Entity.EntityState.Modified;
 
                     bd.SaveChanges();
-                    return RedirectToAction("Index");
+                    
+                    if (col.TYPECOLLABORATEUR == "P.E") { return RedirectToAction("Index", "CollaborateurPE"); }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
 
 
                 }
@@ -244,7 +259,13 @@ namespace ProjetGestionEval.Controllers
                     bd.collaborateur.Remove(CollT);
                     bd.aspnetusers.Remove(asps);
                     bd.SaveChanges();
-                    return RedirectToAction("Index");
+                    
+                    if (CollT.TYPECOLLABORATEUR == "P.E") { return RedirectToAction("Index", "CollaborateurPE"); }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+
                 }
                 return View(CollT);
             }

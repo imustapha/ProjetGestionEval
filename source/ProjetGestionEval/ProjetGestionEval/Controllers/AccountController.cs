@@ -431,15 +431,16 @@ namespace ProjetGestionEval.Controllers
         }
 
         //
+       
         // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+
+
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
             return RedirectToAction("Login", "Account");
+
         }
-        // POST: /Account/LogOff
 
 
        

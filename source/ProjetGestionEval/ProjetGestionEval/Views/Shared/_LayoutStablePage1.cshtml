@@ -334,9 +334,9 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- BEGIN USER LOGIN DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-user dropdown-dark">
-                            @*####################
+                            
                                 @{
-                                bd_evaluationEntities3 bd = new bd_evaluationEntities3();
+                                bd_gestionEntities bd = new bd_gestionEntities();
 
 
 
@@ -344,14 +344,14 @@ License: You must have a valid license purchased only from themeforest(the above
                                 if (User.IsInRole("superuser"))
                                 {
                                     var asp = bd.aspnetusers.Where(i => i.Email == User.Identity.Name).FirstOrDefault();
-                                    var ctn = bd.collaborateurtitulaire.Single(m => m.IdUser == asp.Id);*@
+                                    var ctn = bd.collaborateur.Single(m => m.IdUser == asp.Id);
 
                                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                         <span class="username username-hide-on-mobile">
-                                            @*####@ctn.NOM @ctn.PRENOM*@
+                                            @ctn.NOM @ctn.PRENOM
                                         </span>
                                         <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
-                                        @*<img alt="" class="img-circle" src="data:image/png;base64,@Convert.ToBase64String(ctn.IMAGE, 0,ctn.IMAGE.Length)" />*@
+                                        <img alt="" class="img-circle" src="data:image/png;base64,@Convert.ToBase64String(ctn.IMAGE, 0,ctn.IMAGE.Length)" />
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-default">
                                         <li>
@@ -366,17 +366,17 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </li>
                                     </ul>
 
-                                @*}
+                                }
                                 else if (User.IsInRole("viewt"))
                                 {
                                     var asp = bd.aspnetusers.Where(i => i.Email == User.Identity.Name).FirstOrDefault();
-                                    var ctn = bd.collaborateurtitulaire.Single(m => m.IdUser == asp.Id);*@
+                                    var ctn = bd.collaborateur.Single(m => m.IdUser == asp.Id);
                                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                         <span class="username username-hide-on-mobile">
-                                            @*##@ctn.NOM @ctn.PRENOM*@
+                                            @ctn.NOM @ctn.PRENOM
                                         </span>
                                         <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
-                                        @*###<img alt="" class="img-circle" src="data:image/png;base64,@Convert.ToBase64String(ctn.IMAGE, 0,ctn.IMAGE.Length)" />*@
+                                        <img alt="" class="img-circle" src="data:image/png;base64,@Convert.ToBase64String(ctn.IMAGE, 0,ctn.IMAGE.Length)" />
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-default">
                                         <li>
@@ -391,21 +391,21 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </li>
                                     </ul>
 
-                                @*####}
+                                }
                                 else if (User.IsInRole("viewpe"))
                                 {
                                     var asp = bd.aspnetusers.Where(i => i.Email == User.Identity.Name).FirstOrDefault();
-                                    var ctn = bd.collaborateurpe.Single(m => m.IdUser == asp.Id);*@
+                                    var ctn = bd.collaborateur.Single(m => m.IdUser == asp.Id);
                                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                         <span class="username username-hide-on-mobile">
-                                            @*###@ctn.NOMPE @ctn.PRENOMPE*@
+                                            @ctn.NOM @ctn.PRENOM
                                         </span>
                                         <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
-                                        @*###<img alt="" class="img-circle" src="data:image/png;base64,@Convert.ToBase64String(ctn.IMAGEPE, 0,ctn.IMAGEPE.Length)" />*@
+                                        <img alt="" class="img-circle" src="data:image/png;base64,@Convert.ToBase64String(ctn.IMAGE, 0,ctn.IMAGE.Length)" />
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-default">
                                         <li>
-                                            <a href="~/CollaborateurPE/Details/@*###@ctn.IDCOLLABORATEURPE*@">
+                                            <a href="~/Collaborateur/Details/@ctn.IDCOLLABORATEUR">
                                                 <i class="icon-user"></i> Mon Profil
                                             </a>
                                         </li>
@@ -417,9 +417,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </ul>
 
 
-                                @*#####}
+                                }
 
-                            }*@
+                            }
                         </li>
 
                         @*<li>
@@ -482,9 +482,9 @@ License: You must have a valid license purchased only from themeforest(the above
                             <span class="title">Accueil</span>
                         </a>
                     </li>
-                    @*####@{
+                    @{
                         if (User.IsInRole("superuser"))
-                        {*@
+                        {
                             <li>
                                 <a href="javascript:;">
                                     <i class="icon-users"></i>
@@ -557,8 +557,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </li>
                                 </ul>
                             </li>
-                        @*####}
-                    }*@
+                        }
+                    }
                     <!-- BEGIN ANGULARJS LINK -->
                     <!-- END ANGULARJS LINK -->
 

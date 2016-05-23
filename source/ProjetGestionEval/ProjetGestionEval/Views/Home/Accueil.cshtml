@@ -16,8 +16,8 @@
 <!-- END PAGE HEADER-->
 <!-- BEGIN PAGE CONTENT-->
 <div class="tiles">
-    @*@{if (User.IsInRole("superuser"))
-    {*@
+    @{if (User.IsInRole("superuser"))
+    {
         <a href="/Collaborateur/Index">
             <div class="tile double-down bg-blue-hoki">
                 <div class="tile-body">
@@ -54,12 +54,12 @@
                     </div>
                 </div>
             </div>
-        </a>@*}*@
-    @*else
+        </a>}
+    else
     {
         <label>Bonjour @User.Identity.Name</label>
 
     }
-    }*@
+    }
 
 </div>
