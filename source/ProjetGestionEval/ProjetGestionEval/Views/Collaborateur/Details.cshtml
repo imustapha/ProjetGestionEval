@@ -58,7 +58,8 @@
                             @{if(Model.DATESORTIE==null){
                              <div>   </div>
                               }else{
-                                <div>Sortie le </div> @Html.DisplayFor(model => model.DATESORTIE)
+                                var xx = @Html.DisplayFor(model => model.DATESORTIE.Value.Day) + "/" + @Html.DisplayFor(model => model.DATESORTIE.Value.Month) + "/" + @Html.DisplayFor(model => model.DATESORTIE.Value.Year);
+                                <div>Sortie le </div>@xx
                               }}
 
                         </div>

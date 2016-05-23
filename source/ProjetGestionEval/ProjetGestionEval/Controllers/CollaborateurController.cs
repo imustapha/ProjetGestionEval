@@ -160,8 +160,9 @@ namespace ProjetGestionEval.Controllers
 
         // POST: Collaborateur/Edit/5
         [HttpPost]
-        public ActionResult Edit(int? id, collaborateur CollT)
+        public ActionResult Edit( collaborateur CollT)
         {
+            int id = CollT.IDCOLLABORATEUR;
             ViewBag.IDFONCTION = new SelectList(bd.fonction, "IDFONCTION", "NOMFONCTION");
             collaborateur col = bd.collaborateur.Find(id);
             aspnetusers ass = bd.aspnetusers.Find(col.IdUser);
@@ -171,9 +172,10 @@ namespace ProjetGestionEval.Controllers
             col.DATEEMBAUCHE = CollT.DATEEMBAUCHE;
             col.DATESORTIE = CollT.DATESORTIE;
             col.TYPECOLLABORATEUR = CollT.TYPECOLLABORATEUR;
+            col.FLAGEVAL = CollT.FLAGEVAL;
             col.IDFONCTION = CollT.IDFONCTION;
-            col.fonction = CollT.fonction;
-            col.aspnetusers = CollT.aspnetusers;
+            col.fonction = bd.fonction.Single(m=>m.IDFONCTION==CollT.IDFONCTION);
+
 
             if (CollT.fonction != null)
             {

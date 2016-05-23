@@ -64,7 +64,7 @@
                     </ul>
                 </div>
                 <div class="portlet-body form">
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("Edit","Collaborateur",FormMethod.Post))
                     {
                         @Html.AntiForgeryToken()
 
@@ -91,52 +91,37 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.TYPECOLLABORATEUR, "Collaborateur", htmlAttributes: new { @class = "control-label col-md-3" })
-                                <div class="col-md-6">
-                                    <div class="input-icon right">
-                                        <i class="fa"></i>
-                                        @Html.EditorFor(model => model.TYPECOLLABORATEUR, new { htmlAttributes = new { @class = "form-control"} })
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="form-group">
                                 @Html.LabelFor(model => model.DATEEMBAUCHE, "Date d'embauche", htmlAttributes: new { @class = "control-label col-md-3" })
                                 <div class="col-md-6">
-                                    <input class="form-control form-control-inline input-medium date-picker" name="DATEEMBAUCHE" size="16" type="text" />
+                                    @{
+                                        bd_gestionEntities bd = new bd_gestionEntities();
+
+                                        var xy = bd.collaborateur.Find(Model.IDCOLLABORATEUR).DATEEMBAUCHE;
+                                    }
+                                    <input class="form-control form-control-inline input-medium date-picker" name="DATEEMBAUCHE" value=@xy size="16" type="text" />
                                     <span class="help-block">
                                         Select date
                                     </span>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 @Html.LabelFor(model => model.DATESORTIE, "Date de sortie", htmlAttributes: new { @class = "control-label col-md-3" })
                                 <div class="col-md-6">
 
                                 @{
-                                    string x = "";
-                                    string n=" travail toujour a OMNISHORE";
-                                    if (Model.DATESORTIE == null)
-                                    { 
-                                        x = Model.NOM+n;             
-                                      
+                        
+                                    var x = Model.DATESORTIE;
+
+                    }     
                                             <input class="form-control form-control-inline input-medium date-picker" name="DATESORTIE" size="40" type="text" value=@x />
                                             <span class="help-block">
                                                 Select date
                                             </span>
-                                   
-                                    }
-                                    else
-                                    {
-                                        @Html.EditorFor(model => model.DATESORTIE, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
-                            
-                                            <input class="form-control form-control-inline input-medium date-picker" name="DATESORTIE" size="16" type="text" />
-                                            <span class="help-block">
-                                                Select date
-                                            </span>
-
-                                    }
-                                 }
+                                  
+                                 
                                     </div>
                                 </div>
                             
@@ -158,42 +143,69 @@
 
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.IDFONCTION, "Fonction", htmlAttributes: new { @class = "control-label col-md-3" })
-                                <div class="col-md-6">
-                                    @Html.EditorFor(model => model.fonction.NOMFONCTION, new { htmlAttributes = new { @class = "form-control"} })
+                                <label class="control-label col-md-3">
+                                    Fonction <span class="required">
+                                        *
+                                    </span>
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.DropDownListFor(M => M.IDFONCTION, ViewBag.IDFONCTION as SelectList, null, htmlAttributes: new { @Class = "form-control", required = "required" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">
+                                    Collaborateur
+                                </label>
+                                <div class="col-md-4">
+                                    <div class="radio-list" data-error-container="#form_2_membership_error">
+                                        <label>
+                                            @Html.RadioButtonFor(M => M.TYPECOLLABORATEUR, "Freelance", new { @class = "enable_tb" })
+                                            Freelance
+                                        </label>
+                                        <label>
+                                            @Html.RadioButtonFor(M => M.TYPECOLLABORATEUR, "Titulaire")
+                                            Titulaire
+                                        </label>
+                                        <label>
+                                            @Html.RadioButtonFor(M => M.TYPECOLLABORATEUR, "Periode d'esseai", new { @class = "enable_tb" })
+                                            Periode d'esseai
+                                        </label>
+                                    </div>
+                                    <div id="form_2_membership_error">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">
+                                    Evaluateur
+                                </label>
+                                <div class="col-md-4">
+                                    <div class="radio-list" data-error-container="#form_2_membership_error">
+                                        <label>
+                                            @Html.RadioButtonFor(M => M.FLAGEVAL, true, htmlAttributes: new { id = "otherDevText", @disabled = "disabled" })
+                                            Oui
+                                        </label>
+                                        <label>
+                                            @Html.RadioButtonFor(M => M.FLAGEVAL, false, htmlAttributes: new { id = "otherDevText2", @disabled = "disabled" })
+                                            Non
+                                        </label>
+                                    </div>
+                                    <div id="form_2_membership_error">
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.FLAGEVAL, "Evaluateur", htmlAttributes: new { @class = "control-label col-md-offset-1 col-md-2" })
-                                <div class="col-md-5">
-                                    <div class="col-md-offset-2 form-group md-checkbox md-checkbox-inline">
-                                        @Html.EditorFor(model => model.FLAGEVAL, new { htmlAttributes = new { @class = "md-check" } })
-                                        <label for="checkbox6">
-                                            <span></span>
-                                            <span class="check"></span>
-                                            <span class="box"></span>
-
-                                        </label>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button type="submit" class="btn green">Save</button>
+                                        <a href="@Url.Action("Index")" class="btn default">Retour</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                    }
-
-
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
-                        <div class="form-actions no-color">
-                            @Html.Label(" ", htmlAttributes: new { @class = "control-label col-md-3" })
-                            <div>
-                                <input type="submit" value="Delete" class="btn green" />
-                                @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-default" })
-                            </div>
-                        </div>
-                    }
+                    }                    
                 </div>
             </div>
         </div>
