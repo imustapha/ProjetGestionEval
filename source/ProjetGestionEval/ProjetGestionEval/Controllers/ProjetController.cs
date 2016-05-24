@@ -36,8 +36,8 @@ namespace ProjetGestionEval.Controllers
         public ActionResult Create()
         {
             //.Where(m => m.TYPECOLLABORATEUR=="collabpe")
-            ViewBag.collaborateur = new SelectList(bd.collaborateur, "IDCOLLABORATEUR", "NOM");
-            
+            ViewBag.collaborateur = new SelectList(bd.collaborateur, "IDCOLLABORATEUR", "NOM",bd.collaborateur.Where(m => m.TYPECOLLABORATEUR != "P.E"));
+            ViewBag.collaborateurpe = new SelectList(bd.collaborateur, "IDCOLLABORATEUR", "NOM", bd.collaborateur.Where(m => m.TYPECOLLABORATEUR == "P.E"));
             ViewBag.client = new SelectList(bd.client, "IDCLIENT", "ABREVIATION");
 
             return View();

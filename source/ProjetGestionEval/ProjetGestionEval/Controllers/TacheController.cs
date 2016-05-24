@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,33 +9,54 @@ namespace ProjetGestionEval.Controllers
 {
     public class TacheController : Controller
     {
+        bd_gestionEntities bd = new bd_gestionEntities();
         // GET: Tache
         public ActionResult Index()
         {
-            return View();
+            return View(bd.tache.ToList());
         }
 
         // GET: Tache/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            tache Tache = new tache();
+
+            Tache = bd.tache.Find(id);
+            ViewBag.datedebut = Tache.DATEDEBUTTACHE.Value.Day.ToString() + "/" + Tache.DATEDEBUTTACHE.Value.Month.ToString() + "/" + Tache.DATEDEBUTTACHE.Value.Year.ToString();
+            ViewBag.datefin = Tache.DATEFINTACHE.Value.Day.ToString() + "/" + Tache.DATEFINTACHE.Value.Month.ToString() + "/" + Tache.DATEFINTACHE.Value.Year.ToString();
+            return View(Tache);
         }
 
         // GET: Tache/Create
         public ActionResult Create()
         {
+            ViewBag.Collaborateur = new SelectList(bd.collaborateur, "IDCOLLABORATEUR", "NOM");
+            ViewBag.Projet = new SelectList(bd.projet, "IDPROJET", "NOMPROJET");
             return View();
         }
 
         // POST: Tache/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(tache Tache, FormCollection fc)
         {
+            var testid = fc["DATEFINTACHE"];
+
+
             try
             {
                 // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+                ViewBag.Collaborateur = new SelectList(bd.collaborateur, "IDCOLLABORATEUR", "NOM");
+                ViewBag.Projet = new SelectList(bd.projet, "IDPROJET", "NOMPROJET");
+                if (ModelState.IsValid)
+                {
+                    bd.tache.Add(Tache);
+                    bd.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(Tache);
             }
             catch
             {
@@ -43,20 +65,44 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: Tache/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            ViewBag.Collaborateur = new SelectList(bd.collaborateur, "IDCOLLABORATEUR", "NOM");
+            ViewBag.Projet = new SelectList(bd.projet, "IDPROJET", "NOMPROJET");
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            tache Tache = bd.tache.Find(id);
+            if (Tache == null)
+                return HttpNotFound();
+            return View(Tache);
         }
 
         // POST: Tache/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, tache Tache)
         {
+            ViewBag.Collaborateur = new SelectList(bd.collaborateur, "IDCOLLABORATEUR", "NOM");
+            ViewBag.Projet = new SelectList(bd.projet, "IDPROJET", "NOMPROJET");
+            tache T = bd.tache.Find(id);
+            T.IDTACHE = id;
+            T.NOMTACHE = Tache.NOMTACHE;
+            T.DATEDEBUTTACHE = Tache.DATEDEBUTTACHE;
+            T.DATEFINTACHE = Tache.DATEFINTACHE;
+            T.IDPROJET = Tache.IDPROJET;
+            T.IDCOLLABORATEUR = Tache.IDCOLLABORATEUR;
+            T.collaborateur = bd.collaborateur.Single(m => m.IDCOLLABORATEUR == Tache.IDCOLLABORATEUR);
+            T.projet = bd.projet.Single(m => m.IDPROJET == Tache.IDPROJET);
             try
             {
-                // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    bd.Entry(T).State = System.Data.Entity.EntityState.Modified;
+                    bd.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(Tache);
             }
             catch
             {
@@ -65,21 +111,44 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: Tache/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tache Tache = bd.tache.Find(id);
+            if (Tache == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.datedebut = Tache.DATEDEBUTTACHE.Value.Day.ToString() + "/" + Tache.DATEDEBUTTACHE.Value.Month.ToString() + "/" + Tache.DATEDEBUTTACHE.Value.Year.ToString();
+            ViewBag.datefin = Tache.DATEFINTACHE.Value.Day.ToString() + "/" + Tache.DATEFINTACHE.Value.Month.ToString() + "/" + Tache.DATEFINTACHE.Value.Year.ToString();
+            return View(Tache);
         }
 
         // POST: Tache/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int? id, tache T)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                tache Tache = new tache();
+                if (ModelState.IsValid)
+                {
+                    if (id == null)
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    Tache = bd.tache.Find(id);
+                    if (Tache == null)
+                        return HttpNotFound();
+                    bd.tache.Remove(Tache);
+                    bd.SaveChanges();
+                    // TODO: Add delete logic here
+                    return RedirectToAction("Index");
+                }
+                return View(Tache);
             }
+
             catch
             {
                 return View();
