@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ProjetGestionEval.projet>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 
@@ -18,7 +18,7 @@
 
 <div class="col-md-12">
     <!-- BEGIN EXAMPLE TABLE PORTLET-->
-    <div class="portlet box blue">
+    <div class="portlet box red">
         <div class="portlet-title">
             <div class="caption">
                 <i class="fa fa-cubes"></i>Projet
@@ -32,7 +32,7 @@
 
 
                         <div class="clearfix">
-                            <a href="@Url.Action("Create")" id="sample_editable_1_new" class="btn green">Creer <i class="fa fa-plus"></i></a>
+                            <a href="@Url.Action("Create")" id="sample_editable_1_new" class="btn red">Creer <i class="fa fa-plus"></i></a>
                         </div>
 
 

@@ -1,7 +1,7 @@
 ﻿@model ProjetGestionEval.projet
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 
@@ -19,7 +19,7 @@
 </ul>
 <div class="col-md-12">
     <!-- BEGIN VALIDATION STATES-->
-    <div class="portlet box green">
+    <div class="portlet box red">
         <div class="portlet-title">
             <div class="caption">
                 <i class="fa fa-plus-square"></i>Projet
@@ -41,7 +41,7 @@
                 <div class="form-body">
                     <div class="alert alert-danger display-hide">
                         <button class="close" data-close="alert"></button>
-                        You have some form errors. Please check below.
+                        Vous avez oubliez des champs. Veuillez s'il vous plait revérifier.
                     </div>
                     <div class="alert alert-success display-hide">
                         <button class="close" data-close="alert"></button>
@@ -78,6 +78,17 @@
                             <div class="col-md-4">
 
                                 @Html.ListBoxFor(m => m.collaborateur, ViewBag.collaborateur as MultiSelectList, htmlAttributes: new { @Class = "bs-select form-control", @multiple = "multiple", required = "required" })
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="control-label col-md-3">Collaorateur P.E</label>
+                            <div class="col-md-4">
+
+                                @Html.ListBoxFor(m => m.collaborateur, ViewBag.collaborateurpe as MultiSelectList, htmlAttributes: new { @Class = "bs-select form-control", @multiple = "multiple", required = "required" })
 
                             </div>
 
