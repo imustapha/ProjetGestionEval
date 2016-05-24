@@ -355,15 +355,21 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-default">
                                         <li>
-                                            <a href="~/CollaborateurTitulaire/Details/@*###@ctn.IDCOLLABORATEURTITULAIRE*@">
+                                            <a href="~/Collaborateur/Details/@ctn.IDCOLLABORATEUR">
                                                 <i class="icon-user"></i> Mon Profil
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="~/Account/LogOff">
-                                                <i class="icon-key"></i> Exit
+                                            <a href="~/Account/Manage">
+                                                <i class="icon-action-redo"></i>Changer mots de passe
                                             </a>
                                         </li>
+                                        <li>
+                                            <a href="~/Account/LogOff">
+                                                <i class="icon-logout"></i> Exit
+                                            </a>
+                                        </li>
+                                       
                                     </ul>
 
                                 }
@@ -380,13 +386,18 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-default">
                                         <li>
-                                            <a href="~/CollaborateurTitulaire/Details/@*##@ctn.IDCOLLABORATEURTITULAIRE*@">
+                                            <a href="~/Collaborateur/Details/@ctn.IDCOLLABORATEUR">
                                                 <i class="icon-user"></i> Mon Profil
                                             </a>
                                         </li>
                                         <li>
+                                            <a href="~/Account/Manage">
+                                                <i class="icon-action-redo"></i>Changer mots de passe
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="~/Account/LogOff">
-                                                <i class="icon-key"></i> Exit
+                                                <i class="icon-logout"></i> Exit
                                             </a>
                                         </li>
                                     </ul>
@@ -407,6 +418,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <li>
                                             <a href="~/Collaborateur/Details/@ctn.IDCOLLABORATEUR">
                                                 <i class="icon-user"></i> Mon Profil
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Account/Manage">
+                                                <i class="icon-action-redo"></i>Changer mots de passe
                                             </a>
                                         </li>
                                         <li>
@@ -493,7 +509,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </a>
                                 <ul class="sub-menu">
                                     <li>
-                                        <a href="~/CollaborateurTitulaire/Index">
+                                        <a href="~/Collaborateur/Index">
                                             <i class="icon-home"></i>
                                             Liste des Collaborateurs
                                         </a>
@@ -502,7 +518,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
                                     <li>
-                                        <a href="~/CollaborateurTitulaire/Create">
+                                        <a href="~/Collaborateur/Create">
                                             <i class="icon-user-follow"></i>
                                             Nouveau collaborateur
                                         </a>
@@ -527,7 +543,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
                                     <li>
-                                        <a href="~/CollaborateurPE/Create">
+                                        <a href="~/Collaborateur/Create">
                                             <i class="icon-user-follow"></i>
                                             Nouveau collaborateur
                                         </a>
@@ -657,6 +673,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <script type="text/javascript" src="@Url.Content("~/Content/")global/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/")global/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/")global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
     <!-- END PAGE LEVEL PLUGINS -->
     <script src="@Url.Content("~/Content/")global/scripts/metronic.js" type="text/javascript"></script>
     <script src="@Url.Content("~/Content/")admin/layout4/scripts/layout.js" type="text/javascript"></script>

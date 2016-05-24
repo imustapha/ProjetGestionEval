@@ -4,7 +4,18 @@
     ViewBag.Title = "";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
+<ul class="page-breadcrumb breadcrumb">
+    <li>
 
+        <a href="~/Home/Accueil">Acceuil</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Collaborateur/Index">Liste des Collaborateurs</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Collaborateur/Edit/@Model.IDCOLLABORATEUR">Modifier</a>
+        <i class="fa fa-circle"></i>
+    </li>
+
+</ul>
 
 
 <div class="row">

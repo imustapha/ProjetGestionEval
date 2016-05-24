@@ -1,29 +1,63 @@
-﻿@using ProjetGestionEval.Models;
-@using Microsoft.AspNet.Identity;
+﻿@using Microsoft.AspNet.Identity
+@model ProjetGestionEval.Models.ManageUserViewModel
 @{
     ViewBag.Title = "Gérer le compte";
+    Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
+<p>Vous êtes connecté en tant que <strong>@User.Identity.GetUserName()</strong>.</p>
+<p class="text-success"><h1 class="text-success">@ViewBag.StatusMessage</h1></p>
+<div class="col-md-12">
+    <!-- BEGIN VALIDATION STATES-->
+    <div class="portlet light">
+        <div class="portlet-title tabbable-line">
+            <div class="caption caption-md">
+                <i class="icon-globe theme-font hide"></i>
+                <span class="caption-subject font-blue-madison bold uppercase">Change Password</span>
+            </div>
+            <ul class="nav nav-tabs">
 
-<h2>@ViewBag.Title.</h2>
+                <li>
+                    <a href="#tab_1_3" data-toggle="tab">Formulaire de modification du mot de passe</a>
 
-<p class="text-success">@ViewBag.StatusMessage</p>
-<div class="row">
-    <div class="col-md-12">
-        @if (ViewBag.HasLocalPassword)
-        {
-            @Html.Partial("_ChangePasswordPartial")
-        }
-        else
-        {
-            @Html.Partial("_SetPasswordPartial")
-        }
+                </li>
+            </ul>
+        </div>
+        <div class="tab-pane" id="tab_1_3">
+            @using (Html.BeginForm("Manage", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="form-group">
 
-        <section id="externalLogins">
-            @Html.Action("RemoveAccountList")
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { Action = "LinkLogin", ReturnUrl = ViewBag.ReturnUrl })
-        </section>
+                    @Html.LabelFor(m => m.OldPassword, new { @class = "control-label" })
+                    @Html.PasswordFor(m => m.OldPassword, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.NewPassword, new { @class = "control-label" })
+                    @Html.PasswordFor(m => m.NewPassword, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                </div>
+                <!-- <div class="margin-top-10">
+                    <a href="javascript:;" class="btn green-haze">
+                    Change Password </a>
+                    <a href="javascript:;" class="btn default">
+                    Cancel </a>
+                </div> -->
+													<!-- <input type="submit" value="Modifier le mot de passe" class="btn btn-default" /> -->
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button type="submit" class="btn green-haze">Modifier le mot de passe</button>
+                            <a href="@Url.Action("Accueil","Home")" class="btn default">Retour</a>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+
     </div>
 </div>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
