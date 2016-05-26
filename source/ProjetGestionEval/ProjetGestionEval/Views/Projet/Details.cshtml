@@ -108,8 +108,9 @@
                                                         if (colab.TYPECOLLABORATEUR == "Titulaire")
                                                         {
                                                             y = colab.NOM + " " + colab.PRENOM;
+                                                            @y<br />
                                                         }
-                                                        @y<br />
+                                                        
                                                     }
                                                     }
                                                
@@ -124,18 +125,18 @@
                                         <label class="control-label col-md-3">Collaborateur P.E :</label>
                                         <div class="col-md-9">
                                             <p class="form-control-static">
-                                                <ul>
+                                                
                                                     @{var d = "";
                                                     foreach (var colab in Model.collaborateur)
                                                     {
                                                         if (colab.TYPECOLLABORATEUR == "P.E")
                                                         {
                                                             d = colab.NOM + " " + colab.PRENOM;
-                                                            <li>@d</li>
+                                                            @d<br />
                                                         }
                                                     }
                                                     }
-                                                </ul>
+                                                
                                             </p>
                                         </div>
                                     </div>

@@ -121,7 +121,7 @@ namespace ProjetGestionEval.Controllers
             p.IDCLIENT = pro.IDCLIENT;
             p.client = bd.client.Single(m => m.IDCLIENT == pro.IDCLIENT);
             p.FLAGTYPE = pro.FLAGTYPE;
-            var testid = fc["collaborateurpe"];
+            var testid = fc["collaborateur"];
             string[] testids = testid.Split(',');
             p.collaborateur.Clear();
             foreach (var item in testids)

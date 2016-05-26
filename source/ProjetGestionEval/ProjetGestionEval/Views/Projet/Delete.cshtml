@@ -35,60 +35,62 @@
             </div>
             <div class="portlet-body form">
                 <!-- BEGIN FORM-->
-                @using (Html.BeginForm("Delete", "Projet", FormMethod.Post, new { htmlAttributes = new { @class = "form-horizontal"} }))
+                @using (Html.BeginForm("Delete", "Projet", FormMethod.Post, new { @class = "form-horizontal"} ))
                             {
                     @Html.AntiForgeryToken()
-                    <div class="form-body">
+    <div class="form-body">
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.NOMPROJET, "Nom de projet", htmlAttributes: new { @class = "col-md-3 control-label" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.NOMPROJET, new { htmlAttributes = new { @class = "form-control", disabled = true } })
-                            </div>
-                            @Html.ValidationMessageFor(model => model.NOMPROJET, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.DATEDEBUT, "Date debut", htmlAttributes: new { @class = "col-md-3 control-label" })
-                            <div class="col-md-4">
-                                @*@Html.EditorFor(model => model.DATEDEBUT, new { htmlAttributes = new { @class = "form-control", disabled = true } })*@
-                                @Html.TextBox("DATEDEBUT", "", new { type = "text", Value = @ViewBag.datedebut, disabled = true, @class = "form-control" })
-                            </div>
-                            @Html.ValidationMessageFor(model => model.DATEDEBUT, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.DATEFIN, "Date fin", htmlAttributes: new { @class = "col-md-3 control-label" })
-                            <div class="col-md-4">
-                                @*@Html.EditorFor(model => model.DATEFIN, new { htmlAttributes = new { @class = "form-control", disabled = true } })*@
-                                @Html.TextBox("DATEFIN", "", new { type = "text", Value = @ViewBag.datedefin, disabled = true, @class = "form-control" })
-                            </div>
-                            @Html.ValidationMessageFor(model => model.DATEFIN, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.TYPE, "Type de projet", htmlAttributes: new { @class = "col-md-3 control-label" })
-                            <div class="col-md-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.NOMPROJET, "Nom de projet", htmlAttributes: new { @class = "col-md-3 control-label" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.NOMPROJET, new { htmlAttributes = new { @class = "form-control", disabled = true } })
+            </div>
+            @Html.ValidationMessageFor(model => model.NOMPROJET, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DATEDEBUT, "Date debut", htmlAttributes: new { @class = "col-md-3 control-label" })
+            <div class="col-md-4">
+                @*@Html.EditorFor(model => model.DATEDEBUT, new { htmlAttributes = new { @class = "form-control", disabled = true } })*@
+                @Html.TextBox("DATEDEBUT", "", new { type = "text", Value = @ViewBag.datedebut, disabled = true, @class = "form-control" })
+            </div>
+            @Html.ValidationMessageFor(model => model.DATEDEBUT, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DATEFIN, "Date fin", htmlAttributes: new { @class = "col-md-3 control-label" })
+            <div class="col-md-4">
+                @*@Html.EditorFor(model => model.DATEFIN, new { htmlAttributes = new { @class = "form-control", disabled = true } })*@
+                @Html.TextBox("DATEFIN", "", new { type = "text", Value = @ViewBag.datedefin, disabled = true, @class = "form-control" })
+            </div>
+            @Html.ValidationMessageFor(model => model.DATEFIN, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TYPE, "Type de projet", htmlAttributes: new { @class = "col-md-3 control-label" })
+            <div class="col-md-4">
+                @*@Html.EditorFor(model => model.TYPE, new { htmlAttributes = new { @class = "form-control", disabled = true } })*@
+                @Html.TextBox("TYPE", "", new { type = "text", Value = @ViewBag.Type, disabled = true, @class = "form-control" })
+            </div>
+            @Html.ValidationMessageFor(model => model.TYPE, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.FLAGTYPE, "Interne/Externe", htmlAttributes: new { @class = "col-md-3 control-label" })
+            <div class="col-md-4">
 
-                                @*@Html.EditorFor(model => model.TYPE, new { htmlAttributes = new { @class = "form-control", disabled = true } })*@
-                                @Html.TextBox("TYPE", "", new { type = "text", Value = @ViewBag.Type, disabled = true, @class = "form-control" })
-                            </div>
-                            @Html.ValidationMessageFor(model => model.TYPE, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.FLAGTYPE, "Interne/Externe", htmlAttributes: new { @class = "col-md-3 control-label" })
-                            <div class="col-md-4">
-
-                                @*@Html.EditorFor(model => model.FLAGTYPE, new { htmlAttributes = new { @class = "form-control", disabled = true } })*@
-                                @Html.TextBox("FLAGTYPE", "", new { type = "text", Value = @ViewBag.flag, disabled = true, @class = "form-control" })
-                            </div>
-                            @Html.ValidationMessageFor(model => model.FLAGTYPE, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.client.ABREVIATION, "Client", htmlAttributes: new { @class = "col-md-3 control-label" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.client.ABREVIATION, new { htmlAttributes = new { @class = "form-control", disabled = true } })
-                            </div>
-                            @Html.ValidationMessageFor(model => model.FLAGTYPE, "", new { @class = "text-danger" })
-                        </div>
-
+                @*@Html.EditorFor(model => model.FLAGTYPE, new { htmlAttributes = new { @class = "form-control", disabled = true } })*@
+                @Html.TextBox("FLAGTYPE", "", new { type = "text", Value = @ViewBag.flag, disabled = true, @class = "form-control" })
+            </div>
+            @Html.ValidationMessageFor(model => model.FLAGTYPE, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.client.ABREVIATION, "Client", htmlAttributes: new { @class = "col-md-3 control-label" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.client.ABREVIATION, new { htmlAttributes = new { @class = "form-control", disabled = true } })
+            </div>
+            @Html.ValidationMessageFor(model => model.FLAGTYPE, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <br />
+        <br />
+    
                     </div>
                     <div class="form-actions">
                         <div class="row">
