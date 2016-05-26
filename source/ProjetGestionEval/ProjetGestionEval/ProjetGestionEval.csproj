@@ -4704,7 +4704,6 @@
     <Content Include="Views\Projet\Details.cshtml" />
     <Content Include="Views\Projet\Create.cshtml" />
     <Content Include="Views\Projet\Edit.cshtml" />
-    <Content Include="Views\Projet\Delete.cshtml" />
     <Content Include="Views\Tache\Index.cshtml" />
     <Content Include="Views\Tache\Details.cshtml" />
     <Content Include="Views\Tache\Create.cshtml" />
@@ -4725,6 +4724,7 @@
     <Content Include="Views\CollaborateurPE\Index.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Projet\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -195,8 +195,8 @@ namespace ProjetGestionEval.Controllers
             {
                 projet colpe = new projet();
 
-                if (ModelState.IsValid)
-                {
+                //if (ModelState.IsValid)
+                //{
                     if (id == null)
                         return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
@@ -207,14 +207,16 @@ namespace ProjetGestionEval.Controllers
 
 
                     bd.projet.Remove(colpe);
+                
 
                     bd.SaveChanges();
                     return RedirectToAction("Index");
 
-                } return View(colpe);
+                //} return View(colpe);
             }
-            catch
+            catch (Exception es)
             {
+                
                 return View();
             }
         }
