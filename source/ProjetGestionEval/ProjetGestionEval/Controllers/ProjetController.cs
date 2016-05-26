@@ -36,8 +36,8 @@ namespace ProjetGestionEval.Controllers
         public ActionResult Create()
         {
             //.Where(m => m.TYPECOLLABORATEUR=="collabpe")
-            ViewBag.collaborateur = new SelectList(bd.collaborateur, "IDCOLLABORATEUR", "NOM",bd.collaborateur.Where(m => m.TYPECOLLABORATEUR != "P.E"));
-            ViewBag.collaborateurpe = new SelectList(bd.collaborateur, "IDCOLLABORATEUR", "NOM", bd.collaborateur.Where(m => m.TYPECOLLABORATEUR == "P.E"));
+            ViewBag.collaborateur = new SelectList(bd.collaborateur.Where(m => m.TYPECOLLABORATEUR == "Titulaire"), "IDCOLLABORATEUR", "NOM");
+            ViewBag.collaborateurpe = new SelectList(bd.collaborateur.Where(m => m.TYPECOLLABORATEUR == "P.E"), "IDCOLLABORATEUR", "NOM");
             ViewBag.client = new SelectList(bd.client, "IDCLIENT", "ABREVIATION");
 
             return View();
@@ -80,13 +80,16 @@ namespace ProjetGestionEval.Controllers
         // GET: Projet/Edit/5
         public ActionResult Edit(int? id)
         {
-            ViewBag.collaborateur = new MultiSelectList(bd.collaborateur, "IDCOLLABORATEUR", "NOM");
-            var vv = "";
-            var tab = bd.projet.Find(id).collaborateur;
-            for (int i = 0; i < tab.Count(); i++)
-            {
-                vv += tab.ElementAtOrDefault(i).NOM;
-            }
+           ViewBag.collaborateur = new MultiSelectList(bd.projet.Find(id).collaborateur, "IDCOLLABORATEUR", "NOM");
+            //var vv = "";
+            //var tab = bd.projet.Find(id).collaborateur;
+            //for (int i = 0; i < tab.Count(); i++)
+            //{
+
+            //    vv += tab.ElementAtOrDefault(i).NOM;
+            //}
+
+            //ViewBag.collaborateur = new MultiSelectList(vv, "IDCOLLABORATEUR", "NOM");
            
             ViewBag.IDCLIENT = new SelectList(bd.client, "IDCLIENT", "ABREVIATION", bd.projet.Find(id).client.IDCLIENT);
 

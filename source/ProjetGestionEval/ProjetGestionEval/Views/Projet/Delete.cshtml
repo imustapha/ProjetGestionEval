@@ -35,7 +35,9 @@
             </div>
             <div class="portlet-body form">
                 <!-- BEGIN FORM-->
-                <form action="Delete" method="post"  class="form-horizontal">
+                @using (Html.BeginForm("Delete", "Projet", FormMethod.Post, new { htmlAttributes = new { @class = "form-horizontal"} }))
+                            {
+                    @Html.AntiForgeryToken()
                     <div class="form-body">
 
                         <div class="form-group">
@@ -90,9 +92,7 @@
                     </div>
                     <div class="form-actions">
                         <div class="row">
-                            @using (Html.BeginForm())
-                            {
-                                @Html.AntiForgeryToken()
+                           
                                 <div class="col-md-offset-3 col-md-9">
                                     <div class="form-actions no-color">
                                         <input type="submit" value="Supprimer" class="btn red-haze" />
@@ -100,10 +100,10 @@
 
                                     </div>
                                 </div>
-                            }
+                           
                         </div>
                     </div>
-                </form>
+                }
                 <!-- END FORM-->
             </div>
         </div>

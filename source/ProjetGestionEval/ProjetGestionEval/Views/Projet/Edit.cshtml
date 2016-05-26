@@ -35,8 +35,8 @@
             </div>
             <div class="portlet-body form">
                 <!-- BEGIN FORM-->
-                @using (Html.BeginForm())
-                {
+               @using (Html.BeginForm("Edit", "Projet", FormMethod.Post, new { htmlAttributes = new { @class = "form-horizontal" } }))
+               {
                     @Html.AntiForgeryToken()
                     <div class="form-horizontal">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -78,7 +78,7 @@
 
                                 <div class="col-md-4">
 
-                                    @Html.DropDownListFor(m => m.collaborateur, ViewBag.collaborateurtitulaire as MultiSelectList, htmlAttributes: new { @Class = "bs-select form-control", @multiple = "multiple", required = "required" })
+                                    @Html.DropDownListFor(m => m.collaborateur, ViewBag.collaborateur as MultiSelectList, htmlAttributes: new { @Class = "bs-select form-control", @multiple = "multiple", required = "required" })
                                     @Html.ValidationMessageFor(model => model.collaborateur, "", new { @class = "text-danger" })
                                 </div>
                             </div>
