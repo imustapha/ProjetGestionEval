@@ -74,7 +74,7 @@ namespace ProjetGestionEval.Controllers
 
         // POST: Collaborateur/Create
         [HttpPost]
-        public async Task<ActionResult> Create([Bind(Exclude = "DATESORTIE,IdUser")]RegisterViewModel model)
+        public async Task<ActionResult> Create([Bind(Exclude = "IdUser")]RegisterViewModel model)
         {
             ViewBag.IDFONCTION = new SelectList(bd.fonction, "IDFONCTION", "NOMFONCTION");
             if (model.TYPECOLLABORATEUR == "P.E" || model.TYPECOLLABORATEUR == "Freelance")
@@ -97,8 +97,7 @@ namespace ProjetGestionEval.Controllers
                 model.File.InputStream.Read(data, 0, model.File.ContentLength);
                 model.IMAGE = data;
                 //formulaire methode poste
-                if (ModelState.IsValid)
-                {
+
                     var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
                     var resulte = await UserManager.CreateAsync(user,model.Password);
                         //await UserManager.CreateAsync(user, model.Password);
@@ -137,7 +136,7 @@ namespace ProjetGestionEval.Controllers
                         }
                     }
 
-                }
+                
                 else if (!ModelState.IsValid)
                 {
 
