@@ -214,7 +214,7 @@ namespace ProjetGestionEval.Controllers
 
                 //} return View(colpe);
             }
-            catch (Exception es)
+            catch
             {
                 
                 return View();
