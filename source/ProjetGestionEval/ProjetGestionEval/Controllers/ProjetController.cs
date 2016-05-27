@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,6 +10,8 @@ namespace ProjetGestionEval.Controllers
 {
     public class ProjetController : Controller
     {
+        static string ConnectionString = "database=bd_gestion;server=localhost;uid=root";
+        MySqlConnection Connection = new MySqlConnection(ConnectionString);
         bd_gestionEntities bd = new bd_gestionEntities();
         // GET: Projet
         public ActionResult Index()
@@ -190,7 +193,14 @@ namespace ProjetGestionEval.Controllers
         [HttpPost]
         public ActionResult Delete(int? id, projet pro)
         {
-
+            Connection.Open();
+            string req = "Delete From administrer Where IDPROJET=" + id;
+            MySqlCommand cmd = new MySqlCommand(req, Connection);
+           
+            cmd.ExecuteNonQuery();
+            
+           
+            
             try
             {
                 projet colpe = new projet();
@@ -214,7 +224,7 @@ namespace ProjetGestionEval.Controllers
 
                 //} return View(colpe);
             }
-            catch (Exception es)
+            catch 
             {
                 
                 return View();

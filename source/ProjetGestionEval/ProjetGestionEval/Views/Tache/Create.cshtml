@@ -5,25 +5,24 @@
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 
-<div class="page-bar">
-    <ul class="page-breadcrumb">
-        <li>
-            <i class="fa fa-home"></i>
-            <a href="~/Home/Accueil">Acceuil</a>
-            <i class="fa fa-angle-right"></i>
-            <a href="~/tache/Index">Liste des Taches</a>
-            <i class="fa fa-angle-right"></i>
-            <a href="~/tache/Create">Create</a>
-            <i class="fa fa-angle-right"></i>
-        </li>
-    </ul>
-</div>
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+
+        <a href="~/Home/Accueil">Accueil</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Tache/Index">Liste des taches</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Tache/Create">Ajouter</a>
+        <i class="fa fa-circle"></i>
+    </li>
+
+</ul>
 <div class="col-md-12">
     <!-- BEGIN VALIDATION STATES-->
     <div class="portlet box green">
         <div class="portlet-title">
             <div class="caption">
-                <i class="fa fa-gift"></i>Advance Validation
+                <i class="fa fa-gift"></i>Tache
             </div>
             <div class="tools">
                 <a href="javascript:;" class="collapse">
@@ -46,7 +45,7 @@
                     </div>
                     <div class="alert alert-success display-hide">
                         <button class="close" data-close="alert"></button>
-                        Le Collaborateur a ete ajouter avec succes
+                        La tache a ete ajouter avec succes
                     </div>
 
 
@@ -85,7 +84,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-3">Collaborateur en Esseai</label>
+                            <label class="control-label col-md-3">Projet </label>
                             <div class="col-md-4">
                                 @Html.DropDownListFor(Model => Model.IDPROJET, ViewBag.Projet as SelectList, "Selectionner le Projet", htmlAttributes: new { @Class = "bs-select form-control", required = "required" })
                             </div>
@@ -115,7 +114,7 @@
                     <div class="row">
                         <div class="col-md-offset-3 col-md-9">
                             <button type="submit" class="btn green">Submit</button>
-                            <button type="reset" class="btn red">Cancel</button>
+                            
                             <a href="@Url.Action("Index")" class="btn default">Retour</a>
                         </div>
                     </div>

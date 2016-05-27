@@ -24,7 +24,15 @@
         <AssociationConnector Association="bd_gestionModel.FK_APPARTENIR" ManuallyRouted="false" />
         <AssociationConnector Association="bd_gestionModel.FK_AVOIR" ManuallyRouted="false" />
         <AssociationConnector Association="bd_gestionModel.FK_EXAMINER" ManuallyRouted="false" />
-        <AssociationConnector Association="bd_gestionModel.FK_MANIER" ManuallyRouted="false" />
+        <AssociationConnector Association="bd_gestionModel.FK_MANIER" ManuallyRouted="true" >
+          <ConnectorPoint PointX="7.65625" PointY="9.375" />
+          <ConnectorPoint PointX="7.65625" PointY="9.2615224313524038" />
+          <ConnectorPoint PointX="7.797640694095608" PointY="9.2615224313524038" />
+          <ConnectorPoint PointX="7.9643073607622741" PointY="9.2615224313524038" />
+          <ConnectorPoint PointX="9.5615625" PointY="9.2615224313524038" />
+          <ConnectorPoint PointX="9.5615625" PointY="9.0307421875" />
+          <ConnectorPoint PointX="10.5" PointY="9.0307421875" />
+        </AssociationConnector>
         <AssociationConnector Association="bd_gestionModel.FK_QUIEVALUE" ManuallyRouted="false" />
         <AssociationConnector Association="bd_gestionModel.FK_SELECTIONNER" ManuallyRouted="false" />
         <AssociationConnector Association="bd_gestionModel.FK_POSSEDER" ManuallyRouted="false" />
