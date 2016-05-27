@@ -224,7 +224,9 @@ namespace ProjetGestionEval.Controllers
 
                 //} return View(colpe);
             }
-            catch 
+
+            catch
+
             {
                 
                 return View();

@@ -103,38 +103,58 @@
                                 </div>
                             </div>
 
+
+
+
+
                             <div class="form-group">
                                 @Html.LabelFor(model => model.DATEEMBAUCHE, "Date d'embauche", htmlAttributes: new { @class = "control-label col-md-3" })
-                                <div class="col-md-6">
-                                    @{
-                                        bd_gestionEntities bd = new bd_gestionEntities();
+                                <div class="col-md-3">
+                                    <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+                                        @{
+                        bd_gestionEntities bd = new bd_gestionEntities();
 
-                                        var xy = bd.collaborateur.Find(Model.IDCOLLABORATEUR).DATEEMBAUCHE;
-                                    }
-                                    <input class="form-control datepicker" name="DATEEMBAUCHE"  value=@xy size="16" type="text" />
+                        var xy = bd.collaborateur.Find(Model.IDCOLLABORATEUR).DATEEMBAUCHE;
+                                        }
+                                        <input type="text" name="DATEEMBAUCHE" class="form-control" value=@xy>
+                                        <span class="input-group-btn">
+                                            <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+
+                                    <!-- /input-group -->
                                     <span class="help-block">
                                         Select date
                                     </span>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.DATESORTIE, "Date de sortie", htmlAttributes: new { @class = "control-label col-md-3" })
-                                <div class="col-md-6">
+                      
+                                
+                                
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DATESORTIE, "Date de sortie", htmlAttributes: new { @class = "control-label col-md-3" })
+                                    <div class="col-md-3">
+                                        <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+                                            @{
 
-                                @{
-                        
-                                    var x = Model.DATESORTIE;
+                        var x = Model.DATESORTIE;
 
-                    }     
-                                            <input class="form-control form-control-inline input-medium date-picker" name="DATESORTIE" size="40" type="text" value=@x />
-                                            <span class="help-block">
-                                                Select date
+                                            }
+
+                                            <input type="text" name="DATESORTIE" class="form-control" value=@x>
+                                            <span class="input-group-btn">
+                                                <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
                                             </span>
-                                  
-                                 
+                                        </div>
+
+                                        <!-- /input-group -->
+                                        <span class="help-block">
+                                            Select date
+                                        </span>
                                     </div>
                                 </div>
+                             
                             
 
                             <div class="form-group">
