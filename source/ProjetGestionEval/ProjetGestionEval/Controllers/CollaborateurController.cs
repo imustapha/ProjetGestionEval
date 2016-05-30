@@ -153,6 +153,58 @@ namespace ProjetGestionEval.Controllers
 
             return View();
         }
+        public ActionResult EditImage(int? id) {
+            var coll = bd.collaborateur.Find(id);
+            ViewBag.idcol = coll.IDCOLLABORATEUR;
+            ViewBag.im=coll.IMAGE;
+           
+            return View();
+        }
+        [HttpPost]
+        public ActionResult EditImage(int? id,[Bind(Include = "File")]RegisterViewModel model)
+        {
+            var coll = bd.collaborateur.Find(id);
+            
+            try {
+                if(model.File!=null){
+                if (model.File.ContentLength > (2 * 1024 * 1024))
+                {
+                    ModelState.AddModelError("CustomError", "File est plus 2mb");
+                    return View();
+                }
+                if (!(model.File.ContentType == "image/jpeg" || model.File.ContentType == "image/gif"))
+                {
+                    ModelState.AddModelError("CustomError", "File alloued for jpeg and gif");
+                    return View();
+
+                }
+                byte[] data = new byte[model.File.ContentLength];
+                model.File.InputStream.Read(data, 0, model.File.ContentLength);
+                model.IMAGE = data;
+                coll.IMAGE = model.IMAGE;
+                    }
+                //if (ModelState.IsValid)
+                //{
+                    bd.Entry(coll).State = System.Data.Entity.EntityState.Modified;
+
+                    
+
+                    bd.SaveChanges();
+
+                    
+                        return RedirectToAction("Accueil","Home");
+                    
+
+                //}
+                
+            
+            
+            
+            }
+            catch { }
+
+            return View();
+        }
 
         // GET: Collaborateur/Edit/5
         public ActionResult Edit(int? id)

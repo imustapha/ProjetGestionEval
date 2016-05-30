@@ -4727,6 +4727,7 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Projet\Delete.cshtml" />
     <Content Include="Views\Critere\Create.cshtml" />
+    <Content Include="Views\Collaborateur\EditImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
