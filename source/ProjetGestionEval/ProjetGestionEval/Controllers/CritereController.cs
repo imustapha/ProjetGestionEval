@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -24,17 +25,18 @@ namespace ProjetGestionEval.Controllers
         // GET: Critere/Create
         public ActionResult Create()
         {
-            ViewBag.IdCritereFamille = new SelectList(bd.famillecritere, "IDFAMILLECRITERE", "NOMCRITERE");
+            ViewBag.IdCritereFamille = new SelectList(bd.famillecritere, "IDFAMILLECRITERE", "NOMFAMILLECRITERE");
             return View();
         }
 
         // POST: Critere/Create
         [HttpPost]
-        public ActionResult Create(int? id, critere Critere)
+        public ActionResult Create(critere Critere)
         {
-            ViewBag.IdCritereFamille = new SelectList(bd.famillecritere, "IDFAMILLECRITERE", "NOMCRITERE");
+            ViewBag.IdCritereFamille = new SelectList(bd.famillecritere, "IDFAMILLECRITERE", "NOMFAMILLECRITERE");
             try
             {
+                Critere.famillecritere = bd.famillecritere.Find(Critere.IDFAMILLECRITERE);
                 if (ModelState.IsValid) {
                     bd.critere.Add(Critere);
                     bd.SaveChanges();
@@ -51,20 +53,39 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: Critere/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            ViewBag.IdCritereFamille = new SelectList(bd.famillecritere, "IDFAMILLECRITERE", "NOMFAMILLECRITERE");
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            critere Cri = bd.critere.Find(id);
+            if (Cri == null)
+                return HttpNotFound();
+            return View(Cri);
         }
 
         // POST: Critere/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int? id, critere Cri)
         {
+            ViewBag.IdCritereFamille = new SelectList(bd.famillecritere, "IDFAMILLECRITERE", "NOMFAMILLECRITERE");
+            critere Crit = bd.critere.Find(id);
+            Crit.IDFAMILLECRITERE = Cri.IDFAMILLECRITERE;
+            Crit.NOMCRITERE = Cri.NOMCRITERE;
+            Crit.famillecritere = Cri.famillecritere;
             try
             {
+                if (ModelState.IsValid)
+                {
+                    bd.Entry(Crit).State = System.Data.Entity.EntityState.Modified;
+
+                    bd.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
                 // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+                return View(Crit);
             }
             catch
             {
