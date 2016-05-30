@@ -206,6 +206,7 @@
     <Compile Include="Controllers\CollaborateurController.cs" />
     <Compile Include="Controllers\CollaborateurPEController.cs" />
     <Compile Include="Controllers\CritereController.cs" />
+    <Compile Include="Controllers\FamilleCritereController.cs" />
     <Compile Include="Controllers\FonctionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjetController.cs" />
@@ -4726,7 +4727,13 @@
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Projet\Delete.cshtml" />
+    <Content Include="Views\FamilleCritere\Index.cshtml" />
+    <Content Include="Views\FamilleCritere\Create.cshtml" />
+    <Content Include="Views\FamilleCritere\Delete.cshtml" />
+    <Content Include="Views\FamilleCritere\Edit.cshtml" />
     <Content Include="Views\Critere\Create.cshtml" />
+    <Content Include="Views\Critere\Index.cshtml" />
+    <Content Include="Views\Critere\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
