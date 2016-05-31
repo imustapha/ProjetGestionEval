@@ -18,7 +18,28 @@ namespace ProjetGestionEval.Controllers
         {
             return View(bd.projet.ToList());
         }
+        public ActionResult IndexPr()
+        {
+            var asp = bd.aspnetusers.Where(i => i.Email == User.Identity.Name).FirstOrDefault();
+            var ctn = bd.collaborateur.Single(m => m.IdUser == asp.Id);
+            var id = ctn.IDCOLLABORATEUR;
+            Connection.Open();
+            string req = "SELECT IDPROJET FROM administrer where IDCOLLABORATEUR=" + id ;
+            MySqlCommand cmd = new MySqlCommand(req, Connection);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            
+             string s1 = null;
+            while (dr.Read())
+            {
+                s1 = dr[0].ToString();
+                
+            }
+            int s = 0;
+            if (s1 != null) { s = int.Parse(s1); }
+          
 
+            return View(bd.projet.ToList().Where(m=>m.IDPROJET==s));
+        }
         // GET: Projet/Details/5
         public ActionResult Details(int? id)
         {

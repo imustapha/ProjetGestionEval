@@ -4736,6 +4736,7 @@
     <Content Include="Views\Critere\Index.cshtml" />
     <Content Include="Views\Critere\Edit.cshtml" />
     <Content Include="Views\Critere\Delete.cshtml" />
+    <Content Include="Views\Projet\IndexPr.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
