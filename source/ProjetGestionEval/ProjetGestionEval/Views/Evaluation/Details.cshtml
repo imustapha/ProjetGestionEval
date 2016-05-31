@@ -1,0 +1,67 @@
+﻿@model ProjetGestionEval.evaluation
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>evaluation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DATEEVALUATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATEEVALUATION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DATENEXTEVALUATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATENEXTEVALUATION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.APPRECIATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.APPRECIATION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STATUT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STATUT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.collaborateur.NOM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.collaborateur.NOM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.collaborateur1.NOM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.collaborateur1.NOM)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDEVALUATION }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

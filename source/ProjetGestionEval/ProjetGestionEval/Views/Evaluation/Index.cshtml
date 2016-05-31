@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ProjetGestionEval.evaluation>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DATEEVALUATION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATENEXTEVALUATION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.APPRECIATION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.STATUT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.collaborateur.NOM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.collaborateur1.NOM)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATEEVALUATION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATENEXTEVALUATION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.APPRECIATION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.STATUT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.collaborateur.NOM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.collaborateur1.NOM)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDEVALUATION }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDEVALUATION }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDEVALUATION })
+        </td>
+    </tr>
+}
+
+</table>

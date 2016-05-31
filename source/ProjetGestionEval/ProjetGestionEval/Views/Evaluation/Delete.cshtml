@@ -1,0 +1,73 @@
+﻿@model ProjetGestionEval.evaluation
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>evaluation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DATEEVALUATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATEEVALUATION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DATENEXTEVALUATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATENEXTEVALUATION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.APPRECIATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.APPRECIATION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STATUT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STATUT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.collaborateur.NOM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.collaborateur.NOM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.collaborateur1.NOM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.collaborateur1.NOM)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
