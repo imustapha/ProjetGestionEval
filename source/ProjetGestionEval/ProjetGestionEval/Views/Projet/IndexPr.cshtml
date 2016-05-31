@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ProjetGestionEval.projet>
 @{
-    ViewBag.Title = "IndexPr";
+    ViewBag.Title = "Projet";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 
@@ -80,7 +80,7 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-
+                    
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.NOMPROJET)

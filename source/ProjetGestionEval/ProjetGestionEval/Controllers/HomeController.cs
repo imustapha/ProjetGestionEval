@@ -19,7 +19,7 @@ namespace ProjetGestionEval.Controllers
          var id = ctn.IDCOLLABORATEUR;
 
             Connection.Open();
-            string req = "SELECT (SELECT COUNT(*) FROM collaborateur where TYPECOLLABORATEUR='P.E'), (SELECT COUNT(*) FROM collaborateur where TYPECOLLABORATEUR='Titulaire'),(SELECT COUNT(*) FROM projet where IDPROJET=(SELECT IDPROJET FROM administrer where IDCOLLABORATEUR="+id+"))";
+            string req = "SELECT (SELECT COUNT(*) FROM collaborateur where TYPECOLLABORATEUR='P.E'), (SELECT COUNT(*) FROM collaborateur where TYPECOLLABORATEUR='Titulaire'),(SELECT COUNT(*) FROM projet where IDPROJET IN (SELECT IDPROJET FROM administrer where IDCOLLABORATEUR="+id+"))";
             MySqlCommand cmd = new MySqlCommand(req, Connection);
             MySqlDataReader dr = cmd.ExecuteReader();
             string s1 = null, s2 = null,s3=null;
@@ -29,11 +29,6 @@ namespace ProjetGestionEval.Controllers
                 s2 = dr[1].ToString();
                 s3 = dr[2].ToString();
             }
-
-
-
-
-            
             ViewBag.cc = s2;
             ViewBag.bb = s1;
             ViewBag.pp = s3;

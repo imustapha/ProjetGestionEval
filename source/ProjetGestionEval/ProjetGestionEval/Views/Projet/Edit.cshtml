@@ -74,11 +74,20 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.collaborateur, "Collaborateur", htmlAttributes: new { @class = "col-md-3 control-label" })
+                                @Html.LabelFor(model => model.collaborateur, "Collaborateur Titulaire", htmlAttributes: new { @class = "col-md-3 control-label" })
 
                                 <div class="col-md-4">
 
                                     @Html.DropDownListFor(m => m.collaborateur, ViewBag.collaborateur as MultiSelectList, htmlAttributes: new { @Class = "bs-select form-control", @multiple = "multiple", required = "required" })
+                                    @Html.ValidationMessageFor(model => model.collaborateur, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.collaborateur, "Collaborateur P.E", htmlAttributes: new { @class = "col-md-3 control-label" })
+
+                                <div class="col-md-4">
+
+                                    @Html.DropDownListFor(m => m.collaborateur, ViewBag.collaborateurpe as MultiSelectList, htmlAttributes: new { @Class = "bs-select form-control", @multiple = "multiple"})
                                     @Html.ValidationMessageFor(model => model.collaborateur, "", new { @class = "text-danger" })
                                 </div>
                             </div>

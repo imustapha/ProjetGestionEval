@@ -28,10 +28,10 @@ namespace ProjetGestionEval.Controllers
             MySqlCommand cmd = new MySqlCommand(req, Connection);
             MySqlDataReader dr = cmd.ExecuteReader();
             
-             string s1 = null;
+              List<String> s1=new List<string>;
             while (dr.Read())
             {
-                s1 = dr[0].ToString();
+                s1.Add(dr[0].ToString());
                 
             }
             int s = 0;
@@ -104,7 +104,10 @@ namespace ProjetGestionEval.Controllers
         // GET: Projet/Edit/5
         public ActionResult Edit(int? id)
         {
-           ViewBag.collaborateur = new MultiSelectList(bd.projet.Find(id).collaborateur, "IDCOLLABORATEUR", "NOM");
+           
+           ViewBag.collaborateur = new SelectList(bd.collaborateur.Where(m => m.TYPECOLLABORATEUR == "Titulaire"), "IDCOLLABORATEUR", "NOM");
+           ViewBag.collaborateurpe = new SelectList(bd.collaborateur.Where(m => m.TYPECOLLABORATEUR == "P.E"), "IDCOLLABORATEUR", "NOM");
+
             //var vv = "";
             //var tab = bd.projet.Find(id).collaborateur;
             //for (int i = 0; i < tab.Count(); i++)
