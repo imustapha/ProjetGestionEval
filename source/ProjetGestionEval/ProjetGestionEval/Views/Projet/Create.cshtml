@@ -110,9 +110,15 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">Date Debut Projet</label>
                             <div class="col-md-3">
-                                <input class="form-control form-control-inline input-medium date-picker" size="16" type="text" name="DATEDEBUT" />
+                                <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+                                    <input type="text" class="form-control" name="DATEDEBUT">
+                                    <span class="input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                                <!-- /input-group -->
                                 <span class="help-block">
-                                    Select date MM/DD/YYYY
+                                    Select date
                                 </span>
                             </div>
                         </div>
@@ -120,15 +126,18 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">Date Fin Projet</label>
                             <div class="col-md-3">
-                                <input class="form-control form-control-inline input-medium date-picker" size="16" type="text" name="DATEFIN" />
+                                <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+                                    <input type="text" class="form-control" name="DATEFIN">
+                                    <span class="input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                                <!-- /input-group -->
                                 <span class="help-block">
-                                    Select date MM/DD/YYYY
+                                    Select date
                                 </span>
                             </div>
                         </div>
-
-
-
 
                         <div class="form-group ">
                             @Html.LabelFor(model => model.TYPE, "Type de Projet", htmlAttributes: new { @class = "control-label col-md-3" })

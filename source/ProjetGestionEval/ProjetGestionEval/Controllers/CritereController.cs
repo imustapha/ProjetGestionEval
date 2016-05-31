@@ -94,20 +94,38 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: Critere/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            // TODO: Add delete logic here
+            critere Cri = new critere();
+            Cri = bd.critere.Find(id);
+            if (Cri == null)
+                return HttpNotFound();
+            return View(Cri);
         }
 
         // POST: Critere/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int? id, critere Critere)
         {
             try
             {
-                // TODO: Add delete logic here
 
+                if (ModelState.IsValid) { 
+                if (id == null)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                // TODO: Add delete logic here
+                critere Cri = new critere();
+                Cri = bd.critere.Find(id);
+                if (Cri == null)
+                    return HttpNotFound();
+                bd.critere.Remove(Cri);
+                bd.SaveChanges();
                 return RedirectToAction("Index");
+                }
+                return View();
             }
             catch
             {

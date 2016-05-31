@@ -1,7 +1,7 @@
 ﻿@model ProjetGestionEval.projet
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 
@@ -111,28 +111,15 @@
                                     @Html.ValidationMessageFor(model => model.TYPE, "", new { @class = "text-danger" })
 
                                 </div>
-
-
-
-
                             </div>
-
-
                         </div>
-
-
-                        <div class="form-actions">
                             <div class="row">
 
                                 <div class="col-md-offset-3 col-md-9">
-                                    <div class="form-actions no-color">
+                                  
                                         <input type="submit" value="Sauvegarder" class="btn red-haze" />@Html.ActionLink("Retour à la liste", "Index", null, new { @class = "btn default" })
-
-                                    </div>
                                 </div>
-
                             </div>
-                        </div>
                     </div>
                 }
                 <!-- END FORM-->

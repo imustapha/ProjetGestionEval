@@ -4732,12 +4732,10 @@
     <Content Include="Views\FamilleCritere\Delete.cshtml" />
     <Content Include="Views\FamilleCritere\Edit.cshtml" />
     <Content Include="Views\Critere\Create.cshtml" />
-
     <Content Include="Views\Collaborateur\EditImage.cshtml" />
-
     <Content Include="Views\Critere\Index.cshtml" />
     <Content Include="Views\Critere\Edit.cshtml" />
-
+    <Content Include="Views\Critere\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
