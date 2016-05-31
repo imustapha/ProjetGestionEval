@@ -4737,15 +4737,15 @@
     <Content Include="Views\Critere\Index.cshtml" />
     <Content Include="Views\Critere\Edit.cshtml" />
     <Content Include="Views\Critere\Delete.cshtml" />
-<<<<<<< HEAD
+
     <Content Include="Views\Evaluation\Index.cshtml" />
     <Content Include="Views\Evaluation\Details.cshtml" />
     <Content Include="Views\Evaluation\Create.cshtml" />
     <Content Include="Views\Evaluation\Edit.cshtml" />
     <Content Include="Views\Evaluation\Delete.cshtml" />
-=======
+
     <Content Include="Views\Projet\IndexPr.cshtml" />
->>>>>>> 316b45a4dd2c8bca07da81738aef5383974a1da9
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
