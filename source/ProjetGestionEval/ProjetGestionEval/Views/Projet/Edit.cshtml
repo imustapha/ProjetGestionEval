@@ -59,20 +59,40 @@
                                     @Html.ValidationMessageFor(model => model.NOMPROJET, "", new { @class = "text-danger" })
                                 </div>
                             </div>
+
                             <div class="form-group">
-                                @Html.LabelFor(model => model.DATEDEBUT, "Date debut", htmlAttributes: new { @class = "col-md-3 control-label" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.DATEDEBUT, new { htmlAttributes = new { @class = "form-control form-control-inline input-medium date-picker" } })
-                                    @Html.ValidationMessageFor(model => model.DATEDEBUT, "", new { @class = "text-danger" })
+                                <label class="control-label col-md-3">Date Debut Projet</label>
+                                <div class="col-md-3">
+                                    <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+                                        <input type="text" class="form-control" value=@Model.DATEDEBUT name="DATEDEBUT">
+                                        <span class="input-group-btn">
+                                            <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                    <!-- /input-group -->
+                                    <span class="help-block">
+                                        Select date
+                                    </span>
                                 </div>
                             </div>
+
+
                             <div class="form-group">
-                                @Html.LabelFor(model => model.DATEFIN, "Date fin", htmlAttributes: new { @class = "col-md-3 control-label" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.DATEFIN, new { htmlAttributes = new { @class = "form-control form-control-inline input-medium date-picker" } })
-                                    @Html.ValidationMessageFor(model => model.DATEFIN, "", new { @class = "text-danger" })
+                                <label class="control-label col-md-3">Date Fin Projet</label>
+                                <div class="col-md-3">
+                                    <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+                                        <input type="text" class="form-control" value=@Model.DATEFIN name="DATEFIN">
+                                        <span class="input-group-btn">
+                                            <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                    <!-- /input-group -->
+                                    <span class="help-block">
+                                        Select date
+                                    </span>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 @Html.LabelFor(model => model.collaborateur, "Collaborateur Titulaire", htmlAttributes: new { @class = "col-md-3 control-label" })
 

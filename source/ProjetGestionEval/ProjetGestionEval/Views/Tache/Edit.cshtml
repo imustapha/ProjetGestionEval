@@ -80,19 +80,30 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">Date Debut Tache</label>
                             <div class="col-md-3">
-                                @Html.EditorFor(model => model.DATEDEBUTTACHE, new { htmlAttributes = new { @class = "form-control form-control-inline input-medium date-picker" } })
+                                <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+                                    <input type="text" class="form-control" value=@Model.DATEDEBUTTACHE name="DATEDEBUTTACHE">
+                                    <span class="input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                                <!-- /input-group -->
                                 <span class="help-block">
-                                    Select date MM/DD/YYYY
+                                    Select date
                                 </span>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label class="control-label col-md-3">Date Fin Tache</label>
                             <div class="col-md-3">
-                                @Html.EditorFor(model => model.DATEFINTACHE, new { htmlAttributes = new { @class = "form-control form-control-inline input-medium date-picker" } })
+                                <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+                                    <input type="text" class="form-control" value=@Model.DATEFINTACHE name="DATEFINTACHE">
+                                    <span class="input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                                <!-- /input-group -->
                                 <span class="help-block">
-                                    Select date MM/DD/YYYY
+                                    Select date
                                 </span>
                             </div>
                         </div>
