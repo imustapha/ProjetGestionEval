@@ -95,19 +95,35 @@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.collaborateur, "Collaborateur Titulaire", htmlAttributes: new { @class = "col-md-3 control-label" })
+                                @{
+                                    string x = "";
+                                    foreach (var s in ViewBag.ct) {
 
+                                        x = x + s+"," ;
+                                  
+                                  }
+               }
                                 <div class="col-md-4">
 
-                                    @Html.DropDownListFor(m => m.collaborateur, ViewBag.collaborateur as MultiSelectList, htmlAttributes: new { @Class = "bs-select form-control", @multiple = "multiple", required = "required" })
+                                    @Html.DropDownListFor(m => m.collaborateur, ViewBag.collaborateur as MultiSelectList, htmlAttributes: new { @Class = "bs-select form-control",@multiple = "multiple",title=@x, required = "required"})
                                     @Html.ValidationMessageFor(model => model.collaborateur, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.collaborateur, "Collaborateur P.E", htmlAttributes: new { @class = "col-md-3 control-label" })
+                                @{
+                                    string y = "";
+                                    foreach (var s in ViewBag.cp)
+                                    {
 
+                                        y = y + s + ",";
+
+                                    }
+                                }
                                 <div class="col-md-4">
 
-                                    @Html.DropDownListFor(m => m.collaborateur, ViewBag.collaborateurpe as MultiSelectList, htmlAttributes: new { @Class = "bs-select form-control", @multiple = "multiple"})
+                                    @Html.DropDownListFor(m => m.collaborateur, ViewBag.collaborateurpe as MultiSelectList, htmlAttributes: new { @Class = "bs-select form-control",title=@y
+, @multiple = "multiple"})
                                     @Html.ValidationMessageFor(model => model.collaborateur, "", new { @class = "text-danger" })
                                 </div>
                             </div>

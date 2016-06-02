@@ -25,20 +25,25 @@ namespace ProjetGestionEval.Controllers
             var id = ctn.IDCOLLABORATEUR;
             Connection.Open();
             string req = "SELECT IDPROJET FROM administrer where IDCOLLABORATEUR=" + id ;
+            //SELECT * FROM projet where IDPROJET IN (SELECT IDPROJET FROM administrer where IDCOLLABORATEUR=" + id+")
             MySqlCommand cmd = new MySqlCommand(req, Connection);
             MySqlDataReader dr = cmd.ExecuteReader();
             
-              List<String> s1=new List<string>;
+              List<String> s1=new List<string>();
+          
             while (dr.Read())
             {
                 s1.Add(dr[0].ToString());
                 
             }
-            int s = 0;
-            if (s1 != null) { s = int.Parse(s1); }
-          
+            
+            //int s = 0;
+            
+            //if (s1 != null) { s = int.Parse(s1); }
+            ViewBag.ss=s1.Select(int.Parse).ToList();
 
-            return View(bd.projet.ToList().Where(m=>m.IDPROJET==s));
+
+            return View(bd.projet.ToList());
         }
         // GET: Projet/Details/5
         public ActionResult Details(int? id)
@@ -108,13 +113,22 @@ namespace ProjetGestionEval.Controllers
            ViewBag.collaborateur = new SelectList(bd.collaborateur.Where(m => m.TYPECOLLABORATEUR == "Titulaire"), "IDCOLLABORATEUR", "NOM");
            ViewBag.collaborateurpe = new SelectList(bd.collaborateur.Where(m => m.TYPECOLLABORATEUR == "P.E"), "IDCOLLABORATEUR", "NOM");
 
-            //var vv = "";
-            //var tab = bd.projet.Find(id).collaborateur;
-            //for (int i = 0; i < tab.Count(); i++)
-            //{
+           List<String> ct=new List<string>();
+           var tab = bd.projet.Find(id).collaborateur.Where(m=>m.TYPECOLLABORATEUR=="Titulaire");
+           foreach (var cc in tab)
+           {
+               ct.Add(cc.NOM);
+               
+           }
+           ViewBag.ct = ct;
+           List<String> cp = new List<string>();
+           var tab2 = bd.projet.Find(id).collaborateur.Where(m => m.TYPECOLLABORATEUR == "P.E");
+           foreach (var cc in tab2)
+           {
+               cp.Add(cc.NOM);
 
-            //    vv += tab.ElementAtOrDefault(i).NOM;
-            //}
+           }
+           ViewBag.cp = cp;
 
             //ViewBag.collaborateur = new MultiSelectList(vv, "IDCOLLABORATEUR", "NOM");
            

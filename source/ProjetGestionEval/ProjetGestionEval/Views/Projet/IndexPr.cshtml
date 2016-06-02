@@ -80,7 +80,8 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    
+                        foreach (var s in ViewBag.ss) {
+                            if (item.IDPROJET == s) { 
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.NOMPROJET)
@@ -161,7 +162,9 @@
 
                             </td>*@
                         </tr>
-
+                            }
+                        }
+                       
                     }
 
 
