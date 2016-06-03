@@ -31,12 +31,12 @@ namespace ProjetGestionEval
         public virtual DbSet<aspnetusers> aspnetusers { get; set; }
         public virtual DbSet<client> client { get; set; }
         public virtual DbSet<collaborateur> collaborateur { get; set; }
-        public virtual DbSet<critere> critere { get; set; }
         public virtual DbSet<evaluation> evaluation { get; set; }
         public virtual DbSet<famillecritere> famillecritere { get; set; }
         public virtual DbSet<fonction> fonction { get; set; }
         public virtual DbSet<projet> projet { get; set; }
-        public virtual DbSet<tache> tache { get; set; }
         public virtual DbSet<variable> variable { get; set; }
+        public virtual DbSet<critere> critere { get; set; }
+        public virtual DbSet<tache> tache { get; set; }
     }
 }

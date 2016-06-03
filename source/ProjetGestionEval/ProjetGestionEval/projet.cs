@@ -16,8 +16,8 @@ namespace ProjetGestionEval
     {
         public projet()
         {
-            this.tache = new HashSet<tache>();
             this.collaborateur = new HashSet<collaborateur>();
+            this.tache = new HashSet<tache>();
         }
     
         public int IDPROJET { get; set; }
@@ -29,7 +29,7 @@ namespace ProjetGestionEval
         public bool FLAGTYPE { get; set; }
     
         public virtual client client { get; set; }
-        public virtual ICollection<tache> tache { get; set; }
         public virtual ICollection<collaborateur> collaborateur { get; set; }
+        public virtual ICollection<tache> tache { get; set; }
     }
 }

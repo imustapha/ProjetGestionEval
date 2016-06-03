@@ -22,6 +22,7 @@ namespace ProjetGestionEval
         public int IDCRITERE { get; set; }
         public int IDFAMILLECRITERE { get; set; }
         public string NOMCRITERE { get; set; }
+        public string NoteCritere { get; set; }
     
         public virtual famillecritere famillecritere { get; set; }
         public virtual ICollection<evaluation> evaluation { get; set; }

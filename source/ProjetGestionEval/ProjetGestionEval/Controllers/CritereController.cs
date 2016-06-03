@@ -40,11 +40,11 @@ namespace ProjetGestionEval.Controllers
                 if (ModelState.IsValid) {
                     bd.critere.Add(Critere);
                     bd.SaveChanges();
-                return View("Index");
+                    return RedirectToAction("Index");
                 }
                 // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+                return View("Index");
             }
             catch
             {

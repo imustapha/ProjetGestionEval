@@ -1,11 +1,20 @@
 ﻿@model IEnumerable<ProjetGestionEval.critere>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 
-<h2>Index</h2>
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+
+        <a href="~/Home/Accueil">Accueil</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Critere/Index">Liste des Critéres</a>
+        <i class="fa fa-circle"></i>
+    </li>
+
+</ul>
 
 <div class="col-md-12">
     <!-- BEGIN EXAMPLE TABLE PORTLET-->

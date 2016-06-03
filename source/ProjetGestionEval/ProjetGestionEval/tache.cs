@@ -20,6 +20,7 @@ namespace ProjetGestionEval
         public string NOMTACHE { get; set; }
         public Nullable<System.DateTime> DATEDEBUTTACHE { get; set; }
         public Nullable<System.DateTime> DATEFINTACHE { get; set; }
+        public string NoteTache { get; set; }
     
         public virtual collaborateur collaborateur { get; set; }
         public virtual projet projet { get; set; }

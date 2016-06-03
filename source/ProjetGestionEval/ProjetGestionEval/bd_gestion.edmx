@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="bd_gestionModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="bd_gestionModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="administrer">
           <Key>
             <PropertyRef Name="IDCOLLABORATEUR" />
@@ -93,6 +93,7 @@
           <Property Name="DATEEMBAUCHE" Type="date" Nullable="false" />
           <Property Name="DATESORTIE" Type="date" />
           <Property Name="IdUser" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Evaluer" Type="bool" Nullable="false" />
         </EntityType>
         <EntityType Name="critere">
           <Key>
@@ -100,7 +101,8 @@
           </Key>
           <Property Name="IDCRITERE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDFAMILLECRITERE" Type="int" Nullable="false" />
-          <Property Name="NOMCRITERE" Type="char" MaxLength="45" Nullable="false" />
+          <Property Name="NOMCRITERE" Type="char" MaxLength="254" Nullable="false" />
+          <Property Name="NoteCritere" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="evaluation">
           <Key>
@@ -150,6 +152,7 @@
           <Property Name="NOMTACHE" Type="char" MaxLength="45" />
           <Property Name="DATEDEBUTTACHE" Type="date" />
           <Property Name="DATEFINTACHE" Type="date" />
+          <Property Name="NoteTache" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="variable">
           <Key>
@@ -458,8 +461,7 @@
             <End Role="aspnetuserroles" EntitySet="aspnetuserroles" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="bd_gestionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -538,19 +540,10 @@
           <NavigationProperty Name="aspnetusers" Relationship="Self.fk_IdUser" FromRole="collaborateur" ToRole="aspnetusers" />
           <NavigationProperty Name="fonction" Relationship="Self.FK_AVOIR" FromRole="collaborateur" ToRole="fonction" />
           <NavigationProperty Name="evaluation" Relationship="Self.FK_EXAMINER" FromRole="collaborateur" ToRole="evaluation" />
-          <NavigationProperty Name="tache" Relationship="Self.FK_MANIER" FromRole="collaborateur" ToRole="tache" />
           <NavigationProperty Name="evaluation1" Relationship="Self.FK_QUIEVALUE" FromRole="collaborateur" ToRole="evaluation" />
           <NavigationProperty Name="projet" Relationship="Self.administrer" FromRole="collaborateur" ToRole="projet" />
-        </EntityType>
-        <EntityType Name="critere">
-          <Key>
-            <PropertyRef Name="IDCRITERE" />
-          </Key>
-          <Property Name="IDCRITERE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IDFAMILLECRITERE" Type="Int32" Nullable="false" />
-          <Property Name="NOMCRITERE" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="famillecritere" Relationship="Self.FK_SELECTIONNER" FromRole="critere" ToRole="famillecritere" />
-          <NavigationProperty Name="evaluation" Relationship="Self.caracteriser" FromRole="critere" ToRole="evaluation" />
+          <Property Name="Evaluer" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tache" Relationship="bd_gestionModel.FK_MANIER" FromRole="collaborateur" ToRole="tache" />
         </EntityType>
         <EntityType Name="evaluation">
           <Key>
@@ -566,7 +559,7 @@
           <NavigationProperty Name="collaborateur" Relationship="Self.FK_EXAMINER" FromRole="evaluation" ToRole="collaborateur" />
           <NavigationProperty Name="collaborateur1" Relationship="Self.FK_QUIEVALUE" FromRole="evaluation" ToRole="collaborateur" />
           <NavigationProperty Name="variable" Relationship="Self.FK_POSSEDER" FromRole="evaluation" ToRole="variable" />
-          <NavigationProperty Name="critere" Relationship="Self.caracteriser" FromRole="evaluation" ToRole="critere" />
+          <NavigationProperty Name="critere" Relationship="bd_gestionModel.caracteriser" FromRole="evaluation" ToRole="critere" />
         </EntityType>
         <EntityType Name="famillecritere">
           <Key>
@@ -574,7 +567,7 @@
           </Key>
           <Property Name="IDFAMILLECRITERE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NOMFAMILLECRITERE" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="critere" Relationship="Self.FK_SELECTIONNER" FromRole="famillecritere" ToRole="critere" />
+          <NavigationProperty Name="critere" Relationship="bd_gestionModel.FK_SELECTIONNER" FromRole="famillecritere" ToRole="critere" />
         </EntityType>
         <EntityType Name="fonction">
           <Key>
@@ -596,21 +589,8 @@
           <Property Name="TYPE" Type="Int32" />
           <Property Name="FLAGTYPE" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="client" Relationship="Self.FK_APPARTENIR" FromRole="projet" ToRole="client" />
-          <NavigationProperty Name="tache" Relationship="Self.FK_CONTIENT" FromRole="projet" ToRole="tache" />
           <NavigationProperty Name="collaborateur" Relationship="Self.administrer" FromRole="projet" ToRole="collaborateur" />
-        </EntityType>
-        <EntityType Name="tache">
-          <Key>
-            <PropertyRef Name="IDTACHE" />
-          </Key>
-          <Property Name="IDTACHE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IDCOLLABORATEUR" Type="Int32" Nullable="false" />
-          <Property Name="IDPROJET" Type="Int32" Nullable="false" />
-          <Property Name="NOMTACHE" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="DATEDEBUTTACHE" Type="DateTime" />
-          <Property Name="DATEFINTACHE" Type="DateTime" />
-          <NavigationProperty Name="collaborateur" Relationship="Self.FK_MANIER" FromRole="tache" ToRole="collaborateur" />
-          <NavigationProperty Name="projet" Relationship="Self.FK_CONTIENT" FromRole="tache" ToRole="projet" />
+          <NavigationProperty Name="tache" Relationship="bd_gestionModel.FK_CONTIENT" FromRole="projet" ToRole="tache" />
         </EntityType>
         <EntityType Name="variable">
           <Key>
@@ -698,18 +678,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MANIER">
-          <End Role="collaborateur" Type="Self.collaborateur" Multiplicity="1" />
-          <End Role="tache" Type="Self.tache" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="collaborateur">
-              <PropertyRef Name="IDCOLLABORATEUR" />
-            </Principal>
-            <Dependent Role="tache">
-              <PropertyRef Name="IDCOLLABORATEUR" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_QUIEVALUE">
           <End Role="collaborateur" Type="Self.collaborateur" Multiplicity="1" />
           <End Role="evaluation" Type="Self.evaluation" Multiplicity="*" />
@@ -719,18 +687,6 @@
             </Principal>
             <Dependent Role="evaluation">
               <PropertyRef Name="IDEVALUATEUR" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SELECTIONNER">
-          <End Role="famillecritere" Type="Self.famillecritere" Multiplicity="1" />
-          <End Role="critere" Type="Self.critere" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="famillecritere">
-              <PropertyRef Name="IDFAMILLECRITERE" />
-            </Principal>
-            <Dependent Role="critere">
-              <PropertyRef Name="IDFAMILLECRITERE" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -746,18 +702,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CONTIENT">
-          <End Role="projet" Type="Self.projet" Multiplicity="1" />
-          <End Role="tache" Type="Self.tache" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="projet">
-              <PropertyRef Name="IDPROJET" />
-            </Principal>
-            <Dependent Role="tache">
-              <PropertyRef Name="IDPROJET" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="administrer">
           <End Role="collaborateur" Type="Self.collaborateur" Multiplicity="*" />
           <End Role="projet" Type="Self.projet" Multiplicity="*" />
@@ -766,10 +710,6 @@
           <End Role="aspnetusers" Type="Self.aspnetusers" Multiplicity="*" />
           <End Role="aspnetroles" Type="Self.aspnetroles" Multiplicity="*" />
         </Association>
-        <Association Name="caracteriser">
-          <End Role="evaluation" Type="Self.evaluation" Multiplicity="*" />
-          <End Role="critere" Type="Self.critere" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="bd_gestionEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="aspnetroles" EntityType="Self.aspnetroles" />
           <EntitySet Name="aspnetuserclaims" EntityType="Self.aspnetuserclaims" />
@@ -777,12 +717,10 @@
           <EntitySet Name="aspnetusers" EntityType="Self.aspnetusers" />
           <EntitySet Name="client" EntityType="Self.client" />
           <EntitySet Name="collaborateur" EntityType="Self.collaborateur" />
-          <EntitySet Name="critere" EntityType="Self.critere" />
           <EntitySet Name="evaluation" EntityType="Self.evaluation" />
           <EntitySet Name="famillecritere" EntityType="Self.famillecritere" />
           <EntitySet Name="fonction" EntityType="Self.fonction" />
           <EntitySet Name="projet" EntityType="Self.projet" />
-          <EntitySet Name="tache" EntityType="Self.tache" />
           <EntitySet Name="variable" EntityType="Self.variable" />
           <AssociationSet Name="ApplicationUser_Claims" Association="Self.ApplicationUser_Claims">
             <End Role="aspnetusers" EntitySet="aspnetusers" />
@@ -808,25 +746,13 @@
             <End Role="collaborateur" EntitySet="collaborateur" />
             <End Role="evaluation" EntitySet="evaluation" />
           </AssociationSet>
-          <AssociationSet Name="FK_MANIER" Association="Self.FK_MANIER">
-            <End Role="collaborateur" EntitySet="collaborateur" />
-            <End Role="tache" EntitySet="tache" />
-          </AssociationSet>
           <AssociationSet Name="FK_QUIEVALUE" Association="Self.FK_QUIEVALUE">
             <End Role="collaborateur" EntitySet="collaborateur" />
             <End Role="evaluation" EntitySet="evaluation" />
           </AssociationSet>
-          <AssociationSet Name="FK_SELECTIONNER" Association="Self.FK_SELECTIONNER">
-            <End Role="famillecritere" EntitySet="famillecritere" />
-            <End Role="critere" EntitySet="critere" />
-          </AssociationSet>
           <AssociationSet Name="FK_POSSEDER" Association="Self.FK_POSSEDER">
             <End Role="evaluation" EntitySet="evaluation" />
             <End Role="variable" EntitySet="variable" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CONTIENT" Association="Self.FK_CONTIENT">
-            <End Role="projet" EntitySet="projet" />
-            <End Role="tache" EntitySet="tache" />
           </AssociationSet>
           <AssociationSet Name="administrer" Association="Self.administrer">
             <End Role="collaborateur" EntitySet="collaborateur" />
@@ -836,12 +762,91 @@
             <End Role="aspnetusers" EntitySet="aspnetusers" />
             <End Role="aspnetroles" EntitySet="aspnetroles" />
           </AssociationSet>
-          <AssociationSet Name="caracteriser" Association="Self.caracteriser">
+          <EntitySet Name="critere" EntityType="bd_gestionModel.critere" />
+          <EntitySet Name="tache" EntityType="bd_gestionModel.tache" />
+          <AssociationSet Name="FK_MANIER" Association="bd_gestionModel.FK_MANIER">
+            <End Role="collaborateur" EntitySet="collaborateur" />
+            <End Role="tache" EntitySet="tache" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SELECTIONNER" Association="bd_gestionModel.FK_SELECTIONNER">
+            <End Role="famillecritere" EntitySet="famillecritere" />
+            <End Role="critere" EntitySet="critere" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CONTIENT" Association="bd_gestionModel.FK_CONTIENT">
+            <End Role="projet" EntitySet="projet" />
+            <End Role="tache" EntitySet="tache" />
+          </AssociationSet>
+          <AssociationSet Name="caracteriser" Association="bd_gestionModel.caracteriser">
             <End Role="evaluation" EntitySet="evaluation" />
             <End Role="critere" EntitySet="critere" />
           </AssociationSet>
-        </EntityContainer>
-      </Schema>
+          </EntityContainer>
+        <EntityType Name="critere">
+          <Key>
+            <PropertyRef Name="IDCRITERE" />
+          </Key>
+          <Property Name="IDCRITERE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDFAMILLECRITERE" Type="Int32" Nullable="false" />
+          <Property Name="NOMCRITERE" Type="String" Nullable="false" MaxLength="254" FixedLength="false" Unicode="false" />
+          <Property Name="NoteCritere" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="famillecritere" Relationship="bd_gestionModel.FK_SELECTIONNER" FromRole="critere" ToRole="famillecritere" />
+          <NavigationProperty Name="evaluation" Relationship="bd_gestionModel.caracteriser" FromRole="critere" ToRole="evaluation" />
+        </EntityType>
+        <EntityType Name="tache">
+          <Key>
+            <PropertyRef Name="IDTACHE" />
+          </Key>
+          <Property Name="IDTACHE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDCOLLABORATEUR" Type="Int32" Nullable="false" />
+          <Property Name="IDPROJET" Type="Int32" Nullable="false" />
+          <Property Name="NOMTACHE" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="DATEDEBUTTACHE" Type="DateTime" />
+          <Property Name="DATEFINTACHE" Type="DateTime" />
+          <Property Name="NoteTache" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="collaborateur" Relationship="bd_gestionModel.FK_MANIER" FromRole="tache" ToRole="collaborateur" />
+          <NavigationProperty Name="projet" Relationship="bd_gestionModel.FK_CONTIENT" FromRole="tache" ToRole="projet" />
+        </EntityType>
+        <Association Name="FK_MANIER">
+          <End Type="bd_gestionModel.collaborateur" Role="collaborateur" Multiplicity="1" />
+          <End Type="bd_gestionModel.tache" Role="tache" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="collaborateur">
+              <PropertyRef Name="IDCOLLABORATEUR" />
+            </Principal>
+            <Dependent Role="tache">
+              <PropertyRef Name="IDCOLLABORATEUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SELECTIONNER">
+          <End Type="bd_gestionModel.famillecritere" Role="famillecritere" Multiplicity="1" />
+          <End Type="bd_gestionModel.critere" Role="critere" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="famillecritere">
+              <PropertyRef Name="IDFAMILLECRITERE" />
+            </Principal>
+            <Dependent Role="critere">
+              <PropertyRef Name="IDFAMILLECRITERE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CONTIENT">
+          <End Type="bd_gestionModel.projet" Role="projet" Multiplicity="1" />
+          <End Type="bd_gestionModel.tache" Role="tache" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="projet">
+              <PropertyRef Name="IDPROJET" />
+            </Principal>
+            <Dependent Role="tache">
+              <PropertyRef Name="IDPROJET" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="caracteriser">
+          <End Type="bd_gestionModel.evaluation" Role="evaluation" Multiplicity="*" />
+          <End Type="bd_gestionModel.critere" Role="critere" Multiplicity="*" />
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -903,6 +908,7 @@
           <EntitySetMapping Name="collaborateur">
             <EntityTypeMapping TypeName="bd_gestionModel.collaborateur">
               <MappingFragment StoreEntitySet="collaborateur">
+                <ScalarProperty Name="Evaluer" ColumnName="Evaluer" />
                 <ScalarProperty Name="IDCOLLABORATEUR" ColumnName="IDCOLLABORATEUR" />
                 <ScalarProperty Name="IDFONCTION" ColumnName="IDFONCTION" />
                 <ScalarProperty Name="NOM" ColumnName="NOM" />
@@ -913,15 +919,6 @@
                 <ScalarProperty Name="DATEEMBAUCHE" ColumnName="DATEEMBAUCHE" />
                 <ScalarProperty Name="DATESORTIE" ColumnName="DATESORTIE" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="critere">
-            <EntityTypeMapping TypeName="bd_gestionModel.critere">
-              <MappingFragment StoreEntitySet="critere">
-                <ScalarProperty Name="IDCRITERE" ColumnName="IDCRITERE" />
-                <ScalarProperty Name="IDFAMILLECRITERE" ColumnName="IDFAMILLECRITERE" />
-                <ScalarProperty Name="NOMCRITERE" ColumnName="NOMCRITERE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -967,18 +964,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tache">
-            <EntityTypeMapping TypeName="bd_gestionModel.tache">
-              <MappingFragment StoreEntitySet="tache">
-                <ScalarProperty Name="IDTACHE" ColumnName="IDTACHE" />
-                <ScalarProperty Name="IDCOLLABORATEUR" ColumnName="IDCOLLABORATEUR" />
-                <ScalarProperty Name="IDPROJET" ColumnName="IDPROJET" />
-                <ScalarProperty Name="NOMTACHE" ColumnName="NOMTACHE" />
-                <ScalarProperty Name="DATEDEBUTTACHE" ColumnName="DATEDEBUTTACHE" />
-                <ScalarProperty Name="DATEFINTACHE" ColumnName="DATEFINTACHE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="variable">
             <EntityTypeMapping TypeName="bd_gestionModel.variable">
               <MappingFragment StoreEntitySet="variable">
@@ -1005,15 +990,38 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="critere">
+            <EntityTypeMapping TypeName="bd_gestionModel.critere">
+              <MappingFragment StoreEntitySet="critere">
+                <ScalarProperty Name="NoteCritere" ColumnName="NoteCritere" />
+                <ScalarProperty Name="NOMCRITERE" ColumnName="NOMCRITERE" />
+                <ScalarProperty Name="IDFAMILLECRITERE" ColumnName="IDFAMILLECRITERE" />
+                <ScalarProperty Name="IDCRITERE" ColumnName="IDCRITERE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tache">
+            <EntityTypeMapping TypeName="bd_gestionModel.tache">
+              <MappingFragment StoreEntitySet="tache">
+                <ScalarProperty Name="NoteTache" ColumnName="NoteTache" />
+                <ScalarProperty Name="DATEFINTACHE" ColumnName="DATEFINTACHE" />
+                <ScalarProperty Name="DATEDEBUTTACHE" ColumnName="DATEDEBUTTACHE" />
+                <ScalarProperty Name="NOMTACHE" ColumnName="NOMTACHE" />
+                <ScalarProperty Name="IDPROJET" ColumnName="IDPROJET" />
+                <ScalarProperty Name="IDCOLLABORATEUR" ColumnName="IDCOLLABORATEUR" />
+                <ScalarProperty Name="IDTACHE" ColumnName="IDTACHE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <AssociationSetMapping Name="caracteriser" TypeName="bd_gestionModel.caracteriser" StoreEntitySet="caracteriser">
-            <EndProperty Name="evaluation">
-              <ScalarProperty Name="IDEVALUATION" ColumnName="IDEVALUATION" />
-            </EndProperty>
             <EndProperty Name="critere">
               <ScalarProperty Name="IDCRITERE" ColumnName="IDCRITERE" />
             </EndProperty>
+            <EndProperty Name="evaluation">
+              <ScalarProperty Name="IDEVALUATION" ColumnName="IDEVALUATION" />
+            </EndProperty>
           </AssociationSetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

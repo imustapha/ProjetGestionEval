@@ -17,9 +17,9 @@ namespace ProjetGestionEval
         public collaborateur()
         {
             this.evaluation = new HashSet<evaluation>();
-            this.tache = new HashSet<tache>();
             this.evaluation1 = new HashSet<evaluation>();
             this.projet = new HashSet<projet>();
+            this.tache = new HashSet<tache>();
         }
     
         public int IDCOLLABORATEUR { get; set; }
@@ -32,12 +32,13 @@ namespace ProjetGestionEval
         public System.DateTime DATEEMBAUCHE { get; set; }
         public Nullable<System.DateTime> DATESORTIE { get; set; }
         public string IdUser { get; set; }
+        public bool Evaluer { get; set; }
     
         public virtual aspnetusers aspnetusers { get; set; }
         public virtual fonction fonction { get; set; }
         public virtual ICollection<evaluation> evaluation { get; set; }
-        public virtual ICollection<tache> tache { get; set; }
         public virtual ICollection<evaluation> evaluation1 { get; set; }
         public virtual ICollection<projet> projet { get; set; }
+        public virtual ICollection<tache> tache { get; set; }
     }
 }
