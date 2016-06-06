@@ -207,6 +207,7 @@
     <Compile Include="Controllers\CollaborateurController.cs" />
     <Compile Include="Controllers\CollaborateurPEController.cs" />
     <Compile Include="Controllers\CritereController.cs" />
+    <Compile Include="Controllers\EvaluationController.cs" />
     <Compile Include="Controllers\FamilleCritereController.cs" />
     <Compile Include="Controllers\FonctionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -4737,15 +4738,12 @@
     <Content Include="Views\Critere\Index.cshtml" />
     <Content Include="Views\Critere\Edit.cshtml" />
     <Content Include="Views\Critere\Delete.cshtml" />
-
     <Content Include="Views\Evaluation\Index.cshtml" />
     <Content Include="Views\Evaluation\Details.cshtml" />
     <Content Include="Views\Evaluation\Create.cshtml" />
     <Content Include="Views\Evaluation\Edit.cshtml" />
     <Content Include="Views\Evaluation\Delete.cshtml" />
-
     <Content Include="Views\Projet\IndexPr.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
