@@ -29,8 +29,9 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: Evaluation/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
+            ViewBag.id = id;
             return View();
         }
 

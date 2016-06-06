@@ -103,14 +103,18 @@
                                     Your form validation is successful!
                                 </div>
                                 <div class="tab-pane active" id="tab1">
-                                    <h3 class="block">Provide your account details</h3>
+                                    <h3 class="block">Tache</h3>
                                     
-                                        @foreach (var item in db.tache.Where(m=>m.IDCOLLABORATEUR==Model.IDCOLLABORATEUR)){
+                                        @{
+                                            int x = ViewBag.id;
+                                            var bb=db.tache.Where(m=>m.IDCOLLABORATEUR==x).ToList();
+                                            foreach (var item in bb ){
                                             <div class="form-group">
                                         @Html.LabelFor(modelItem => item.NOMTACHE, new { @class="control-label col-md-3"})                                            								
 									<div class="md-radio-inline">
 										<div class="md-radio">
-											<input type="radio" id="radio6" name="radio2" class="md-radiobtn">
+                                            @Html.RadioButtonFor(modelItem => item.NoteTache,"A", new { @id = "radio6", @class = "md-radiobtn" })
+											@*<input type="radio" id="radio6" name=@item.NoteTache class="md-radiobtn"*@>
 											<label for="radio6">
 											<span></span>
 											<span class="check"></span>
@@ -118,7 +122,8 @@
 											A </label>
 										</div>
 										<div class="md-radio">
-											<input type="radio" id="radio7" name="radio2" class="md-radiobtn" checked>
+                                            @Html.RadioButtonFor(modelItem => item.NoteTache, "B", new { @id = "radio7", @class = "md-radiobtn" })
+											@*<input type="radio" id="radio7" name=@item.NoteTache class="md-radiobtn" checked>*@
 											<label for="radio7">
 											<span></span>
 											<span class="check"></span>
@@ -126,16 +131,37 @@
 											B </label>
 										</div>
 										<div class="md-radio">
-											<input type="radio" id="radio8" name=@Model.collaborateur.tache class="md-radiobtn">
+                                            @Html.RadioButtonFor(modelItem => item.NoteTache, "C", new { @id = "radio8", @class = "md-radiobtn" })
+											@*<input type="radio" id="radio8" name=@item.NoteTache class="md-radiobtn">*@
 											<label for="radio8">
 											<span></span>
 											<span class="check"></span>
 											<span class="box"></span>
 											C </label>
 										</div>
+                                        <div class="md-radio">
+                                            @Html.RadioButtonFor(modelItem => item.NoteTache, "D", new { @id = "radio9", @class = "md-radiobtn" })
+                                            @*<input type="radio" id="radio9" name=@item.NoteTache class="md-radiobtn">*@
+                                            <label for="radio8">
+                                                <span></span>
+                                                <span class="check"></span>
+                                                <span class="box"></span>
+                                                D
+                                            </label>
+                                        </div>
+                                        <div class="md-radio">
+                                            @Html.RadioButtonFor(modelItem => item.NoteTache, "E", new { @id = "radio10", @class = "md-radiobtn" })
+                                            @*<input type="radio" id="radio10" name=@item.NoteTache class="md-radiobtn">*@
+                                            <label for="radio8">
+                                                <span></span>
+                                                <span class="check"></span>
+                                                <span class="box"></span>
+                                                E
+                                            </label>
+                                        </div>
 									</div>
 								</div>
-                                                }
+                                                }}
                                      <div class="form-group">
                                         <label class="control-label col-md-3">
                                             Username <span class="required">

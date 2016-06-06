@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ce4d77808c394a348449c15c4611d4e3" Name="Diagram1" ZoomLevel="71">
+      <Diagram DiagramId="ce4d77808c394a348449c15c4611d4e3" Name="Diagram1" ZoomLevel="52">
         <EntityTypeShape EntityType="bd_gestionModel.aspnetroles" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="bd_gestionModel.aspnetuserclaims" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
         <EntityTypeShape EntityType="bd_gestionModel.aspnetuserlogins" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
@@ -31,7 +31,10 @@
         <AssociationConnector Association="bd_gestionModel.FK_MANIER" />
         <AssociationConnector Association="bd_gestionModel.FK_SELECTIONNER" />
         <AssociationConnector Association="bd_gestionModel.FK_CONTIENT" />
-        <AssociationConnector Association="bd_gestionModel.caracteriser" />
+        <AssociationConnector Association="bd_gestionModel.caracteriser" ManuallyRouted="true" >
+          <ConnectorPoint PointX="9.75" PointY="12.473295026041665" />
+          <ConnectorPoint PointX="13.5" PointY="12.473295026041665" />
+        </AssociationConnector>
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
