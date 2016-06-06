@@ -38,7 +38,9 @@
                     </a>
                 </div>
             </div>
-
+            
+        
+       
             <div class="portlet-body form">
                 <!-- BEGIN FORM-->
                 <form action="Create" method="Post" id="form_sample_3" class="form-horizontal" enctype="multipart/form-data">
@@ -53,16 +55,27 @@
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">
-                                Email
+                                Email<span class="required">
+                                *</span>
                             </label>
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="fa fa-envelope"></i>
                                     </span>
-                                    @Html.TextBoxFor(M => M.Email, new { @class = "form-control" })
+                                    @Html.TextBoxFor(M => M.Email, new { @class = "form-control placeholder-no-fix", required = "required" } )
+                                    
                                 </div>
-                            </div>
+                                                                @{
+                                                                    if (@ViewBag.Err != null)
+                                                                    {
+                                                                        
+                                                                            <h6 style="color:red">Email a déjà été utilisé </h6>
+                                                                        
+                                                                    }
+
+                                                                }
+                                                            </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3">
