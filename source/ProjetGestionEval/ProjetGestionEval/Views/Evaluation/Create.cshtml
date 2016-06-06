@@ -16,7 +16,7 @@
 
 
 
-
+@{bd_gestionEntities db = new bd_gestionEntities();}
 
 
 
@@ -104,7 +104,39 @@
                                 </div>
                                 <div class="tab-pane active" id="tab1">
                                     <h3 class="block">Provide your account details</h3>
-                                    <div class="form-group">
+                                    
+                                        @foreach (var item in db.tache.Where(m=>m.IDCOLLABORATEUR==Model.IDCOLLABORATEUR)){
+                                            <div class="form-group">
+                                        @Html.LabelFor(modelItem => item.NOMTACHE, new { @class="control-label col-md-3"})                                            								
+									<div class="md-radio-inline">
+										<div class="md-radio">
+											<input type="radio" id="radio6" name="radio2" class="md-radiobtn">
+											<label for="radio6">
+											<span></span>
+											<span class="check"></span>
+											<span class="box"></span>
+											A </label>
+										</div>
+										<div class="md-radio">
+											<input type="radio" id="radio7" name="radio2" class="md-radiobtn" checked>
+											<label for="radio7">
+											<span></span>
+											<span class="check"></span>
+											<span class="box"></span>
+											B </label>
+										</div>
+										<div class="md-radio">
+											<input type="radio" id="radio8" name=@Model.collaborateur.tache class="md-radiobtn">
+											<label for="radio8">
+											<span></span>
+											<span class="check"></span>
+											<span class="box"></span>
+											C </label>
+										</div>
+									</div>
+								</div>
+                                                }
+                                     <div class="form-group">
                                         <label class="control-label col-md-3">
                                             Username <span class="required">
                                                 *
