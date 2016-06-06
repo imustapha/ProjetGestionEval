@@ -116,13 +116,15 @@ namespace ProjetGestionEval.Controllers
                             var currentUser = UserManager.FindByName(user.UserName);
                             if (model.TYPECOLLABORATEUR == "Titulaire" || model.TYPECOLLABORATEUR == "Freelance")
                             {
-                            if (model.FLAGEVAL == true)
-                            { 
-                               var roleresult = UserManager.AddToRole(currentUser.Id, "superuser"); }
-                            else { var roleresult = UserManager.AddToRole(currentUser.Id, "viewt"); }
-                            //await SignInAsync(user, isPersistent: false);
+                                if (model.FLAGEVAL == true)
+                                {
+                                    var roleresult = UserManager.AddToRole(currentUser.Id, "superuser");
+                                }
+                                else { var roleresult = UserManager.AddToRole(currentUser.Id, "viewt"); }
+                                //await SignInAsync(user, isPersistent: false);
                             }
-                            else if(model.TYPECOLLABORATEUR=="P.E"){
+                            else if (model.TYPECOLLABORATEUR == "P.E")
+                            {
                                 var roleresult = UserManager.AddToRole(currentUser.Id, "viewpe");
                             }
 
@@ -131,8 +133,13 @@ namespace ProjetGestionEval.Controllers
                             if (CollT.TYPECOLLABORATEUR == "P.E") { return RedirectToAction("Index", "CollaborateurPE"); }
                             else
                             {
+
                                 return RedirectToAction("Index");
                             }
+                        }
+                        else {
+                           
+                            ViewBag.Err=resulte.Errors.ToString();                            
                         }
                     }
 
