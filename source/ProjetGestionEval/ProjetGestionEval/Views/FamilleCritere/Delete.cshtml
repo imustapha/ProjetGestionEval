@@ -9,12 +9,23 @@
 
 
 
+<ul class="page-breadcrumb breadcrumb">
+    <li>
 
+        <a href="~/Home/Accueil">Accueil</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/FamilleCritere/Index">Liste des Famille Critere</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/FamilleCritere/Delete/@Model.IDFAMILLECRITERE">Supprimer</a>
+        <i class="fa fa-circle"></i>
+    </li>
+
+</ul>
 
 <div class="portlet box purple">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-gift"></i> Horizontal Form Validation States
+            <i class="fa fa-gift"></i> Voulez-vous vraiment supprimer la famille critére suivante?
         </div>
         <div class="tools">
             <a href="" class="collapse">
@@ -47,7 +58,7 @@
             <br/>
                 <div class="row">
                     <div class="col-md-offset-4 col-md-8">
-                        <input type="submit" value="Delete" class="btn red" />
+                        <input type="submit" value="Supprimer" class="btn red" />
                         <a href="@Url.Action("Index")" class="btn default">Retour</a>
 
 

@@ -1,17 +1,29 @@
 ﻿@model ProjetGestionEval.critere
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 
 
 
-<h3>Êtes-vous sûr de vouloir supprimer ce critére</h3>
-<div class="portlet box purple">
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+
+
+        <a href="~/Home/Accueil">Accueil</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Critere/Index">Liste des Collaborateur</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Critere/Delete/@Model.IDCRITERE">Supprimer</a>
+        <i class="fa fa-circle"></i>
+    </li>
+
+</ul>
+<div class="portlet box blue-chambray">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-gift"></i> Horizontal Form Validation States
+            <i class="fa fa-gift"></i> Êtes-vous sûr de vouloir supprimer ce critére?
         </div>
         <div class="tools">
             <a href="" class="collapse">
@@ -25,35 +37,36 @@
         </div>
     </div>
     <div class="portlet-body form">
-@using (Html.BeginForm())
+        @using (Html.BeginForm())
         {
-    @Html.AntiForgeryToken()
-                <div class="form-horizontal"><br/>
-        <div class="form-group">
-            @Html.LabelFor(model => model.NOMCRITERE, "Nom critère", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-8">
-                @Html.EditorFor(model => model.NOMCRITERE, new { htmlAttributes = new { @class = "form-control col-md-4" } })
-            </div>
-        </div>
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                <br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NOMCRITERE, "Nom critère", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.NOMCRITERE, new { htmlAttributes = new { @class = "form-control col-md-4", @disabled = "disabled" } })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.famillecritere.NOMFAMILLECRITERE, "Famille critère", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-8">
-                @Html.EditorFor(model => model.famillecritere.NOMFAMILLECRITERE, new { htmlAttributes = new { @class = "form-control col-md-4" } })
-            </div>
-        </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.famillecritere.NOMFAMILLECRITERE, "Famille critère", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.famillecritere.NOMFAMILLECRITERE, new { htmlAttributes = new { @class = "form-control col-md-4", @disabled = "disabled" } })
+                    </div>
+                </div>
 
-                    <div class="form-actions">
-                        <div class="row">
-                            <div class="col-md-offset-3 col-md-9">
-                                <input type="submit" value="Supprimer" class="btn red" />
-                               
-                                <a href="@Url.Action("Index")" class="btn default">Retour</a>
-                            </div>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-9">
+                            <input type="submit" value="Supprimer" class="btn red" />
+
+                            <a href="@Url.Action("Index")" class="btn default">Retour</a>
                         </div>
                     </div>
-                    </div>
-}
+                </div>
+            </div>
+        }
 
-        </div>
+    </div>
 </div>

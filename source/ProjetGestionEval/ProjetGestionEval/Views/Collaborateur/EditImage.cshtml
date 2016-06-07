@@ -1,6 +1,6 @@
 ﻿@model ProjetGestionEval.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Modifier la photo";
+    ViewBag.Title = "";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 <ul class="page-breadcrumb breadcrumb">
@@ -119,12 +119,12 @@
                     </div>
                 </div>
                 <div class="margin-top-10">
-                    <a href="javascript:;" class="btn green-haze">
-                        <input type="submit" class="btn green-haze" value="Envoyer" />
-                    </a>
-                    <a href="javascript:;" class="btn default">
-                        Cancel
-                    </a>
+
+                        <input type="submit" class="btn green" value="Sauvegarder" />
+             
+
+                        <a href="@Url.Action("Details")" class="btn default">Retour</a>
+                    
                 </div>
             }
         </div>
