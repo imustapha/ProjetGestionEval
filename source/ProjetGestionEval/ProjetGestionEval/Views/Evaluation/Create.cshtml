@@ -28,7 +28,7 @@
         <div class="portlet box blue" id="form_wizard_1">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-gift"></i> Form Wizard - <span class="step-title">
+                    <i class="fa fa-gift"></i>Evaluation<span class="step-title">
                         Step 1 of 4
                     </span>
                 </div>
@@ -54,7 +54,7 @@
                                             1
                                         </span>
                                         <span class="desc">
-                                            <i class="fa fa-check"></i> Account Setup
+                                            <i class="fa fa-check"></i> Tache
                                         </span>
                                     </a>
                                 </li>
@@ -64,7 +64,7 @@
                                             2
                                         </span>
                                         <span class="desc">
-                                            <i class="fa fa-check"></i> Profile Setup
+                                            <i class="fa fa-check"></i>Critère
                                         </span>
                                     </a>
                                 </li>
@@ -74,7 +74,7 @@
                                             3
                                         </span>
                                         <span class="desc">
-                                            <i class="fa fa-check"></i> Billing Setup
+                                            <i class="fa fa-check"></i> Variable
                                         </span>
                                     </a>
                                 </li>
@@ -84,7 +84,7 @@
                                             4
                                         </span>
                                         <span class="desc">
-                                            <i class="fa fa-check"></i> Confirm
+                                            <i class="fa fa-check"></i> Appreciation global
                                         </span>
                                     </a>
                                 </li>
@@ -105,63 +105,74 @@
                                 <div class="tab-pane active" id="tab1">
                                     <h3 class="block">Tache</h3>
                                     
-                                        @{
-                                            int x = ViewBag.id;
+                                        @{int x = 0;
+                                          if(ViewBag.id!=null){
+                                             x = ViewBag.id;
                                             var bb=db.tache.Where(m=>m.IDCOLLABORATEUR==x).ToList();
+                                              int i=0;
                                             foreach (var item in bb ){
+                                                string c = i.ToString();
+                                                
                                             <div class="form-group">
-                                        @Html.LabelFor(modelItem => item.NOMTACHE, new { @class="control-label col-md-3"})                                            								
+                                        @Html.LabelFor(modelItem => item.NOMTACHE,item.NOMTACHE, new { @class="control-label col-md-3"})                                            								
 									<div class="md-radio-inline">
 										<div class="md-radio">
-                                            @Html.RadioButtonFor(modelItem => item.NoteTache,"A", new { @id = "radio6", @class = "md-radiobtn" })
-											@*<input type="radio" id="radio6" name=@item.NoteTache class="md-radiobtn"*@>
-											<label for="radio6">
+                                            @Html.RadioButtonFor(modelItem => item.NoteTache,"A", new { @id = "radio6"+@c, @class = "md-radiobtn",@value="A" })
+											@{string cx="radio6"+c;
+										<label for=@cx>
 											<span></span>
 											<span class="check"></span>
 											<span class="box"></span>
-											A </label>
+											A </label>}
 										</div>
 										<div class="md-radio">
-                                            @Html.RadioButtonFor(modelItem => item.NoteTache, "B", new { @id = "radio7", @class = "md-radiobtn" })
+                                            @Html.RadioButtonFor(modelItem => item.NoteTache, "B", new { @id = "radio7" + @c, @class = "md-radiobtn", @value = "B" })
 											@*<input type="radio" id="radio7" name=@item.NoteTache class="md-radiobtn" checked>*@
-											<label for="radio7">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
-											B </label>
+											@{string cx1="radio7"+c;
+                                            <label for=@cx1>
+                                                <span></span>
+                                                <span class="check"></span>
+                                                <span class="box"></span>
+                                                B
+                                            </label>}
 										</div>
 										<div class="md-radio">
-                                            @Html.RadioButtonFor(modelItem => item.NoteTache, "C", new { @id = "radio8", @class = "md-radiobtn" })
+                                            @Html.RadioButtonFor(modelItem => item.NoteTache, "C", new { @id = "radio8" + @c, @class = "md-radiobtn", @value = "C" })
 											@*<input type="radio" id="radio8" name=@item.NoteTache class="md-radiobtn">*@
-											<label for="radio8">
-											<span></span>
-											<span class="check"></span>
-											<span class="box"></span>
-											C </label>
+											@{string cx2 = "radio8" + c;
+                                            <label for=@cx2>
+                                                <span></span>
+                                                <span class="check"></span>
+                                                <span class="box"></span>
+                                                C
+                                            </label>}
 										</div>
                                         <div class="md-radio">
-                                            @Html.RadioButtonFor(modelItem => item.NoteTache, "D", new { @id = "radio9", @class = "md-radiobtn" })
+                                            @Html.RadioButtonFor(modelItem => item.NoteTache, "D", new { @id = "radio9" + @c, @class = "md-radiobtn", @value = "D" })
                                             @*<input type="radio" id="radio9" name=@item.NoteTache class="md-radiobtn">*@
-                                            <label for="radio8">
+                                            @{string cx3 = "radio9" + c;
+                                            <label for=@cx3>
                                                 <span></span>
                                                 <span class="check"></span>
                                                 <span class="box"></span>
                                                 D
-                                            </label>
+                                            </label>}
                                         </div>
                                         <div class="md-radio">
-                                            @Html.RadioButtonFor(modelItem => item.NoteTache, "E", new { @id = "radio10", @class = "md-radiobtn" })
+                                            @Html.RadioButtonFor(modelItem => item.NoteTache, "E", new { @id = "radio10" + @c, @class = "md-radiobtn", @value = "E" })
                                             @*<input type="radio" id="radio10" name=@item.NoteTache class="md-radiobtn">*@
-                                            <label for="radio8">
+                                            @{string cx4="radio10"+c;
+                                            <label for=@cx4>
                                                 <span></span>
                                                 <span class="check"></span>
                                                 <span class="box"></span>
                                                 E
-                                            </label>
+                                            </label>}
                                         </div>
 									</div>
 								</div>
-                                                }}
+                                                ++i;
+                                                }}}
                                      <div class="form-group">
                                         <label class="control-label col-md-3">
                                             Username <span class="required">
