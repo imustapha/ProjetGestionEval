@@ -1,7 +1,7 @@
 ﻿@model ProjetGestionEval.tache
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 
@@ -111,8 +111,8 @@
 
 
                     <div class="col-md-offset-3">
-                        @Html.ActionLink("Edit", "Edit", null, new { id = Model.IDTACHE }, htmlAttributes: new { @class = "btn green" })
-                        @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-default" })
+                        @Html.ActionLink("Modifier", "Edit", null, new { id = Model.IDTACHE }, htmlAttributes: new { @class = "btn green" })
+                        @Html.ActionLink("Retour", "Index", null, htmlAttributes: new { @class = "btn btn-default" })
                     </div>
 
 

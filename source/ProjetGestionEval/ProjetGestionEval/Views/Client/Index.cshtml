@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ProjetGestionEval.client>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 <ul class="page-breadcrumb breadcrumb">
@@ -20,7 +20,7 @@
 <div class="row">
     <div class="col-md-12">
         <!-- BEGIN EXAMPLE TABLE PORTLET-->
-        <div class="portlet box blue-madison">
+        <div class="portlet box green">
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-globe"></i>List des Clients
@@ -74,9 +74,9 @@
                                     <div class="clearfix">
 
                                         <center>
-                                            <a href="@Url.Action("Edit", new { id = item.IDCLIENT })" id="sample_editable_1_new" class="btn green"> <i class="glyphicon glyphicon-pencil"></i></a>
+                                            <a href="@Url.Action("Edit", new { id = item.IDCLIENT })" id="sample_editable_1_new" class="btn green" title="Modifier"> <i class="glyphicon glyphicon-pencil"></i></a>
 
-                                            <a href="@Url.Action("Delete", new { id = item.IDCLIENT })" id="sample_editable_1_new" class="btn red"> <i class="glyphicon glyphicon-trash"></i></a>
+                                            <a href="@Url.Action("Delete", new { id = item.IDCLIENT })" id="sample_editable_1_new" class="btn red" title="Supprimer"> <i class="glyphicon glyphicon-trash"></i></a>
                                         </center>
 
                                     </div>

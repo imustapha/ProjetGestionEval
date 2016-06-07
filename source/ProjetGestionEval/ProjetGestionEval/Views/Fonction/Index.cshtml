@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ProjetGestionEval.fonction>
 
 @{
-    ViewBag.Title = "Liste des fonctions";
+    ViewBag.Title = "";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 <ul class="page-breadcrumb breadcrumb">
@@ -20,7 +20,7 @@
 <div class="row">
     <div class="col-md-12">
         <!-- BEGIN EXAMPLE TABLE PORTLET-->
-        <div class="portlet box blue-madison">
+        <div class="portlet box yellow-casablanca">
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-globe"></i>List des fonctions
@@ -42,7 +42,7 @@
 
 
                             <div class="clearfix">
-                                <a href="@Url.Action("Create")" id="sample_editable_1_new" class="btn green">Creer <i class="fa fa-plus"></i></a>
+                                <a href="@Url.Action("Create")" id="sample_editable_1_new" class="btn yellow-casablanca">Creer <i class="fa fa-plus"></i></a>
                             </div>
 
 
@@ -74,9 +74,9 @@
                                     <div class="clearfix">
 
                                         <center>
-                                            <a href="@Url.Action("Edit", new { id = item.IDFONCTION })" id="sample_editable_1_new" class="btn green"> <i class="glyphicon glyphicon-pencil"></i></a>
+                                            <a href="@Url.Action("Edit", new { id = item.IDFONCTION })" id="sample_editable_1_new" class="btn green" title="Modification"> <i class="glyphicon glyphicon-pencil"></i></a>
                                             
-                                            <a href="@Url.Action("Delete", new { id = item.IDFONCTION })" id="sample_editable_1_new" class="btn red"> <i class="glyphicon glyphicon-trash"></i></a>
+                                            <a href="@Url.Action("Delete", new { id = item.IDFONCTION })" id="sample_editable_1_new" class="btn red" title="Supprimer"> <i class="glyphicon glyphicon-trash"></i></a>
                                         </center>
 
                                     </div>

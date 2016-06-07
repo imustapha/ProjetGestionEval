@@ -1,7 +1,7 @@
 ﻿@model ProjetGestionEval.fonction
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 <ul class="page-breadcrumb breadcrumb">
@@ -9,9 +9,9 @@
 
         <a href="~/Home/Accueil">Accueil</a>
         <i class="fa fa-circle"></i>
-        <a href="~/Projet/Index">Liste des fonctions</a>
+        <a href="~/Fonction/Index">Liste des fonctions</a>
         <i class="fa fa-circle"></i>
-        <a href="~/Projet/Delete/@Model.IDFONCTION">Supprimer</a>
+        <a href="~/Fonction/Delete/@Model.IDFONCTION">Supprimer</a>
         <i class="fa fa-circle"></i>
     </li>
 
@@ -19,7 +19,6 @@
 <div class="row">
     <div class="col-md-12">
 
-        <h3>Êtes-vous sûr de vouloir supprimer cette fonction?</h3>
 
 
         <div class="portlet light bordered">
@@ -28,7 +27,7 @@
                     <i class="icon-equalizer font-red-sunglo"></i>
 
                    
-                    <span class="caption-subject font-red-sunglo bold uppercase">Fonction</span>
+                    <span class="caption-subject font-red-sunglo bold uppercase">Êtes-vous sûr de vouloir supprimer cette fonction?</span>
                 </div>
 
             </div>
@@ -55,8 +54,8 @@
                         <div class="row">
                          
                                 <div class="col-md-offset-3 col-md-9">
-                                    <div class="form-actions no-color">
-                                        <input type="submit" value="Supprimer" class="btn red-haze" />@Html.ActionLink("Retour à la liste", "Index", null, new { @class = "btn default" })
+                                    <div class="no-color">
+                                        <input type="submit" value="Supprimer" class="btn red-haze" />@Html.ActionLink("Retour", "Index", null, new { @class = "btn default" })
 
                                     </div>
                                 </div>

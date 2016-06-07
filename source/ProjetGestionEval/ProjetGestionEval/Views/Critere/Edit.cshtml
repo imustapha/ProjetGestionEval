@@ -1,13 +1,27 @@
 ﻿@model ProjetGestionEval.critere
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
-<div class="portlet box purple">
+
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+
+
+        <a href="~/Home/Accueil">Accueil</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Collaborateur/Index">Liste des Critere</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Critere/Edit/@Model.IDCRITERE">Modifier</a>
+        <i class="fa fa-circle"></i>
+    </li>
+
+</ul>
+<div class="portlet box blue-chambray">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-gift"></i> Horizontal Form Validation States
+            <i class="fa fa-gift"></i> Modification d'un Critére
         </div>
         <div class="tools">
             <a href="" class="collapse">
@@ -48,7 +62,7 @@
                 <div class="form-actions">
                     <div class="row">
                         <div class="col-md-offset-3 col-md-9">
-                            <button type="submit" class="btn green">Save</button>
+                            <button type="submit" class="btn green">Sauvegarder</button>
                             <a href="@Url.Action("Index")" class="btn default">Retour</a>
                         </div>
                     </div>

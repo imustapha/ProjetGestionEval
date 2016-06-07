@@ -25,7 +25,7 @@
         <div class="portlet box yellow">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-gift"></i>Advance Validation
+                    <i class="fa fa-gift"></i>Creation d'un collaborateur
                 </div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse">
@@ -67,10 +67,11 @@
                                     
                                 </div>
                                                                 @{
+                                                                    
                                                                     if (@ViewBag.Err != null)
                                                                     {
                                                                         
-                                                                            <h6 style="color:red">Email a déjà été utilisé </h6>
+                                                                            <h6 style="color:red">L'email est déjà pris. </h6>
                                                                         
                                                                     }
 
@@ -248,7 +249,7 @@
                     <div class="form-actions">
                         <div class="row">
                             <div class="col-md-offset-3 col-md-9">
-                                <button type="submit" class="btn green">Submit</button>
+                                <button type="submit" class="btn green">Sauvegarder</button>
                                 <a href="@Url.Action("Index")" class="btn default">Retour</a>
                             </div>
                         </div>

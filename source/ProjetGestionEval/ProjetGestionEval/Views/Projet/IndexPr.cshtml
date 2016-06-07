@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ProjetGestionEval.projet>
 @{
-    ViewBag.Title = "Projet";
+    ViewBag.Title = "";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 
@@ -42,6 +42,7 @@
             <table class="table table-striped table-bordered table-hover" id="sample_2">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>
 
                             Nom du projet
@@ -83,6 +84,7 @@
                         foreach (var s in ViewBag.ss) {
                             if (item.IDPROJET == s) { 
                         <tr>
+                            <td></td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.NOMPROJET)
                             </td>
