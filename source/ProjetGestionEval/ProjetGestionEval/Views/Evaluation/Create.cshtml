@@ -117,8 +117,9 @@
                                         @Html.LabelFor(modelItem => item.NOMTACHE,item.NOMTACHE, new { @class="control-label col-md-3"})                                            								
 									<div class="md-radio-inline">
 										<div class="md-radio">
-                                            @Html.RadioButtonFor(modelItem => item.NoteTache,"A", new { @id = "radio6"+@c, @class = "md-radiobtn",@value="A" })
-											@{string cx="radio6"+c;
+                                       @{string cx = "radio6" + c;
+                                            @Html.RadioButtonFor(modelItem => item.NoteTache,"A", new { @id = @cx, @class = "md-radiobtn",@value="A" })
+											
 										<label for=@cx>
 											<span></span>
 											<span class="check"></span>
@@ -126,9 +127,10 @@
 											A </label>}
 										</div>
 										<div class="md-radio">
-                                            @Html.RadioButtonFor(modelItem => item.NoteTache, "B", new { @id = "radio7" + @c, @class = "md-radiobtn", @value = "B" })
+                                       @{string cx1 = "radio7" + c;
+                                            @Html.RadioButtonFor(modelItem => item.NoteTache, "B", new { @id = @cx1, @class = "md-radiobtn", @value = "B" })
 											@*<input type="radio" id="radio7" name=@item.NoteTache class="md-radiobtn" checked>*@
-											@{string cx1="radio7"+c;
+											
                                             <label for=@cx1>
                                                 <span></span>
                                                 <span class="check"></span>
@@ -137,9 +139,10 @@
                                             </label>}
 										</div>
 										<div class="md-radio">
-                                            @Html.RadioButtonFor(modelItem => item.NoteTache, "C", new { @id = "radio8" + @c, @class = "md-radiobtn", @value = "C" })
+                                           @{string cx2 = "radio8" + c;
+                                            @Html.RadioButtonFor(modelItem => item.NoteTache, "C", new { @id = @cx2, @class = "md-radiobtn", @value = "C" })
 											@*<input type="radio" id="radio8" name=@item.NoteTache class="md-radiobtn">*@
-											@{string cx2 = "radio8" + c;
+											
                                             <label for=@cx2>
                                                 <span></span>
                                                 <span class="check"></span>
@@ -148,9 +151,10 @@
                                             </label>}
 										</div>
                                         <div class="md-radio">
-                                            @Html.RadioButtonFor(modelItem => item.NoteTache, "D", new { @id = "radio9" + @c, @class = "md-radiobtn", @value = "D" })
+                                        @{string cx3 = "radio9" + c;
+                                            @Html.RadioButtonFor(modelItem => item.NoteTache, "D", new { @id = @cx3, @class = "md-radiobtn", @value = "D" })
                                             @*<input type="radio" id="radio9" name=@item.NoteTache class="md-radiobtn">*@
-                                            @{string cx3 = "radio9" + c;
+                                            
                                             <label for=@cx3>
                                                 <span></span>
                                                 <span class="check"></span>
@@ -159,9 +163,10 @@
                                             </label>}
                                         </div>
                                         <div class="md-radio">
-                                            @Html.RadioButtonFor(modelItem => item.NoteTache, "E", new { @id = "radio10" + @c, @class = "md-radiobtn", @value = "E" })
+                                     @{string cx4 = "radio10" + c;
+                                            @Html.RadioButtonFor(modelItem => item.NoteTache, "E", new { @id = @cx4, @class = "md-radiobtn", @value = "E" })
                                             @*<input type="radio" id="radio10" name=@item.NoteTache class="md-radiobtn">*@
-                                            @{string cx4="radio10"+c;
+                                            
                                             <label for=@cx4>
                                                 <span></span>
                                                 <span class="check"></span>
@@ -173,58 +178,9 @@
 								</div>
                                                 ++i;
                                                 }}}
-                                     <div class="form-group">
-                                        <label class="control-label col-md-3">
-                                            Username <span class="required">
-                                                *
-                                            </span>
-                                        </label>
-                                        <div class="col-md-4">
-                                            <input type="text" class="form-control" name="username" />
-                                            <span class="help-block">
-                                                Provide your username
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">
-                                            Password <span class="required">
-                                                *
-                                            </span>
-                                        </label>
-                                        <div class="col-md-4">
-                                            <input type="password" class="form-control" name="password" id="submit_form_password" />
-                                            <span class="help-block">
-                                                Provide your password.
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">
-                                            Confirm Password <span class="required">
-                                                *
-                                            </span>
-                                        </label>
-                                        <div class="col-md-4">
-                                            <input type="password" class="form-control" name="rpassword" />
-                                            <span class="help-block">
-                                                Confirm your password
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">
-                                            Email <span class="required">
-                                                *
-                                            </span>
-                                        </label>
-                                        <div class="col-md-4">
-                                            <input type="text" class="form-control" name="email" />
-                                            <span class="help-block">
-                                                Provide your email address
-                                            </span>
-                                        </div>
-                                    </div>
+                                    
+                                 
+                                   
                                 </div>
                                 <div class="tab-pane" id="tab2">
                                     <h3 class="block">Provide your profile details</h3>
