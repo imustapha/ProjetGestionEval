@@ -16,7 +16,7 @@
 <!-- END PAGE HEADER-->
 <!-- BEGIN PAGE CONTENT-->
 <div class="tiles">
-    @{if (User.IsInRole("superuser"))
+    @{if (User.IsInRole("superuser") || User.IsInRole("admin"))
     {
         <a href="/Collaborateur/Index">
             <div class="tile double-down bg-blue-hoki">

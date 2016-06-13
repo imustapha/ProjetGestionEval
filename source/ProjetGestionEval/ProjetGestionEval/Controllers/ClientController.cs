@@ -12,18 +12,22 @@ namespace ProjetGestionEval.Controllers
 
         bd_gestionEntities bd = new bd_gestionEntities();
         // GET: Client
+        [Authorize(Roles="admin")]
         public ActionResult Index()
         {
             return View(bd.client.ToList());
         }
 
+        
         // GET: Client/Details/5
+        [Authorize(Roles = "admin")]
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Client/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -31,6 +35,7 @@ namespace ProjetGestionEval.Controllers
 
         // POST: Client/Create
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Create(client cl)
         {
             try
@@ -50,6 +55,7 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: Client/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -62,6 +68,7 @@ namespace ProjetGestionEval.Controllers
 
         // POST: Client/Edit/5
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(client cl)
         {
             try
@@ -83,6 +90,7 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: Client/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -99,6 +107,7 @@ namespace ProjetGestionEval.Controllers
 
         // POST: Client/Delete/5
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id, client clt)
         {
             try

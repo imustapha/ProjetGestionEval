@@ -71,7 +71,7 @@
                                 @Html.ValidationMessageFor(model => model.NOMTACHE, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
+                       @{ if (User.IsInRole("superuser")) { 
                         <div class="form-group">
 
                             <label class="control-label col-md-3">Réaliser Par</label>
@@ -82,7 +82,21 @@
                             </div>
 
                         </div>
+                          }
+                          else
+                          {
+                            <div class="form-group">
 
+                                <label class="control-label col-md-3">Réaliser Par</label>
+                                <div class="col-md-4">
+                                    <input type="text" name="NOMTACHE" value=@ViewBag.pr class="form-control" disabled="disabled" />
+                                 @*@Html.EditorFor(model => model.NOMTACHE, new { htmlAttributes = new { @class = "form-control", @value = @ViewBag.pr, @disabled = "disabled" } })*@
+
+                                </div>
+
+                            </div>
+                          }
+}
                         <div class="form-group">
                             <label class="control-label col-md-3">Projet </label>
                             <div class="col-md-4">

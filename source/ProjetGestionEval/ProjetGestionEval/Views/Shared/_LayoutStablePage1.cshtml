@@ -341,7 +341,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
 
-                                if (User.IsInRole("superuser"))
+                                if (User.IsInRole("superuser") || User.IsInRole("admin"))
                                 {
                                     var asp = bd.aspnetusers.Where(i => i.Email == User.Identity.Name).FirstOrDefault();
                                     var ctn = bd.collaborateur.Single(m => m.IdUser == asp.Id);
@@ -513,7 +513,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                     </li>
                     @{
-                        if (User.IsInRole("superuser"))
+                        if (User.IsInRole("superuser")||(User.IsInRole("admin")))
                         {
                             <li>
                                 <a href="javascript:;">
@@ -575,6 +575,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </li>
                                 </ul>
                             </li>
+                        if (User.IsInRole("admin"))
+                        {
     <li>
         <a href="javascript:;">
             <i class="icon-settings"></i>
@@ -603,7 +605,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 </a>
             </li>
         </ul>
-    </li>
+    </li>}
                         }
 }
                     <!-- BEGIN ANGULARJS LINK -->

@@ -11,18 +11,21 @@ namespace ProjetGestionEval.Controllers
     {
         bd_gestionEntities bd = new bd_gestionEntities();
         // GET: Critere
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             return View(bd.critere.ToList());
         }
 
         // GET: Critere/Details/5
+        [Authorize(Roles = "admin")]
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Critere/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.IdCritereFamille = new SelectList(bd.famillecritere, "IDFAMILLECRITERE", "NOMFAMILLECRITERE");
@@ -31,6 +34,7 @@ namespace ProjetGestionEval.Controllers
 
         // POST: Critere/Create
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Create(critere Critere)
         {
             ViewBag.IdCritereFamille = new SelectList(bd.famillecritere, "IDFAMILLECRITERE", "NOMFAMILLECRITERE");
@@ -53,6 +57,7 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: Critere/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             ViewBag.IdCritereFamille = new SelectList(bd.famillecritere, "IDFAMILLECRITERE", "NOMFAMILLECRITERE");
@@ -66,6 +71,7 @@ namespace ProjetGestionEval.Controllers
 
         // POST: Critere/Edit/5
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id, critere Cri)
         {
             ViewBag.IdCritereFamille = new SelectList(bd.famillecritere, "IDFAMILLECRITERE", "NOMFAMILLECRITERE");
@@ -94,6 +100,7 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: Critere/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -108,6 +115,7 @@ namespace ProjetGestionEval.Controllers
 
         // POST: Critere/Delete/5
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id, critere Critere)
         {
             try

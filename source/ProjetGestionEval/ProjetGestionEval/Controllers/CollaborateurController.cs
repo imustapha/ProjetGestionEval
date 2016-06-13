@@ -118,7 +118,11 @@ namespace ProjetGestionEval.Controllers
                             {
                                 if (model.FLAGEVAL == true)
                                 {
-                                    var roleresult = UserManager.AddToRole(currentUser.Id, "superuser");
+                                    if (model.Email == "admin@admin.com" || model.Email == "admin@gmail.com")
+                                    {
+                                        var roleresult = UserManager.AddToRole(currentUser.Id, "admin");
+                                    }
+                                    else { var roleresult = UserManager.AddToRole(currentUser.Id, "superuser"); }
                                 }
                                 else { var roleresult = UserManager.AddToRole(currentUser.Id, "viewt"); }
                                 //await SignInAsync(user, isPersistent: false);

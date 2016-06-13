@@ -17,6 +17,7 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: Tache/Details/5
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -32,15 +33,27 @@ namespace ProjetGestionEval.Controllers
         // GET: Tache/Create
         public ActionResult Create()
         {
-            ViewBag.Collaborateur = new SelectList(bd.collaborateur, "IDCOLLABORATEUR", "NOM");
+            var asp = bd.aspnetusers.Where(i => i.Email == User.Identity.Name).FirstOrDefault();
+            var ctn = bd.collaborateur.Single(m => m.IdUser == asp.Id);
+            if (User.IsInRole("superuser")) {
+                ViewBag.Collaborateur = new SelectList(bd.collaborateur, "IDCOLLABORATEUR", "NOM");
+            }
+            else { ViewBag.pr = ctn.NOM; }
             ViewBag.Projet = new SelectList(bd.projet, "IDPROJET", "NOMPROJET");
             return View();
         }
 
         // POST: Tache/Create
         [HttpPost]
+        [Authorize(Roles="superuser,viewp,viewt")]
         public ActionResult Create(tache Tache, FormCollection fc)
         {
+            if (Tache.collaborateur == null )
+            { 
+            var asp = bd.aspnetusers.Where(i => i.Email == User.Identity.Name).FirstOrDefault();
+            var ctn = bd.collaborateur.Single(m => m.IdUser == asp.Id);
+            Tache.collaborateur = ctn;
+            }
             var testid = fc["DATEFINTACHE"];
 
 

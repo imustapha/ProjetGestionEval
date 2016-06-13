@@ -10,6 +10,7 @@ namespace ProjetGestionEval.Controllers
     public class FamilleCritereController : Controller
     {            bd_gestionEntities bd = new bd_gestionEntities();
         // GET: FamilleCritere
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
 
@@ -17,6 +18,7 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: FamilleCritere/Details/5
+        [Authorize(Roles = "admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -26,6 +28,7 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: FamilleCritere/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -33,6 +36,7 @@ namespace ProjetGestionEval.Controllers
 
         // POST: FamilleCritere/Create
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Create( famillecritere FC)
         {
             try
@@ -55,6 +59,7 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: FamilleCritere/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -69,6 +74,7 @@ namespace ProjetGestionEval.Controllers
 
         // POST: FamilleCritere/Edit/5
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id, famillecritere FC)
         {
             try
@@ -87,6 +93,7 @@ namespace ProjetGestionEval.Controllers
         }
 
         // GET: FamilleCritere/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             famillecritere FC = bd.famillecritere.Find(id); 
@@ -95,6 +102,7 @@ namespace ProjetGestionEval.Controllers
 
         // POST: FamilleCritere/Delete/5
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id ,famillecritere FC)
         {
             try
