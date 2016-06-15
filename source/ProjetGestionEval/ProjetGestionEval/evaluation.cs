@@ -27,6 +27,7 @@ namespace ProjetGestionEval
         public string DATENEXTEVALUATION { get; set; }
         public string APPRECIATION { get; set; }
         public string STATUT { get; set; }
+        public string Memo { get; set; }
     
         public virtual collaborateur collaborateur { get; set; }
         public virtual collaborateur collaborateur1 { get; set; }

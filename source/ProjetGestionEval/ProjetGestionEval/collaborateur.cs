@@ -16,10 +16,10 @@ namespace ProjetGestionEval
     {
         public collaborateur()
         {
-            this.evaluation = new HashSet<evaluation>();
-            this.evaluation1 = new HashSet<evaluation>();
             this.projet = new HashSet<projet>();
             this.tache = new HashSet<tache>();
+            this.evaluation = new HashSet<evaluation>();
+            this.evaluation1 = new HashSet<evaluation>();
         }
     
         public int IDCOLLABORATEUR { get; set; }
@@ -36,9 +36,9 @@ namespace ProjetGestionEval
     
         public virtual aspnetusers aspnetusers { get; set; }
         public virtual fonction fonction { get; set; }
-        public virtual ICollection<evaluation> evaluation { get; set; }
-        public virtual ICollection<evaluation> evaluation1 { get; set; }
         public virtual ICollection<projet> projet { get; set; }
         public virtual ICollection<tache> tache { get; set; }
+        public virtual ICollection<evaluation> evaluation { get; set; }
+        public virtual ICollection<evaluation> evaluation1 { get; set; }
     }
 }

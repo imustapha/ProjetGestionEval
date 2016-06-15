@@ -223,7 +223,7 @@
                                                                                                     @Html.LabelFor(modelItem => item.NOMCRITERE, item.NOMCRITERE, new { @class = "col-md-5" })
                                                                                                     <div class="md-radio">
                                                                                                         @{string cx3 = "radio11" + t;
-                                                                                                        @Html.RadioButtonFor(modelItem => item.NoteCritere[r], "A", new { @id = @cx3, @class = "md-radiobtn", @value = "A" })
+                                                                                                        @Html.RadioButtonFor(modelItem => item.NoteCritere[r], "A", new { @id = @cx3, @class = "md-radiobtn" })
                                                                                                             <label for=@cx3>
                                                                                                                 <span></span>
                                                                                                                 <span class="check"></span>
@@ -236,7 +236,7 @@
 
                                                                                                     <div class="md-radio">
                                                                                                         @{string cx2 = "radio12" + t;
-                                                                                                        @Html.RadioButtonFor(modelItem => item.NoteCritere[r], "B", new { @id = @cx2, @class = "md-radiobtn", @value = "B" })
+                                                                                                        @Html.RadioButtonFor(modelItem => item.NoteCritere[r], "B", new { @id = @cx2, @class = "md-radiobtn" })
                                                                                                             <label for=@cx2>
                                                                                                                 <span></span>
                                                                                                                 <span class="check"></span>
@@ -247,7 +247,7 @@
                                                                                                     </div>
                                                                                                     <div class="md-radio">
                                                                                                         @{string cx1 = "radio13" + t;
-                                                                                                        @Html.RadioButtonFor(modelItem => item.NoteCritere[r], "C", new { @id = @cx1, @class = "md-radiobtn", @value = "C" })
+                                                                                                        @Html.RadioButtonFor(modelItem => item.NoteCritere[r], "C", new { @id = @cx1, @class = "md-radiobtn", @checked = "checked" })
                                                                                                             <label for=@cx1>
                                                                                                                 <span></span>
                                                                                                                 <span class="check"></span>
@@ -259,7 +259,7 @@
 
                                                                                                     <div class="md-radio">
                                                                                                         @{string cx4 = "radio14" + t;
-                                                                                                        @Html.RadioButtonFor(modelItem => item.NoteCritere[r], "D", new { @id = @cx1, @class = "md-radiobtn", @value = "D" })
+                                                                                                        @Html.RadioButtonFor(modelItem => item.NoteCritere[r], "D", new { @id = @cx4, @class = "md-radiobtn" })
                                                                                                             <label for=@cx4>
                                                                                                                 <span></span>
                                                                                                                 <span class="check"></span>
@@ -271,8 +271,8 @@
 
                                                                                                     <div class="md-radio">
                                                                                                         @{string cx5 = "radio14" + t;
-                                                                                                        @Html.RadioButtonFor(modelItem => item.NoteCritere[r], "E", new { @id = @cx1, @class = "md-radiobtn", @value = "E" })
-                                                                                                            <label for=@cx4>
+                                                                                                        @Html.RadioButtonFor(modelItem => item.NoteCritere[r], "E", new { @id = @cx5, @class = "md-radiobtn" })
+                                                                                                            <label for=@cx5>
                                                                                                                 <span></span>
                                                                                                                 <span class="check"></span>
                                                                                                                 <span class="box"></span>
@@ -299,73 +299,123 @@
 
                                                 </div>
                                                 <div class="tab-pane" id="tab3">
-                                                    <h3 class="block">Provide your billing and credit card details</h3>
+                                                    <h3 class="block">Appreciation global</h3>
                                                     <div class="form-group">
-                                                        <label class="control-label col-md-3">
-                                                            Card Holder Name <span class="required">
-                                                                *
-                                                            </span>
-                                                        </label>
-                                                        <div class="col-md-4">
-                                                            <input type="text" class="form-control" name="card_name" />
-                                                            <span class="help-block">
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">
-                                                            Card Number <span class="required">
-                                                                *
-                                                            </span>
-                                                        </label>
-                                                        <div class="col-md-4">
-                                                            <input type="text" class="form-control" name="card_number" />
-                                                            <span class="help-block">
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">
-                                                            CVC <span class="required">
-                                                                *
-                                                            </span>
-                                                        </label>
-                                                        <div class="col-md-4">
-                                                            <input type="text" placeholder="" class="form-control" name="card_cvc" />
-                                                            <span class="help-block">
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">
-                                                            Expiration(MM/YYYY) <span class="required">
-                                                                *
-                                                            </span>
-                                                        </label>
-                                                        <div class="col-md-4">
-                                                            <input type="text" placeholder="MM/YYYY" maxlength="7" class="form-control" name="card_expiry_date" />
-                                                            <span class="help-block">
-                                                                e.g 11/2020
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">
-                                                            Payment Options <span class="required">
-                                                                *
-                                                            </span>
-                                                        </label>
-                                                        <div class="col-md-4">
-                                                            <div class="checkbox-list">
-                                                                <label>
-                                                                    <input type="checkbox" name="payment[]" value="1" data-title="Auto-Pay with this Credit Card." /> Auto-Pay with this Credit Card
+                                                        @Html.LabelFor(m => m.APPRECIATION, "Appreciation global:", new { @class = "control-label col-md-3" })
+                                                        <div class="md-radio-inline ">
+                                                            <div class="md-radio has-error col-md-offset-1">
+                                                                
+
+                                                                    @Html.RadioButtonFor(m => m.APPRECIATION, "A", new { @id = "1", @class = "md-radiobtn" })
+                                                                    <label for="1">
+                                                                        <span></span>
+                                                                        <span class="check"></span>
+                                                                        <span class="box"></span>
+                                                                        A
+                                                                    </label>
+
+                                                                </div>
+                                                            <div class="md-radio has-error">
+
+                                                                @Html.RadioButtonFor(m => m.APPRECIATION, "B", new { @id = "2", @class = "md-radiobtn" })
+                                                                <label for="2">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span>
+                                                                    B
                                                                 </label>
-                                                                <label>
-                                                                    <input type="checkbox" name="payment[]" value="2" data-title="Email me monthly billing." /> Email me monthly billing
+
+                                                            </div>
+                                                            <div class="md-radio has-error">
+
+                                                                @Html.RadioButtonFor(m => m.APPRECIATION, "C", new { @id = "3", @class = "md-radiobtn", @checked = "checked" })
+                                                                @*<input type="radio" id="radio8" name=@item.NoteTache class="md-radiobtn">*@
+
+                                                                <label for="3">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span>
+                                                                    C
+                                                                </label>
+
+                                                            </div>
+                                                            <div class="md-radio has-error">
+
+                                                                @Html.RadioButtonFor(m => m.APPRECIATION, "D", new { @id = "4", @class = "md-radiobtn" })
+                                                                @*<input type="radio" id="radio9" name=@item.NoteTache class="md-radiobtn">*@
+
+                                                                <label for="4">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span>
+                                                                    D
                                                                 </label>
                                                             </div>
-                                                            <div id="form_payment_error">
+                                                            <div class="md-radio has-error">
+
+                                                                @Html.RadioButtonFor(m => m.APPRECIATION, "E", new { @id = "5", @class = "md-radiobtn" })
+                                                                @*<input type="radio" id="radio10" name=@item.NoteTache class="md-radiobtn">*@
+
+                                                                <label for="5">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span>
+                                                                    E
+                                                                </label>
                                                             </div>
+                                                            </div>
+                                                        </div>
+                                                    @{
+                                                        var pe = db.collaborateur.Single(m => m.IDCOLLABORATEUR == x);
+                                                        if (pe.TYPECOLLABORATEUR == "P.E") { 
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(m => m.STATUT, "Statut:", new { @class = "control-label col-md-3" })
+                                                        <div class="md-radio-list">
+                                                            <div class="md-radio col-md-offset-4">
+
+                                                                @Html.RadioButtonFor(m => m.STATUT, "fin engagement", new { @id = "10", @class = "md-radiobtn", @checked = "checked" })
+                                                                <label for="10">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span>
+                                                                    Fin d'engagement
+                                                                </label>
+
+                                                            </div>
+                                                            <div class="md-radio col-md-offset-4">
+
+                                                                @Html.RadioButtonFor(m => m.STATUT, "prolonger", new { @id = "20", @class = "md-radiobtn" })
+                                                                <label for="20">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span>
+                                                                    Prolonger
+                                                                </label>
+
+                                                            </div>
+                                                            <div class="md-radio col-md-offset-4">
+
+                                                                @Html.RadioButtonFor(m => m.STATUT, "titulaire", new { @id = "30", @class = "md-radiobtn" })
+                                                                @*<input type="radio" id="radio8" name=@item.NoteTache class="md-radiobtn">*@
+
+                                                                <label for="30">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span>
+                                                                    Titulaire
+                                                                </label>
+
+                                                            </div>
+
+
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    }}
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Remarque:</label>
+                                                        <div class="col-md-6">
+                                                            <textarea class="form-control" rows="3" name="Memo"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>

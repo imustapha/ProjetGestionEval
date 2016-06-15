@@ -35,7 +35,8 @@ namespace ProjetGestionEval.Controllers
         {
             var asp = bd.aspnetusers.Where(i => i.Email == User.Identity.Name).FirstOrDefault();
             var ctn = bd.collaborateur.Single(m => m.IdUser == asp.Id);
-            if (User.IsInRole("superuser")) {
+            if (User.IsInRole("superuser") || User.IsInRole("admin"))
+            {
                 ViewBag.Collaborateur = new SelectList(bd.collaborateur, "IDCOLLABORATEUR", "NOM");
             }
             else { ViewBag.pr = ctn.NOM; }
@@ -45,7 +46,7 @@ namespace ProjetGestionEval.Controllers
 
         // POST: Tache/Create
         [HttpPost]
-        [Authorize(Roles="superuser,viewp,viewt")]
+        [Authorize(Roles="superuser,viewp,viewt,admin")]
         public ActionResult Create(tache Tache, FormCollection fc)
         {
             if (Tache.collaborateur == null )
