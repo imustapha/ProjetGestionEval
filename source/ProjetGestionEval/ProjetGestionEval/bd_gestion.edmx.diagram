@@ -27,7 +27,7 @@
         <AssociationConnector Association="bd_gestionModel.FK_MANIER" />
         <AssociationConnector Association="bd_gestionModel.FK_SELECTIONNER" />
         <AssociationConnector Association="bd_gestionModel.FK_CONTIENT" />
-        <EntityTypeShape EntityType="bd_gestionModel.evaluation" Width="1.5" PointX="8.375" PointY="10.875" />
+        <EntityTypeShape EntityType="bd_gestionModel.evaluation" Width="1.5" PointX="8.5" PointY="17.875" />
         <AssociationConnector Association="bd_gestionModel.FK_EXAMINER" />
         <AssociationConnector Association="bd_gestionModel.FK_QUIEVALUE" />
         <AssociationConnector Association="bd_gestionModel.FK_POSSEDER" />

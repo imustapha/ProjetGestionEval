@@ -111,8 +111,8 @@
           <Property Name="IDEVALUATION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDEVALUATEUR" Type="int" Nullable="false" />
           <Property Name="IDCOLLABORATEUR" Type="int" Nullable="false" />
-          <Property Name="DATEEVALUATION" Type="char" MaxLength="45" />
-          <Property Name="DATENEXTEVALUATION" Type="char" MaxLength="45" />
+          <Property Name="DATEEVALUATION" Type="date" />
+          <Property Name="DATENEXTEVALUATION" Type="date" />
           <Property Name="APPRECIATION" Type="char" MaxLength="254" />
           <Property Name="STATUT" Type="char" MaxLength="35" />
           <Property Name="Memo" Type="varchar" MaxLength="254" />
@@ -798,8 +798,8 @@
           <Property Name="IDEVALUATION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDEVALUATEUR" Type="Int32" Nullable="false" />
           <Property Name="IDCOLLABORATEUR" Type="Int32" Nullable="false" />
-          <Property Name="DATEEVALUATION" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="DATENEXTEVALUATION" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="DATEEVALUATION" Type="DateTime" />
+          <Property Name="DATENEXTEVALUATION" Type="DateTime" />
           <Property Name="APPRECIATION" Type="String" MaxLength="254" FixedLength="false" Unicode="false" />
           <Property Name="STATUT" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
           <Property Name="Memo" Type="String" MaxLength="254" FixedLength="false" Unicode="false" />

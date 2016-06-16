@@ -4,10 +4,8 @@
     ViewBag.Title = "";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-}
+
+
 @{bd_gestionEntities db = new bd_gestionEntities();}
 <div class="row">
     <div class="col-md-12">
@@ -30,7 +28,11 @@
                 </div>
             </div>
             <div class="portlet-body form">
-                <form action="#" class="form-horizontal" id="submit_form" method="POST">
+@using (Html.BeginForm("Create","Evaluation",null,FormMethod.Post, new { @class="form-horizontal", @id="submit_form" }))
+            {
+    @Html.AntiForgeryToken()
+    
+                @*<form action="Create"  class="form-horizontal" id="submit_form" method="POST">*@
                     <div class="form-wizard">
                         <div class="form-body">
                             <ul class="nav nav-pills nav-justified steps">
@@ -60,7 +62,7 @@
                                             3
                                         </span>
                                         <span class="desc">
-                                            <i class="fa fa-check"></i> Variable
+                                            <i class="fa fa-check"></i>Appreciation global
                                         </span>
                                     </a>
                                 </li>
@@ -70,7 +72,7 @@
                                             4
                                         </span>
                                         <span class="desc">
-                                            <i class="fa fa-check"></i> Appreciation global
+                                            <i class="fa fa-check"></i> sss
                                         </span>
                                     </a>
                                 </li>
@@ -190,7 +192,7 @@
                                    
                                 </div>
 
-
+                                
 
                                                 <div class="tab-pane" id="tab2">
                                                     <div class="form-group">
@@ -422,109 +424,12 @@
                                                 <div class="tab-pane" id="tab4">
                                                     <h3 class="block">Confirm your account</h3>
                                                     <h4 class="form-section">Account</h4>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Username:</label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="username">
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Email:</label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="email">
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <h4 class="form-section">Profile</h4>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Fullname:</label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="fullname">
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Gender:</label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="gender">
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Phone:</label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="phone">
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Address:</label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="address">
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">City/Town:</label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="city">
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Country:</label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="country">
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Remarks:</label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="remarks">
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <h4 class="form-section">Billing</h4>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Card Holder Name:</label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="card_name">
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Card Number:</label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="card_number">
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">CVC:</label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="card_cvc">
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Expiration:</label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="card_expiry_date">
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-3">Payment Options:</label>
-                                                        <div class="col-md-4">
-                                                            <p class="form-control-static" data-display="payment">
-                                                            </p>
-                                                        </div>
-                                                    </div>
+                                                    
+                                                    
                                                 </div>
                                             </div>
                                         </div>
+                       
                                         <div class="form-actions">
                                             <div class="row">
                                                 <div class="col-md-offset-3 col-md-9">
@@ -534,14 +439,14 @@
                                                     <a href="javascript:;" class="btn blue button-next">
                                                         Continue <i class="m-icon-swapright m-icon-white"></i>
                                                     </a>
-                                                    <a href="javascript:;" class="btn green button-submit">
-                                                        Submit <i class="m-icon-swapright m-icon-white"></i>
+                                                    <a href="javascript:;" >
+                                                        <input type="submit" value="Sauvegarder" class="btn green button-submit" /> <i class="m-icon-swapright m-icon-white"></i>
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-</form>
+                   }
             </div>
         </div>
     </div>

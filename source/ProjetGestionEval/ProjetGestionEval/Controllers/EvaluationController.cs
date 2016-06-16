@@ -37,12 +37,25 @@ namespace ProjetGestionEval.Controllers
 
         // POST: Evaluation/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(int? id, [Bind(Exclude = "")]evaluation ev, FormCollection collection)
         {
+            var test = collection["Memo"];
+            var bb = bd.tache.Where(m => m.IDCOLLABORATEUR == id).ToList();
+            int i = 0;
+            foreach (var item in bb) {
+                
+
+                ++i;
+            }
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
 
+                    var y = bd.evaluation.Add(ev);
+                    bd.SaveChanges();
+                    return RedirectToAction("Index");
+                }
                 return RedirectToAction("Index");
             }
             catch

@@ -23,8 +23,8 @@ namespace ProjetGestionEval
         public int IDEVALUATION { get; set; }
         public int IDEVALUATEUR { get; set; }
         public int IDCOLLABORATEUR { get; set; }
-        public string DATEEVALUATION { get; set; }
-        public string DATENEXTEVALUATION { get; set; }
+        public Nullable<System.DateTime> DATEEVALUATION { get; set; }
+        public Nullable<System.DateTime> DATENEXTEVALUATION { get; set; }
         public string APPRECIATION { get; set; }
         public string STATUT { get; set; }
         public string Memo { get; set; }
