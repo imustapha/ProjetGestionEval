@@ -13,11 +13,14 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
+using MySql.Data.MySqlClient;
 
 namespace ProjetGestionEval.Controllers
 {
     public class CollaborateurController : Controller
     {
+        static string ConnectionString = "database=bd_gestion;server=localhost;uid=root";
+        MySqlConnection Connection = new MySqlConnection(ConnectionString);
         private ApplicationUserManager _userManager;
         private IAuthenticationManager AuthenticationManager
         {
@@ -312,12 +315,24 @@ namespace ProjetGestionEval.Controllers
                 // TODO: Add delete logic here
                 if (ModelState.IsValid)
                 {
-                    if (id == null)
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                     CollT = bd.collaborateur.Find(id);
                     asps = bd.aspnetusers.Find(CollT.IdUser);
+                    Connection.Open();
+                    string req = "Delete From administrer Where IDCOLLABORATEUR=" + CollT.IDCOLLABORATEUR;
+                    MySqlCommand cmd = new MySqlCommand(req, Connection);
+                    cmd.ExecuteNonQuery();
+                    string req1 = "Delete From tache Where IDCOLLABORATEUR=" + CollT.IDCOLLABORATEUR;
+                    MySqlCommand cmd1 = new MySqlCommand(req1, Connection);
+                    cmd1.ExecuteNonQuery();
+
+                    if (id == null)
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    
                     if (CollT == null && asps == null)
                         return HttpNotFound();
+          
+                    
+                    
                     bd.collaborateur.Remove(CollT);
                     bd.aspnetusers.Remove(asps);
                     bd.SaveChanges();
@@ -331,8 +346,9 @@ namespace ProjetGestionEval.Controllers
                 }
                 return View(CollT);
             }
-            catch
+            catch(Exception ex)
             {
+                
                 return View();
             }
         }
