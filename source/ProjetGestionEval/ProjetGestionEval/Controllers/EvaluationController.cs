@@ -50,6 +50,7 @@ namespace ProjetGestionEval.Controllers
             foreach (var item in bb) {
                 string f = i.ToString();
                 item.NoteTache = collection[f];
+
                 bd.Entry(item).State = System.Data.Entity.EntityState.Modified;
                 
 
@@ -64,8 +65,8 @@ namespace ProjetGestionEval.Controllers
                 foreach (var item in cr)
                 {string d=j.ToString();
                     item.NoteCritere = collection[d];
-                    bd.Entry(item).State = System.Data.Entity.EntityState.Modified;
-                    
+                    //bd.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                    ev.critere.Add(item);
                     j++;
                 }
             }

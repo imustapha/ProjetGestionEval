@@ -46,10 +46,10 @@ namespace ProjetGestionEval.Controllers
 
         // POST: Tache/Create
         [HttpPost]
-        [Authorize(Roles="superuser,viewp,viewt,admin")]
+        //[Authorize(Roles="superuser,viewp,viewt,admin")]
         public ActionResult Create(tache Tache, FormCollection fc)
         {
-            if (Tache.collaborateur == null )
+            if (Tache.IDCOLLABORATEUR == 0 )
             { 
             var asp = bd.aspnetusers.Where(i => i.Email == User.Identity.Name).FirstOrDefault();
             var ctn = bd.collaborateur.Single(m => m.IdUser == asp.Id);
