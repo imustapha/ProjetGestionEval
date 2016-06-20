@@ -346,7 +346,7 @@ namespace ProjetGestionEval.Controllers
                 }
                 return View(CollT);
             }
-            catch(Exception ex)
+            catch
             {
                 
                 return View();

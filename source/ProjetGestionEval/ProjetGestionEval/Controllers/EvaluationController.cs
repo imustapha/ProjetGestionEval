@@ -11,8 +11,8 @@ namespace ProjetGestionEval.Controllers
     {
         // GET: Evaluation
 
-        static string ConnectionString = "database=bd_gestion;server=localhost;uid=root";
-        MySqlConnection Connection = new MySqlConnection(ConnectionString);
+        //static string ConnectionString = "database=bd_gestion;server=localhost;uid=root";
+        //MySqlConnection Connection = new MySqlConnection(ConnectionString);
         bd_gestionEntities bd = new bd_gestionEntities();
         public ActionResult Index()
         {
@@ -39,29 +39,63 @@ namespace ProjetGestionEval.Controllers
         [HttpPost]
         public ActionResult Create(int? id, [Bind(Exclude = "")]evaluation ev, FormCollection collection)
         {
-            var test = collection["Memo"];
+            var dt= DateTime.Now;
+            ev.DATEEVALUATION = dt;
+            ev.DATENEXTEVALUATION = dt.AddMonths(15);
+            var id1 = collection["IDEVALUATEUR"];
+            var id2 = collection["IDCOLLABORATEUR"];
+          
             var bb = bd.tache.Where(m => m.IDCOLLABORATEUR == id).ToList();
             int i = 0;
             foreach (var item in bb) {
+                string f = i.ToString();
+                item.NoteTache = collection[f];
+                bd.Entry(item).State = System.Data.Entity.EntityState.Modified;
                 
 
                 ++i;
             }
+            int j = 0;
+            var fm = bd.famillecritere.ToList();
+            foreach (var it in fm)
+            {
+                var cr = bd.critere.Where(m => m.IDFAMILLECRITERE == it.IDFAMILLECRITERE);
+
+                foreach (var item in cr)
+                {string d=j.ToString();
+                    item.NoteCritere = collection[d];
+                    bd.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                    
+                    j++;
+                }
+            }
+            var col = bd.collaborateur.Find(id);
+            col.Evaluer = true;
+            if (ev.STATUT == "titulaire")
+            {
+                
+                col.TYPECOLLABORATEUR = "Titulaire";
+                
+
+            }
+            bd.Entry(col).State = System.Data.Entity.EntityState.Modified;
             try
             {
-                if (ModelState.IsValid)
-                {
+                //if (ModelState.IsValid)
+                //{
 
-                    var y = bd.evaluation.Add(ev);
+                    bd.evaluation.Add(ev);
                     bd.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                return RedirectToAction("Index");
+                //    return RedirectToAction("IndexCol");
+                //}
+                return RedirectToAction("IndexCol");
             }
-            catch
+            catch(Exception ex)
             {
+                ex.ToString();
                 return View();
             }
+            
         }
 
         // GET: Evaluation/Edit/5
