@@ -607,6 +607,8 @@
     <Content Include="Content\admin\pages\media\works\img5.jpg" />
     <Content Include="Content\admin\pages\media\works\img6.jpg" />
     <Content Include="Content\admin\pages\scripts\calendar.js" />
+    <Content Include="Content\admin\pages\scripts\Chart.bundle.min.js" />
+    <Content Include="Content\admin\pages\scripts\chart.min.js" />
     <Content Include="Content\admin\pages\scripts\charts-amcharts.js" />
     <Content Include="Content\admin\pages\scripts\charts-flotcharts.js" />
     <Content Include="Content\admin\pages\scripts\coming-soon.js" />
