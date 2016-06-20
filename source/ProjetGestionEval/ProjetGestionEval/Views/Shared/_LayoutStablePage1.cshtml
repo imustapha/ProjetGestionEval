@@ -574,7 +574,24 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li>if (User.IsInRole("superuser")) { 
+                                     <li>
+        <a href="javascript:;">
+            <i class="icon-note"></i>
+            <span class="title">Evaluation</span>
+            <span class="arrow "></span>
+        </a>
+        <ul class="sub-menu">
+            <li>
+                <a href="~/Evaluation/IndexCol">
+                    <i class="icon-screen-tablet"></i>
+                    Liste des collaborateur evaluer/non evaluer
+                </a>
+            </li>
+
+        </ul>
+    </li>}
+                        
                         if (User.IsInRole("admin"))
                         {
     <li>
@@ -607,6 +624,22 @@ License: You must have a valid license purchased only from themeforest(the above
         </ul>
     </li>}
                         }
+                        if (!User.IsInRole("admin"))
+                        {
+                          <li class="start ">
+                        <a href="~/Tache/IndexTa">
+                            <i class="icon-equalizer"></i>
+                            <span class="title">Tache</span>
+                        </a>
+                    </li>  
+                             <li class="start ">
+                                 <a href="~/Projet/IndexPr">
+                                     <i class="icon-briefcase"></i>
+                                     <span class="title">Projet</span>
+                                 </a>
+                    </li>  
+                        }
+                        
 }
                     <!-- BEGIN ANGULARJS LINK -->
                     <!-- END ANGULARJS LINK -->

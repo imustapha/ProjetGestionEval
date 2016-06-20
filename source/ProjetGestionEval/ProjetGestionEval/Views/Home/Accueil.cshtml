@@ -19,7 +19,7 @@
     @{if (User.IsInRole("superuser") || User.IsInRole("admin"))
     {
         <a href="/Collaborateur/Index">
-            <div class="tile double-down bg-blue-hoki">
+            <div class="tile  bg-yellow-saffron">
                 <div class="tile-body">
                     <i class="fa fa-user"></i>
                 </div>
@@ -29,7 +29,7 @@
                         Collaborateur Titulaire
                     </div>
                     <div class="number">
-                        
+
                         @ViewBag.cc
                     </div>
                 </div>
@@ -38,7 +38,7 @@
 
 
         <a href="/CollaborateurPE/Index">
-            <div class="tile  bg-yellow-saffron">
+            <div class="tile bg-blue-hoki ">
                 <div class="corner">
                 </div>
                 <div class="tile-body">
@@ -49,13 +49,13 @@
                         Collaborateur P.E
                     </div>
                     <div class="number">
-                        
+
                         @ViewBag.bb
                     </div>
                 </div>
             </div>
         </a>
-   
+        if (User.IsInRole("admin")) { 
     <a href="/Client/Index">
         <div class="tile bg-green-meadow">
             <div class="tile-body">
@@ -66,17 +66,14 @@
                     Clients
                 </div>
                 <div class="number">
-                    12
+                    @ViewBag.aa
                 </div>
             </div>
         </div>
-    </a>
+    </a>}
     }
-      else
-      {
-        <label>Bonjour @User.Identity.Name</label><br />
-
-      }
+        if (User.IsInRole("superuser") || User.IsInRole("viewpe") || User.IsInRole("viewt"))
+        {
     <a href="~/Projet/IndexPr">
         <div class="tile bg-red-intense">
             <div class="tile-body">
@@ -92,7 +89,7 @@
             </div>
         </div>
     </a>
-    <a href="/Tache/Index">
+    <a href="/Tache/IndexTa">
         <div class="tile bg-blue-steel">
             <div class="tile-body">
                 <i class="fa fa-bar-chart-o"></i>
@@ -107,6 +104,7 @@
             </div>
         </div>
     </a>
+        }
 
 
 }

@@ -4744,6 +4744,7 @@
     <Content Include="Views\Evaluation\Delete.cshtml" />
     <Content Include="Views\Projet\IndexPr.cshtml" />
     <Content Include="Views\Evaluation\IndexCol.cshtml" />
+    <Content Include="Views\Tache\IndexTa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

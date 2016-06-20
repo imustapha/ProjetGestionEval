@@ -232,7 +232,7 @@ namespace ProjetGestionEval.Controllers
         public ActionResult Delete(int? id, projet pro)
         {
             Connection.Open();
-            string req = "Delete From administrer Where IDPROJET=" + id;
+            string req = "Delete From administrer Where IDPROJET=" + id+"; Delete From tache Where IDPROJET=" + id;
             MySqlCommand cmd = new MySqlCommand(req, Connection);
            
             cmd.ExecuteNonQuery();
@@ -263,10 +263,8 @@ namespace ProjetGestionEval.Controllers
                 //} return View(colpe);
             }
 
-            catch
-
-            {
-                
+            catch(Exception ex){
+                ex.ToString();
                 return View();
             }
         }
