@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,11 +10,40 @@ namespace ProjetGestionEval.Controllers
 {
     public class TacheController : Controller
     {
+        static string ConnectionString = "database=bd_gestion;server=localhost;uid=root";
+        MySqlConnection Connection = new MySqlConnection(ConnectionString);
         bd_gestionEntities bd = new bd_gestionEntities();
         // GET: Tache
         public ActionResult Index()
         {
             return View(bd.tache.ToList());
+        }
+        public ActionResult IndexTa()
+        {
+            var asp = bd.aspnetusers.Where(i => i.Email == User.Identity.Name).FirstOrDefault();
+            var ctn = bd.collaborateur.Single(m => m.IdUser == asp.Id);
+            var id = ctn.IDCOLLABORATEUR;
+            //Connection.Open();
+            //string req = "SELECT IDTACHE FROM tache where IDCOLLABORATEUR=" + id;
+            ////SELECT * FROM projet where IDPROJET IN (SELECT IDPROJET FROM administrer where IDCOLLABORATEUR=" + id+")
+            //MySqlCommand cmd = new MySqlCommand(req, Connection);
+            //MySqlDataReader dr = cmd.ExecuteReader();
+
+            //List<String> s1 = new List<string>();
+
+            //while (dr.Read())
+            //{
+            //    s1.Add(dr[0].ToString());
+
+            //}
+
+            //int s = 0;
+
+            //if (s1 != null) { s = int.Parse(s1); }
+            //ViewBag.ss = s1.Select(int.Parse).ToList();
+
+
+            return View(bd.tache.Where(m=>m.IDCOLLABORATEUR==id).ToList());
         }
 
         // GET: Tache/Details/5
