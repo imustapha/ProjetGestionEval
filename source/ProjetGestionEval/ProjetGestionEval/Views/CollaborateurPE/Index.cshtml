@@ -120,8 +120,15 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.DATEEMBAUCHE.Day)/@Html.DisplayFor(modelItem => item.DATEEMBAUCHE.Month)/@Html.DisplayFor(modelItem => item.DATEEMBAUCHE.Year)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DATESORTIE)
+                                    <td>@{string x = "";
+                                          if (item.DATESORTIE == null) { 
+                                            <label>@x</label>
+                                              }else{
+                                              string c="/";
+                                              var date= @Html.DisplayFor(modelItem => item.DATESORTIE.Value.Day)+c+@Html.DisplayFor(modelItem => item.DATESORTIE.Value.Month)+c+@Html.DisplayFor(modelItem => item.DATESORTIE.Value.Year);
+                                       <label>@date</label>
+                                    }
+                                    }
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.aspnetusers.Email)

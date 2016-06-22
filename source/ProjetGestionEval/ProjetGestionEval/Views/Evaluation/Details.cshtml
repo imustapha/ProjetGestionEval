@@ -5,6 +5,20 @@
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+
+
+        <a href="~/Home/Accueil">Accueil</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Evaluation/IndexCol">Liste des Collaborateur</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Evaluation/Details/@Model.IDCOLLABORATEUR">Details</a>
+        <i class="fa fa-circle"></i>
+    </li>
+
+</ul>
+
 
 
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

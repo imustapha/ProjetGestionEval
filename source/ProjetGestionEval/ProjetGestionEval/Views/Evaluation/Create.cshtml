@@ -5,7 +5,20 @@
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 
+<ul class="page-breadcrumb breadcrumb">
+    <li>
 
+
+        <a href="~/Home/Accueil">Acceuil</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Evaluation/IndexCol">Liste des Collaborateur</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Evaluation/Create">Evaluation</a>
+        <i class="fa fa-circle"></i>
+    </li>
+
+
+</ul>
 @{bd_gestionEntities db = new bd_gestionEntities();}
 <div class="row">
     <div class="col-md-12">
@@ -66,16 +79,7 @@
                                         </span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#tab4" data-toggle="tab" class="step">
-                                        <span class="number">
-                                            4
-                                        </span>
-                                        <span class="desc">
-                                            <i class="fa fa-check"></i> sss
-                                        </span>
-                                    </a>
-                                </li>
+                                
                             </ul>
                             <div id="bar" class="progress progress-striped" role="progressbar">
                                 <div class="progress-bar progress-bar-success">
@@ -436,12 +440,6 @@
                                                         @Html.Hidden("IDEVALUATEUR", @idd)
                                                         @*<input type="hidden" name="IDEVALUATEUR" value=@idd>*@
                                                     </div>
-                                                </div>
-                                                <div class="tab-pane" id="tab4">
-                                                    <h3 class="block">Confirmez votre evaluation</h3>
-                                                    <h4 class="form-section">evaluation de @pe.NOM</h4>
-                                                    
-                                                    
                                                 </div>
                                             </div>
                                         </div>
