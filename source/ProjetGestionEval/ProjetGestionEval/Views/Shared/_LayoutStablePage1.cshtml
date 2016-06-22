@@ -633,18 +633,27 @@ License: You must have a valid license purchased only from themeforest(the above
         </ul>
     </li>}
                         }
+                        
                         if (!User.IsInRole("admin"))
                         {
+                            var axx = bd.aspnetusers.Where(i => i.Email == User.Identity.Name).FirstOrDefault();
+                            var igh = bd.collaborateur.Single(m => m.IdUser == axx.Id);
                           <li class="start ">
                         <a href="~/Tache/IndexTa">
                             <i class="icon-equalizer"></i>
-                            <span class="title">Tache</span>
+                            <span class="title">Mes taches</span>
                         </a>
                     </li>  
                              <li class="start ">
                                  <a href="~/Projet/IndexPr">
                                      <i class="icon-briefcase"></i>
-                                     <span class="title">Projet</span>
+                                     <span class="title">Mes projets</span>
+                                 </a>
+                    </li>  
+                        <li class="start ">
+                                 <a href="~/Evaluation/Details/@igh.IDCOLLABORATEUR">
+                                     <i class="icon-trophy"></i>
+                                     <span class="title">Mon evaluation</span>
                                  </a>
                     </li>  
                         }
