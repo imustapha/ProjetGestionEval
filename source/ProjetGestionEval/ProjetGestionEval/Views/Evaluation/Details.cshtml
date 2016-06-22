@@ -37,7 +37,10 @@
                         </div>
                         <div class="profile-usertitle-job">
                             @Html.DisplayFor(model => coll.fonction.NOMFONCTION)
-                        </div>
+                            
+                            <br/><label>Date Evaluation</label><br /><label> @Model.DATEEVALUATION</label>
+
+</div>
                     </div>
                     <!-- END SIDEBAR USER TITLE -->
                     <!-- SIDEBAR BUTTONS -->
@@ -54,19 +57,77 @@
             </div>
             <!-- END PORTLET MAIN -->
         </div>
+        <div class=" col-md-8">
+            <label>Date Prochaine Evaluation</label>
+                   <label> @Model.DATENEXTEVALUATION</label>
+            <div class="portlet light" style="padding: 20px 31px 130px 20px;">
+                <center>
+                    <div id="Chart2Container" style="width: 75%;">
+                        <canvas id="canvas_bar2"></canvas>
+                    </div>
 
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $.ajax({
+                                url: "@Url.Action("getData", "Evaluation")",
 
-        <div class="col-md-8">
-            <div class="portlet light">
+                                type: "POST",
+                                dataType: "Json",
+                                success: function (data) {
+                                    console.log("test" + data.Content);
+                                    mychart(data.Content, data.maxVal);
+                                },
+
+                            });
+
+                        });
+                        function mychart(params, max) {
+                            //console.log(params[0]);
+                            var barChartData = {
+                                //labels: ["January", "February", "March", "April", "May", "June", "July", "Aout", "September"],
+                                labels: params[0],
+                                datasets: [
+                                    {
+                                        fillColor: "#26B99A", //rgba(220,220,220,0.5)
+                                        strokeColor: "#26B99A", //rgba(220,220,220,0.8)
+                                        highlightFill: "#36CAAB", //rgba(220,220,220,0.75)
+                                        highlightStroke: "#36CAAB", //rgba(220,220,220,1)
+                                        data: params[1]//[70, 60, 20, 88, 12, 60, 35, 90, 95]
+                                    },
+                                    {
+                                        fillColor: "#03586A", //rgba(151,187,205,0.5)
+                                        strokeColor: "#03586A", //rgba(151,187,205,0.8)
+                                        highlightFill: "#066477", //rgba(151,187,205,0.75)
+                                        highlightStroke: "#066477", //rgba(151,187,205,1)
+                                        data: params[2]//[41, 56, 25, 48, 72, 34, 12, 45, 40]
+                                    },
+                                ],
+                            }
+
+                            $("#canvas_bar2").remove();
+                            $('#Chart2Container').append('<canvas id="canvas_bar2" ><canvas>');
+                            new Chart($("#canvas_bar2").get(0).getContext("2d")).Bar(barChartData, {
+                                tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+                                responsive: true,
+                                maintainAspectRatio: true,
+                                barDatasetSpacing: 2,
+                                barValueSpacing: 7,
+                                scaleOverride: true,
+                                scaleSteps: max,
+                                scaleStepWidth: 2,
+                                scaleStartValue: 0
+                            });
+                        }
+
+                    </script>
+                </center>
                 <div class="form-group">
                     <label class="col-md-2 control-label">
-                        Taches: <span class="required">
-                            *
-                        </span>
+                        Note Taches:
                     </label>
                     <div class="col-md-10">
                         <div class="form-control height-auto">
-                            <div class="scroller" style="height:275px;" data-always-visible="1">
+                            <div class="scroller" style="height:100px;" data-always-visible="1">
                                 @{
                                     int x = 0;
                                     if (ViewBag.id != null)
@@ -78,53 +139,12 @@
                                         foreach (var item in dd)
                                         {
                                             string c = i.ToString();
-                                            
+
                                             <div class="form-group">
                                                 @Html.LabelFor(modelItem => item.NOMTACHE, item.NOMTACHE, new { @class = "control-label col-md-2" })
-                                                <div class="md-radio-inline ">
-                                                    <div class="md-radio">
-                                                        <label>
-                                                            @{
-                                                            string cx = "radio6" + c;
-                                                            @Html.RadioButtonFor(M => item.NoteTache, "A", new { @id = @cx })
-                                                            }A
-                                                        </label>
-                                                    </div>
-                                                    <div class="md-radio">
-                                                        <label>@{
-                                                            string cx1 = "radio7" + c;
-                                                            @Html.RadioButtonFor(M => item.NoteTache, "B", new { @id = @cx1 })
-                                                            }
-                                                            B
-                                                        </label>
-                                                    </div>
-                                                    <div class="md-radio">
-                                                        <label>
-                                                            @{
-                                                            string cx2 = "radio8" + c;
-                                                            @Html.RadioButtonFor(M => item.NoteTache, "C", new { @id = @cx2 })
-                                                            }
-                                                            C
-                                                        </label>
-                                                    </div>
-                                                    <div class="md-radio">
-                                                        <label>
-                                                            @{
-                                                            string cx3 = "radio9" + c;
-                                                            @Html.RadioButtonFor(M => item.NoteTache, "D", new { @id = @cx3 })
-                                                            }
-                                                            D
-                                                        </label>
-                                                    </div>
-                                                    <div class="md-radio">
-                                                        <label>
-                                                            @{
-                                                                string cx4 = "radio10" + c;
-                                                            @Html.RadioButtonFor(M => item.NoteTache, "E", new { @id = @cx4 })
-                                                            }
-                                                            E
-                                                        </label>
-                                                    </div>
+                                                <div>
+                                                    @Html.LabelFor(modelItem => item.NoteTache, item.NoteTache, new { @class = "btn btn-icon-only green" })
+
                                                 </div>
                                             </div>
                                             ++i;
@@ -134,81 +154,73 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
+                <br/>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" style="margin-top: 2%">
+                        Note Categories:
+                    </label>
+                    @{
+                        int r = 0;
+                        bd_gestionEntities f = new bd_gestionEntities();
+                        var fax = f.famillecritere.ToList();
+                        <div class="col-md-10" style="margin-top: 2%">
+                            <div class="form-control height-auto">
+                                <div class="scroller" style="height: 275px;width: 730px;overflow: hidden;" data-always-visible="1">
 
-                <div id="Chart2Container" style="width: 75%;">
-                    <canvas id="canvas_bar2"></canvas>
-                </div>
+                                    @foreach (var it in fax)
+                                    {
 
-                <script type="text/javascript">
-                    $(document).ready(function () {
-                        $.ajax({
-                            url: "@Url.Action("getData", "Evaluation")",
+                                        <ul>
+                                            <li>
+                                                @Html.LabelFor(modelItem => it.NOMFAMILLECRITERE, it.NOMFAMILLECRITERE)
 
-                            type: "POST",
-                            dataType: "Json",
-                            success: function (data) {
-                                console.log("test" + data.Content);
-                                mychart(data.Content, data.maxVal);
-                            },
+                                                @{var fat = f.critere.Where(m => m.IDFAMILLECRITERE == it.IDFAMILLECRITERE); }
+                                                @foreach (var item in fat)
+                                                {
+                                                    string t = r.ToString();
+                                                    <ul>
+                                                        <li>
+                                                            <div class="md-radio-inline">
+                                                                @Html.LabelFor(modelItem => item.NOMCRITERE, item.NOMCRITERE, new { @class = "col-md-5" })
+                                                                <div>
+                                                                    @Html.LabelFor(modelItem => item.NoteCritere, item.NoteCritere, new { @class = "btn btn-icon-only green" })
 
-                        });
+                                                                </div>
+                                                                <br />
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    r++;
+                                                }
+                                                <br />
+                                            </li>
+                                        </ul>
 
-                    });
-                    function mychart(params, max) {
-                        //console.log(params[0]);
-                        var barChartData = {
-                            //labels: ["January", "February", "March", "April", "May", "June", "July", "Aout", "September"],
-                            labels: params[0],
-                            datasets: [
-                                {
-                                    fillColor: "#26B99A", //rgba(220,220,220,0.5)
-                                    strokeColor: "#26B99A", //rgba(220,220,220,0.8)
-                                    highlightFill: "#36CAAB", //rgba(220,220,220,0.75)
-                                    highlightStroke: "#36CAAB", //rgba(220,220,220,1)
-                                    data: params[1]//[70, 60, 20, 88, 12, 60, 35, 90, 95]
-                                },
-                                {
-                                    fillColor: "#03586A", //rgba(151,187,205,0.5)
-                                    strokeColor: "#03586A", //rgba(151,187,205,0.8)
-                                    highlightFill: "#066477", //rgba(151,187,205,0.75)
-                                    highlightStroke: "#066477", //rgba(151,187,205,1)
-                                    data: params[2]//[41, 56, 25, 48, 72, 34, 12, 45, 40]
-                                },
-                            ],
-                        }
-
-                        $("#canvas_bar2").remove();
-                        $('#Chart2Container').append('<canvas id="canvas_bar2" ><canvas>');
-                        new Chart($("#canvas_bar2").get(0).getContext("2d")).Bar(barChartData, {
-                            tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-                            responsive: true,
-                            maintainAspectRatio: true,
-                            barDatasetSpacing: 2,
-                            barValueSpacing: 7,
-                            scaleOverride: true,
-                            scaleSteps: max,
-                            scaleStepWidth: 2,
-                            scaleStartValue: 0
-                        });
+                                    }
+                                </div>
+                            </div>
+                        </div>
                     }
-
-                </script>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-md-3" style="margin-left: -1%;margin-top: 6%;">Remarque:</label>
+                    <div class="col-md-6">
+                     @Html.TextArea("Memo", @Model.Memo, new { @class = "form-control" ,@style="margin-top: 6%;margin-left: -15%;width: 173%;" }) 
+                    </div>
+                </div>
+                <br />
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-9">
+                            <a href="@Url.Action("IndexCol")" class="btn default" style="    margin-top: 5%;margin-left: 28%;">Retour</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p>
-                @Html.ActionLink("Back to List", "Index")
-            </p>
+
+
         </div>
-
-
-
     </div>
 </div>
-
-
-
-
-
-

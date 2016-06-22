@@ -31,6 +31,7 @@ namespace ProjetGestionEval.Controllers
         public ActionResult Details(int id)
         {
             ViewBag.id = id;
+            
             string[] months = new string[] { "January", "February", "March", "April", "May", "June", "July", "Aout", "September", "Octore", "Novemre", "Decemre" };
             Connection.Open();
             for (int i = 0; i < 3; i++)
@@ -65,7 +66,7 @@ namespace ProjetGestionEval.Controllers
                 if (chartRes[1][i] == null) chartRes[1][i] = (0).ToString();
                 if (chartRes[2][i] == null) chartRes[2][i] = (0).ToString();
             }
-            return View();
+            return View(bd.evaluation.Where(e => e.IDCOLLABORATEUR == id).OrderByDescending(e => e.DATEEVALUATION).First());
         }
         public ActionResult getData()
         {
